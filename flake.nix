@@ -3,7 +3,7 @@
 
   inputs = {
     # Nixpkgs (stable)
-    nixpkgs.url = "github:NixOS/nixpkgs/005433b9";
+    nixpkgs.url = "github:NixOS/nixpkgs/25.05";
 
     # Home Manager, following the same nixpkgs
     # home-manager.url = "github:nix-community/home-manager/release-25.05";
