@@ -1,0 +1,9 @@
+# nix build artifacts
+result
+result-*
+.direnv/
+.cache/
+
+# secrets
+secrets.nix
+*.age
