@@ -74,7 +74,7 @@
       vim.opt.wrap = false             -- Don't wrap long lines
       vim.opt.mouse = "a"              -- Enable mouse support
       vim.opt.hidden = true            -- Allow switching buffers without saving
-      vim.opt.termguicolors = true     -- Better colors
+      vim.opt.termguicolors = false     -- Better colors
 
       -- Plugins
       require("gitsigns").setup()
