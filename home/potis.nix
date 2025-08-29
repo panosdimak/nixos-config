@@ -42,7 +42,6 @@
     ollama
     cpuid
     
-
     inputs.zen-browser.packages.${pkgs.system}.twilight
   ];
 
@@ -72,7 +71,6 @@
       tree-sitter-markdown
     ];
 
-
     extraLuaConfig = ''
       -- Options
       vim.opt.number = true            -- Show line numbers
@@ -99,7 +97,6 @@
         highlight = { enable = true },
       })
     '';
-
   };
 
   programs.bash = {
@@ -108,8 +105,6 @@
     shellAliases = {
       vim         = "nvim";
       nixbuildflake  = "sudo nixos-rebuild switch --flake ~/nix-config#desktop";
-      homeconfig  = "nvim ~/.config/home-manager/home.nix";
-      homeswitch  = "home-manager switch";
     };
   };
   
