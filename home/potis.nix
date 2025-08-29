@@ -37,6 +37,7 @@
     kdePackages.kcolorchooser 
     protonvpn-gui
     warp
+    qpwgraph
     helvum   # optional GUI patchbay
     qjackctl # optional JACK control GUI
     ollama
