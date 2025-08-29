@@ -34,15 +34,5 @@
         ];
       };
     };
-    
-    # Standalone Home Manager configs
-    homeConfigurations.potis = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
-      modules = [ 
-        ./home/potis.nix
-      ];
-      extraSpecialArgs = { inherit inputs; };
-    };
-
   };
 }
