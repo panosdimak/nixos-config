@@ -1,5 +1,4 @@
-
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home.username = "potis";
@@ -47,7 +46,6 @@
     
 
     inputs.zen-browser.packages.${pkgs.system}.twilight
-    inputs.nixvim.packages.${pkgs.system}.default
   ];
 
   programs.bash = {
