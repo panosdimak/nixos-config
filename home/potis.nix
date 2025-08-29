@@ -5,45 +5,36 @@
   home.homeDirectory = "/home/potis";
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
-  # User applications and tools moved from system
   home.packages = with pkgs; [
-    hello
-    gcc
-    gnumake
-    coreutils
-    gnused
-    gawk
-    findutils
-    bashInteractive
-    binutils
-    git git-credential-manager curl wget unzip tree
-    fastfetch
-    obsidian
-    vscode
-    ghostty starship
-    wl-clipboard
-    grim slurp tesseract
-    mpv obs-studio
-    discord telegram-desktop 
-    spotify
-    reaper
-    numlockx
-    sl cowsay fortune lolcat
-    libreoffice
-    onlyoffice-desktopeditors
-    btop
-    qbittorrent
-    gnome-calculator 
-    kdePackages.kcolorchooser 
-    protonvpn-gui
-    warp
-    qpwgraph
-    helvum   # optional GUI patchbay
-    qjackctl # optional JACK control GUI
-    ollama
-    cpuid
+    # Development tools
+    gcc gnumake coreutils gnused gawk findutils bashInteractive binutils
+    git git-credential-manager curl wget unzip tree fastfetch
     
+    # Editors / IDE / Writing
+    obsidian vscode libreoffice onlyoffice-desktopeditors
+
+    # Terminal / Shell
+    ghostty starship
+
+    # Clipboard / Screenshot / OCR
+    wl-clipboard grim slurp tesseract
+
+    # Media
+    mpv obs-studio reaper spotify
+   
+    # Internet
     inputs.zen-browser.packages.${pkgs.system}.twilight
+    discord telegram-desktop qbittorrent protonvpn-gui
+
+    # ML
+    ollama
+
+    # System utilities
+    numlockx btop cpuid qpwgraph qjackctl helvum 
+    gnome-calculator kdePackages.kcolorchooser warp
+
+    # Misc
+    sl cowsay fortune lolcat
   ];
 
   programs.neovim = {
@@ -83,7 +74,7 @@
       vim.opt.wrap = false             -- Don't wrap long lines
       vim.opt.mouse = "a"              -- Enable mouse support
       vim.opt.hidden = true            -- Allow switching buffers without saving
-      vim.opt.termguicolors = false     -- Better colors
+      vim.opt.termguicolors = true     -- Better colors
 
       -- Plugins
       require("gitsigns").setup()
