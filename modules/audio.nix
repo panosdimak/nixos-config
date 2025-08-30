@@ -13,32 +13,37 @@
     wireplumber.enable = true;
 
     extraConfig = {
-      # The default JACK latency is 1024/48000.
-      # This entire `extraConfig` was just to change that.
-      # Maybe I could get rid of the rest of it.
-      jack = {
-        "10-clock-rate" = {
-          "jack.properties" = {
-            "node.latency" = "128/48000";
-            "node.rate" = "1/48000";
-          };
+      # Keep the graph sane and consistent
+      pipewire."10-lowlatency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          # start conservative; drop later if stable
+          "default.clock.quantum" = 128;
+          "default.clock.min-quantum" = 64;
+          "default.clock.max-quantum" = 256;
         };
       };
-      pipewire = {
-        "10-clock-rate" = {
-          "context.properties" = {
-            "default.clock.rate" = 48000;
-            "default.clock.allowed-rates" = [
-              44100
-              48000
-            ];
-            "default.clock.quantum" = 32;
-            "default.clock.min-quantum" = 16;
-            "default.clock.max-quantum" = 8192;
+
+      # Let JACK/REAPER ask for ~128/48k and keep quantum steady
+      jack."10-lowlatency" = {
+        "jack.properties" = {
+          "node.latency" = "128/48000";
+          "node.lock-quantum" = true;
+        };
+      };
+
+      # OPTIONAL: stop Pulse apps from dragging the graph too low
+      pipewire-pulse."10-lowlatency" = {
+        context.modules = [{
+          name = "libpipewire-module-protocol-pulse";
+          args = {
+            "pulse.min.quantum" = "128/48000";
           };
+        }];
+        stream.properties = {
+          "node.latency" = "128/48000";
         };
       };
     };
-
   };
 }
