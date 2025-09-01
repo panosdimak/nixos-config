@@ -9,6 +9,9 @@
     vim
     usbutils
     uhubctl
+    yabridge
+    yabridgectl
+    reaper
   ];
 
   fonts.packages = with pkgs; [
