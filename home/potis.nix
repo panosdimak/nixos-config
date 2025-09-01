@@ -14,14 +14,18 @@
     obsidian vscode libreoffice onlyoffice-desktopeditors
 
     # Terminal / Shell
-    ghostty starship
+    ghostty starship ripgrep fzf bat lsd procs nnn
+    ncdu
 
     # Clipboard / Screenshot / OCR
     wl-clipboard grim slurp tesseract
 
     # Media
-    mpv obs-studio reaper spotify
+    mpv obs-studio spotify
    
+    # Emulation utils
+    wineWow64Packages.staging winetricks
+
     # Internet
     inputs.zen-browser.packages.${pkgs.system}.twilight
     discord telegram-desktop qbittorrent protonvpn-gui
@@ -30,7 +34,7 @@
     ollama
 
     # System utilities
-    numlockx btop cpuid qpwgraph qjackctl helvum 
+    nautilus numlockx btop cpuid qpwgraph qjackctl helvum 
     gnome-calculator kdePackages.kcolorchooser warp
 
     # Misc
@@ -95,8 +99,10 @@
     enable = true;
     initExtra = ''eval "$(starship init bash)"'';
     shellAliases = {
-      vim         = "nvim";
       nixbuildflake  = "sudo nixos-rebuild switch --flake ~/nix-config#desktop";
+      vim = "nvim";
+      ls = "lsd";
+      tree = "lsd --tree";
     };
   };
   
@@ -107,6 +113,7 @@
     font-family = "JetBrainsMonoNL Nerd Font";
     background-opacity = 0.8;
     background-blur = true;
+    cursor-style = "bar";
     };
   };
 
