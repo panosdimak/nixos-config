@@ -41,6 +41,8 @@
     sl cowsay fortune lolcat
   ];
 
+  programs.firefox.enable = true;
+
   programs.neovim = {
     enable = true;
     
