@@ -4,6 +4,6 @@
   users.users.panos = {
     isNormalUser = true;
     description = "panos";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" ];
   };
 }
