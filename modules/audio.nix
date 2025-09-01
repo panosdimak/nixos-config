@@ -46,4 +46,10 @@
       };
     };
   };
+
+  musnix = {
+    enable = true;
+    rtirq.enable = true;
+    rtcqs.enable = true;
+  };
 }
