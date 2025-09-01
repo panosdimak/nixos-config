@@ -11,7 +11,6 @@
     ../modules/system.nix
     ../modules/security.nix
     ../modules/desktop/plasma.nix
-    ../modules/desktop/gnome.nix
     ../modules/nvidia.nix
     ../modules/audio.nix
     ../modules/users/potis.nix
