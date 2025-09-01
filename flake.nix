@@ -20,10 +20,10 @@
 
   outputs = { self, nixpkgs, home-manager, musnix, zen-browser, ... }@inputs: {
     nixosConfigurations = {
-      desktop = nixpkgs.lib.nixosSystem {
+      ryzen-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/desktop.nix
+          ./hosts/ryzen-desktop.nix
 
           # Home Manager as a NixOS module
           home-manager.nixosModules.home-manager

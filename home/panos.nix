@@ -101,7 +101,7 @@
     enable = true;
     initExtra = ''eval "$(starship init bash)"'';
     shellAliases = {
-      nixbuildflake  = "sudo nixos-rebuild switch --flake ~/nix-config#desktop";
+      nixbuildflake  = "sudo nixos-rebuild switch --flake ~/nix-config#ryzen-desktop";
       vim = "nvim";
       ls = "lsd";
       tree = "lsd --tree";

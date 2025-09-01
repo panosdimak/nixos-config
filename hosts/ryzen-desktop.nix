@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./desktop-hardware.nix
+    ./ryzen-desktop-hardware.nix
 
     ../modules/boot.nix
     ../modules/hardware.nix
