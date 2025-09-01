@@ -13,7 +13,7 @@
     ../modules/desktop/plasma.nix
     ../modules/nvidia.nix
     ../modules/audio.nix
-    ../modules/users/potis.nix
+    ../modules/users/panos.nix
     ../modules/programs/common.nix
   ];
 

@@ -1,9 +1,9 @@
 { ... }:
 
 {
-  users.users.potis = {
+  users.users.panos = {
     isNormalUser = true;
-    description = "potis";
+    description = "panos";
     extraGroups = [ "networkmanager" "wheel" ];
   };
 }
