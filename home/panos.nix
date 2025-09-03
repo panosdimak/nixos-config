@@ -28,13 +28,13 @@
 
     # Internet
     inputs.zen-browser.packages.${pkgs.system}.twilight
-    discord telegram-desktop qbittorrent protonvpn-gui
+    discord vesktop telegram-desktop qbittorrent protonvpn-gui
 
     # ML
     ollama
 
     # System utilities
-    nautilus numlockx btop cpuid qpwgraph qjackctl helvum 
+    nautilus numlockx btop cpuid qpwgraph  
     gnome-calculator kdePackages.kcolorchooser warp
 
     # Misc
@@ -101,7 +101,7 @@
     enable = true;
     initExtra = ''eval "$(starship init bash)"'';
     shellAliases = {
-      nixbuildflake  = "sudo nixos-rebuild switch --flake ~/nix-config#ryzen-desktop";
+      nixbuildflake  = "sudo nixos-rebuild switch --flake ~/nixos-config#ryzen-desktop";
       vim = "nvim";
       ls = "lsd";
       tree = "lsd --tree";
