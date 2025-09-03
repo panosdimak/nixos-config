@@ -28,7 +28,7 @@
 
     # Internet
     inputs.zen-browser.packages.${pkgs.system}.twilight
-    discord vesktop telegram-desktop qbittorrent protonvpn-gui
+    vesktop telegram-desktop qbittorrent protonvpn-gui
 
     # ML
     ollama
