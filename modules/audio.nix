@@ -16,32 +16,18 @@
       # Keep the graph sane and consistent
       pipewire."10-lowlatency" = {
         "context.properties" = {
-          "default.clock.rate" = 48000;
-          # start conservative; drop later if stable
-          "default.clock.quantum" = 128;
-          "default.clock.min-quantum" = 64;
+          "default.clock.allowed-rates" = [ 96000 ];
+          "default.clock.rate" = 96000;
+          "default.clock.quantum" = 256;
+          "default.clock.min-quantum" = 256;
           "default.clock.max-quantum" = 256;
         };
       };
 
-      # Let JACK/REAPER ask for ~128/48k and keep quantum steady
       jack."10-lowlatency" = {
         "jack.properties" = {
-          "node.latency" = "128/48000";
+          "node.latency" = "256/96000";
           "node.lock-quantum" = true;
-        };
-      };
-
-      # OPTIONAL: stop Pulse apps from dragging the graph too low
-      pipewire-pulse."10-lowlatency" = {
-        context.modules = [{
-          name = "libpipewire-module-protocol-pulse";
-          args = {
-            "pulse.min.quantum" = "128/48000";
-          };
-        }];
-        stream.properties = {
-          "node.latency" = "128/48000";
         };
       };
     };
