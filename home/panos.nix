@@ -1,6 +1,10 @@
 { pkgs, inputs, ... }:
 
 {
+  imports = [
+    ./plasma.nix
+  ];
+
   home.username = "panos";
   home.homeDirectory = "/home/panos";
   home.stateVersion = "25.05"; # Please read the comment before changing.
@@ -40,6 +44,9 @@
     # Misc
     sl cowsay fortune lolcat
   ];
+  
+  programs.plasma.enable = true;
+  programs.plasma.overrideConfig = true;
 
   programs.firefox.enable = true;
 
