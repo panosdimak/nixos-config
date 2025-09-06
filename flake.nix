@@ -37,7 +37,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.sharedModules = [
-              inputs.plasma-manager.homeManagerModules."plasma-manager"
+              inputs.plasma-manager.homeModules."plasma-manager"
             ];
             home-manager.users.panos = import ./home/panos.nix;
             home-manager.extraSpecialArgs = { inherit inputs; };
