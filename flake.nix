@@ -12,6 +12,7 @@
     # Plasma Manager
     plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.inputs.home-manager.follows = "home-manager";
 
     # Musnix
     musnix.url = "github:musnix/musnix";
@@ -20,6 +21,7 @@
     # Zen browser
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    zen-browser.inputs.home-manager.follows = "home-manager";
   };
 
   outputs = { self, nixpkgs, home-manager, musnix, zen-browser, ... }@inputs: {
