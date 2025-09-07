@@ -1,4 +1,7 @@
 # NixOS Configuration  
-- Modularized system config
-- Home Manager
-- Flake with everything + custom Zen browser flake 
+- Flake-based, modular setup
+- Home Manager integration
+- Plasma Manager for declarative KDE configuration
+- NVIDIA graphics support
+- Advanced audio (PipeWire, musnix) for music production 
+- Zen Browser flake
