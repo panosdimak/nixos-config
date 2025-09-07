@@ -1,12 +1,82 @@
 {
   programs.plasma = {
     enable = true;
+    overrideConfig = true;
+
+    workspace = {
+      lookAndFeel = "Utterly-Nord";
+      theme = "Utterly-Round";
+      iconTheme = "Fluent";
+      colorScheme = "UtterlyNord";
+
+      # # Window decorations (KWin/Aurorae)
+      # windowDecorations = {
+      #   theme = "__aurorae__svg__Utterly-Round-Dark";
+      #   library = "org.kde.kwin.aurorae";
+      # };
+
+      enableMiddleClickPaste = false;
+    };
+
+    input = {
+      keyboard.numlockOnStartup = "on";
+    };
+
+    fonts = {
+      general     = { family = "Inter"; pointSize = 10; };
+      fixedWidth  = { family = "Inter"; pointSize = 10; };
+      menu        = { family = "Inter"; pointSize = 10; };
+      toolbar     = { family = "Inter"; pointSize = 10; };
+      small       = { family = "Inter"; pointSize = 8;  };    
+    };
+
+    session = {
+      general.askForConfirmationOnLogout = false;
+      sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
+    };
+
+    powerdevil = {
+      AC.autoSuspend.action = "nothing";
+      AC.dimDisplay.enable = false;
+      AC.powerButtonAction = "sleep";
+      AC.powerProfile = "performance";
+      AC.turnOffDisplay.idleTimeout = "never";
+    };
+    
+    kwin = {
+      nightLight = {
+        enable = true;
+        location = {
+          latitude = "37.402492843511446";
+          longitude = "22.55550986842104";
+        };
+        mode = "location";
+        temperature.night = 3400;
+      };
+
+      effects = {
+        blur = {
+          enable = true;
+          strength = 10;
+          noiseStrength = 4;
+        };
+
+        translucency = {
+          enable = true;
+        };
+      };
+    };
+    # locale = {
+      # formats.LANG = "en_US.UTF-8";
+    # };
+
+    # kdeglobals.General = {
+    #   TerminalApplication = "ghostty";
+    #   TerminalService     = "com.mitchellh.ghostty.desktop";
+    # };
+
+
     shortcuts = {
-      "ActivityManager"."switch-to-activity-19e4295d-1bca-466f-af0e-ca06f5fd7433" = "none,none,Switch to activity \"Default\"";
-
-      "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = ["Meta+Alt+L" "Meta+Alt+L,Switch to Last-Used Keyboard Layout"];
-      "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = ["Meta+Alt+K" "Meta+Alt+K,Switch to Next Keyboard Layout"];
-
       "kaccess"."Toggle Screen Reader On and Off" = ["Meta+Alt+S" "Meta+Alt+S,Toggle Screen Reader On and Off"];
 
       "kmix"."decrease_microphone_volume" = ["Microphone Volume Down" "Microphone Volume Down,Decrease Microphone Volume"];
@@ -91,20 +161,6 @@
       "mediacontrol"."previousmedia" = ["Media Previous" "Media Previous,Media playback previous"];
       "mediacontrol"."stopmedia" = ["Media Stop" "Media Stop,Stop media playback"];
 
-      "org_kde_powerdevil"."Decrease Keyboard Brightness" = ["Keyboard Brightness Down" "Keyboard Brightness Down,Decrease Keyboard Brightness"];
-      "org_kde_powerdevil"."Decrease Screen Brightness" = ["Monitor Brightness Down" "Monitor Brightness Down,Decrease Screen Brightness"];
-      "org_kde_powerdevil"."Decrease Screen Brightness Small" = ["Shift+Monitor Brightness Down" "Shift+Monitor Brightness Down,Decrease Screen Brightness by 1%"];
-      "org_kde_powerdevil"."Hibernate" = ["Hibernate" "Hibernate,Hibernate"];
-      "org_kde_powerdevil"."Increase Keyboard Brightness" = ["Keyboard Brightness Up" "Keyboard Brightness Up,Increase Keyboard Brightness"];
-      "org_kde_powerdevil"."Increase Screen Brightness" = ["Monitor Brightness Up" "Monitor Brightness Up,Increase Screen Brightness"];
-      "org_kde_powerdevil"."Increase Screen Brightness Small" = ["Shift+Monitor Brightness Up" "Shift+Monitor Brightness Up,Increase Screen Brightness by 1%"];
-      "org_kde_powerdevil"."PowerDown" = ["Power Down" "Power Down,Power Down"];
-      "org_kde_powerdevil"."PowerOff" = ["Power Off" "Power Off,Power Off"];
-      "org_kde_powerdevil"."Sleep" = ["Sleep" "Sleep,Suspend"];
-      "org_kde_powerdevil"."Toggle Keyboard Backlight" = ["Keyboard Light On/Off" "Keyboard Light On/Off,Toggle Keyboard Backlight"];
-      "org_kde_powerdevil"."Turn Off Screen" = "none,none,Turn Off Screen";
-      "org_kde_powerdevil"."powerProfile" = ["Battery" "Meta+B,Battery" "Meta+B,Switch Power Profile"];
-
       "plasmashell"."activate application launcher" = ["Meta" "Alt+F1,Meta" "Alt+F1,Activate Application Launcher"];
       "plasmashell"."activate task manager entry 1" = ["Meta+1" "Meta+1,Activate Task Manager Entry 1"];
       "plasmashell"."activate task manager entry 2" = ["Meta+2" "Meta+2,Activate Task Manager Entry 2"];
@@ -127,172 +183,91 @@
       "services/com.mitchellh.ghostty.desktop"."_launch" = "Ctrl+Alt+T";
       "services/net.local.ocr-kde.sh.desktop"."_launch" = "Meta+Shift+T";
       "services/org.gnome.Nautilus.desktop"."_launch" = "Meta+E";
+      "services/systemsettings.desktop"."_launch" = "Meta+I";
       "services/org.kde.dolphin.desktop"."_launch" = "none";
       "services/org.kde.konsole.desktop"."_launch" = "none";
     };
 
      panels = [
       {
-        location = "bottom";     # bottom | top | left | right
-        height = 48;             # pixels
+        location = "bottom";
+        height = 48;
+        opacity = "translucent";
 
-        widgets = [ 
-          "org.kde.plasma.kickoff"
-          "org.kde.plasma.icontasks"
+
+        widgets = [
+          { name = "org.kde.plasma.kickoff"; }
+
+          {
+            name = "org.kde.plasma.icontasks";
+            config = {
+              General = {
+                launchers = [
+                  "applications:org.gnome.Nautilus.desktop"
+                  "applications:zen-twilight.desktop"
+                  "applications:com.mitchellh.ghostty.desktop"          
+                  "applications:code.desktop"
+                  "applications:obsidian.desktop"
+                  "applications:spotify.desktop"
+                  "applications:vesktop.desktop"
+                ];
+              };
+            };
+          }
+
           "org.kde.plasma.panelspacer"
           "org.kde.plasma.systemtray"
-          "org.kde.plasma.digitalclock"
-          "org.kde.plasma.showdesktop"        
+          {
+            name = "org.kde.plasma.digitalclock";
+            config = {
+              Appearance = {
+                showDate = true;
+                dateDisplayFormat = "BelowTime";
+                dateFormat = "custom";
+                customDateFormat = "ddd d MMM";
+                autoFontAndSize = false;
+                fontFamily = "Inter";
+                fontSize = 14;
+                fontStyleName = "Regular";
+                fontWeight = 400;
+              };
+
+              Time = {
+                use24hFormat = false;
+                showSeconds = "InTooltip";
+                showTimeZone = "WhenDifferent";
+                timeZoneDisplay = "Code";             # "Code" | "City" | "Offset"
+              };
+            };
+          }
+          "org.kde.plasma.showdesktop"
         ];
-        # other optional bits:
-        # floating = true;
-        # lengthMode = "fill";   # or "custom"
-        # screen = 0;            # which monitor
-        # widgets = [ ... ];
       }
     ];
 
     configFile = {
-      "baloofilerc"."General"."dbVersion" = 2;
-      "baloofilerc"."General"."exclude filters" = "*~,*.part,*.o,*.la,*.lo,*.loT,*.moc,moc_*.cpp,qrc_*.cpp,ui_*.h,cmake_install.cmake,CMakeCache.txt,CTestTestfile.cmake,libtool,config.status,confdefs.h,autom4te,conftest,confstat,Makefile.am,*.gcode,.ninja_deps,.ninja_log,build.ninja,*.csproj,*.m4,*.rej,*.gmo,*.pc,*.omf,*.aux,*.tmp,*.po,*.vm*,*.nvram,*.rcore,*.swp,*.swap,lzo,litmain.sh,*.orig,.histfile.*,.xsession-errors*,*.map,*.so,*.a,*.db,*.qrc,*.ini,*.init,*.img,*.vdi,*.vbox*,vbox.log,*.qcow2,*.vmdk,*.vhd,*.vhdx,*.sql,*.sql.gz,*.ytdl,*.tfstate*,*.class,*.pyc,*.pyo,*.elc,*.qmlc,*.jsc,*.fastq,*.fq,*.gb,*.fasta,*.fna,*.gbff,*.faa,po,CVS,.svn,.git,_darcs,.bzr,.hg,CMakeFiles,CMakeTmp,CMakeTmpQmake,.moc,.obj,.pch,.uic,.npm,.yarn,.yarn-cache,__pycache__,node_modules,node_packages,nbproject,.terraform,.venv,venv,core-dumps,lost+found";
-      "baloofilerc"."General"."exclude filters version" = 9;
-      "dolphinrc"."DetailsMode"."PreviewSize" = 16;
-      "dolphinrc"."General"."ViewPropsTimestamp" = "2025,8,4,20,44,27.998";
-      "dolphinrc"."IconsMode"."PreviewSize" = 80;
-      "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = false;
-      "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 22;
-      "kactivitymanagerdrc"."activities"."19e4295d-1bca-466f-af0e-ca06f5fd7433" = "Default";
-      "kactivitymanagerdrc"."main"."currentActivity" = "19e4295d-1bca-466f-af0e-ca06f5fd7433";
-      "katerc"."General"."Days Meta Infos" = 30;
-      "katerc"."General"."Save Meta Infos" = true;
-      "katerc"."General"."Show Full Path in Title" = false;
-      "katerc"."General"."Show Menu Bar" = true;
-      "katerc"."General"."Show Status Bar" = true;
-      "katerc"."General"."Show Tab Bar" = true;
-      "katerc"."General"."Show Url Nav Bar" = true;
-      "katerc"."KTextEditor Renderer"."Animate Bracket Matching" = false;
-      "katerc"."KTextEditor Renderer"."Auto Color Theme Selection" = true;
-      "katerc"."KTextEditor Renderer"."Color Theme" = "Breeze Light";
-      "katerc"."KTextEditor Renderer"."Line Height Multiplier" = 1;
-      "katerc"."KTextEditor Renderer"."Show Indentation Lines" = false;
-      "katerc"."KTextEditor Renderer"."Show Whole Bracket Expression" = false;
-      "katerc"."KTextEditor Renderer"."Text Font" = "Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      "katerc"."KTextEditor Renderer"."Text Font Features" = "";
-      "katerc"."KTextEditor Renderer"."Word Wrap Marker" = false;
-      "katerc"."filetree"."editShade" = "183,220,246";
-      "katerc"."filetree"."listMode" = false;
-      "katerc"."filetree"."middleClickToClose" = false;
-      "katerc"."filetree"."shadingEnabled" = true;
-      "katerc"."filetree"."showCloseButton" = false;
-      "katerc"."filetree"."showFullPathOnRoots" = false;
-      "katerc"."filetree"."showToolbar" = true;
-      "katerc"."filetree"."sortRole" = 0;
-      "katerc"."filetree"."viewShade" = "211,190,222";
-      "kcminputrc"."Keyboard"."NumLock" = 0;
-      "kded5rc"."Module-browserintegrationreminder"."autoload" = false;
-      "kded5rc"."Module-device_automounter"."autoload" = false;
-      "kdeglobals"."DirSelect Dialog"."DirSelectDialog Size" = "960,540";
-      "kdeglobals"."DirSelect Dialog"."Splitter State" = "\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x8d\x00\x00\x02\xa8\x00\xff\xff\xff\xff\x01\x00\x00\x00\x01\x00";
-      "kdeglobals"."General"."AccentColor" = "165,118,236";
-      "kdeglobals"."General"."LastUsedCustomAccentColor" = "233,58,154";
-      "kdeglobals"."General"."TerminalApplication" = "ghostty";
-      "kdeglobals"."General"."TerminalService" = "com.mitchellh.ghostty.desktop";
+      "kdeglobals"."General"."AccentColor" = "#b875dc";
       "kdeglobals"."General"."XftHintStyle" = "hintslight";
       "kdeglobals"."General"."XftSubPixel" = "none";
-      "kdeglobals"."General"."accentColorFromWallpaper" = true;
-      "kdeglobals"."General"."fixed" = "Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      "kdeglobals"."General"."font" = "Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      "kdeglobals"."General"."menuFont" = "Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      "kdeglobals"."General"."smallestReadableFont" = "Inter,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      "kdeglobals"."General"."toolBarFont" = "Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      "kdeglobals"."Icons"."Theme" = "Fluent-light";
-      "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
-      "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
-      "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
-      "kdeglobals"."KFileDialog Settings"."Decoration position" = 2;
-      "kdeglobals"."KFileDialog Settings"."LocationCombo Completionmode" = 5;
-      "kdeglobals"."KFileDialog Settings"."PathCombo Completionmode" = 5;
-      "kdeglobals"."KFileDialog Settings"."Show Bookmarks" = false;
-      "kdeglobals"."KFileDialog Settings"."Show Full Path" = false;
-      "kdeglobals"."KFileDialog Settings"."Show Inline Previews" = true;
-      "kdeglobals"."KFileDialog Settings"."Show Preview" = false;
-      "kdeglobals"."KFileDialog Settings"."Show Speedbar" = true;
-      "kdeglobals"."KFileDialog Settings"."Show hidden files" = false;
-      "kdeglobals"."KFileDialog Settings"."Sort by" = "Name";
-      "kdeglobals"."KFileDialog Settings"."Sort directories first" = true;
-      "kdeglobals"."KFileDialog Settings"."Sort hidden files last" = false;
-      "kdeglobals"."KFileDialog Settings"."Sort reversed" = false;
-      "kdeglobals"."KFileDialog Settings"."Speedbar Width" = 142;
-      "kdeglobals"."KFileDialog Settings"."View Style" = "DetailTree";
-      "kdeglobals"."WM"."activeBackground" = "227,229,231";
-      "kdeglobals"."WM"."activeBlend" = "227,229,231";
-      "kdeglobals"."WM"."activeFont" = "Inter,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      "kdeglobals"."WM"."activeForeground" = "35,38,41";
-      "kdeglobals"."WM"."inactiveBackground" = "239,240,241";
-      "kdeglobals"."WM"."inactiveBlend" = "239,240,241";
-      "kdeglobals"."WM"."inactiveForeground" = "112,125,138";
-      "kiorc"."Confirmations"."ConfirmDelete" = true;
-      "kiorc"."Confirmations"."ConfirmEmptyTrash" = true;
-      "klipperrc"."General"."IgnoreImages" = false;
+      "kdeglobals"."General"."accentColorFromWallpaper" = false;
       "kscreenlockerrc"."Daemon"."Autolock" = false;
       "kscreenlockerrc"."Daemon"."LockGrace" = 0;
       "kscreenlockerrc"."Daemon"."Timeout" = 0;
       "kscreenlockerrc"."Greeter/LnF/General"."showMediaControls" = false;
       "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image" = "/home/panos/Pictures/wp12329537-nixos-wallpapers.png";
       "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage" = "/home/panos/Pictures/wp12329537-nixos-wallpapers.png";
-      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."SlidePaths" = "/home/potis/.local/share/wallpapers/,/nix/store/ar86gwyrbv73lg3j14zsmqm03s1dz3c3-breeze-6.3.6/share/wallpapers/,/run/current-system/sw/share/wallpapers/";
-      "ksmserverrc"."General"."confirmLogout" = false;
-      "ksmserverrc"."General"."loginMode" = "emptySession";
-      "ksplashrc"."KSplash"."Engine" = "none";
-      "ksplashrc"."KSplash"."Theme" = "None";
-      "kwalletrc"."Wallet"."First Use" = false;
-      "kwinrc"."Activities/LastVirtualDesktop"."19e4295d-1bca-466f-af0e-ca06f5fd7433" = "731885d5-0bcd-4e8a-bc09-123292ca0a67";
-      "kwinrc"."Desktops"."Id_1" = "731885d5-0bcd-4e8a-bc09-123292ca0a67";
-      "kwinrc"."Desktops"."Id_2" = "01f38055-badd-47e2-bc98-697576c03a15";
-      "kwinrc"."Desktops"."Number" = 2;
-      "kwinrc"."Desktops"."Rows" = 1;
-      "kwinrc"."Effect-blur"."BlurStrength" = 10;
-      "kwinrc"."Effect-blur"."NoiseStrength" = 4;
-      "kwinrc"."Effect-overview"."BorderActivate" = 9;
       "kwinrc"."Effect-translucency"."ComboboxPopups" = 95;
       "kwinrc"."Effect-translucency"."Dialogs" = 96;
       "kwinrc"."Effect-translucency"."Menus" = 96;
       "kwinrc"."Effect-translucency"."MoveResize" = 89;
-      "kwinrc"."NightColor"."Active" = true;
-      "kwinrc"."NightColor"."LatitudeFixed" = 37.402492843511446;
-      "kwinrc"."NightColor"."LongitudeFixed" = 22.55550986842104;
-      "kwinrc"."NightColor"."Mode" = "Location";
-      "kwinrc"."NightColor"."NightTemperature" = 3400;
-      "kwinrc"."Plugins"."contrastEnabled" = false;
       "kwinrc"."Plugins"."kwin4_effect_geometry_changeEnabled" = true;
       "kwinrc"."Plugins"."translucencyEnabled" = true;
       "kwinrc"."Tiling"."padding" = 4;
-      "kwinrc"."Tiling/01f38055-badd-47e2-bc98-697576c03a15/6a83778b-4436-4add-a506-898011d72517"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
-      "kwinrc"."Tiling/01f38055-badd-47e2-bc98-697576c03a15/bddec4b6-f154-4f03-9440-d7829ceadd1c"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
-      "kwinrc"."Tiling/731885d5-0bcd-4e8a-bc09-123292ca0a67/540cdb22-f3b9-402d-bcfc-103a1f5e20f0"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
-      "kwinrc"."Tiling/731885d5-0bcd-4e8a-bc09-123292ca0a67/6a83778b-4436-4add-a506-898011d72517"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
-      "kwinrc"."Tiling/731885d5-0bcd-4e8a-bc09-123292ca0a67/bddec4b6-f154-4f03-9440-d7829ceadd1c"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
-      "kwinrc"."Tiling/731885d5-0bcd-4e8a-bc09-123292ca0a67/d9803b3b-7974-4274-9e01-fec24e042adc"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
-      "kwinrc"."Tiling/7e1ebf38-f21e-4cc1-9eb5-286b98cf0a1a/d9803b3b-7974-4274-9e01-fec24e042adc"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
-      "kwinrc"."Tiling/d02c035d-eef0-5c68-aa2f-2e83d0ba08b1"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
-      "kwinrc"."Tiling/e4db7b8a-7484-57e7-8bf3-5b450f4020f7"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Windows"."ElectricBorders" = 1;
-      "kwinrc"."Xwayland"."Scale" = 1;
       "kwinrc"."org.kde.kdecoration2"."BorderSize" = "None";
       "kwinrc"."org.kde.kdecoration2"."BorderSizeAuto" = false;
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "NFB";
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "IAX";
-      "kwinrc"."org.kde.kdecoration2"."theme" = "__aurorae__svg__Utterly-Round-Dark";
-      "plasma-localerc"."Formats"."LANG" = "en_US.UTF-8";
-      "plasmanotifyrc"."Applications/discord"."Seen" = true;
-      "plasmanotifyrc"."Applications/org.qbittorrent.qBittorrent"."Seen" = true;
-      "plasmanotifyrc"."Applications/org.telegram.desktop"."Seen" = true;
-      "plasmanotifyrc"."Applications/vesktop"."Seen" = true;
-      "plasmarc"."Theme"."name" = "Utterly-Round";
-      "plasmarc"."Wallpapers"."usersWallpapers" = "/home/panos/Pictures/wp12329537-nixos-wallpapers.png";
-      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///tmp/tmp.IbA1ePwMsX.png";
-      "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
-      "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";
     };
   };
 }
