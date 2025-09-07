@@ -5,6 +5,8 @@
   programs.steam.enable = true;
   # programs.hyprland.enable = true;
 
+  services.flatpak.enable = true;
+
   environment.systemPackages = with pkgs; [
     vim
     nixd
