@@ -46,7 +46,6 @@
   ];
   
   programs.plasma.enable = true;
-  programs.plasma.overrideConfig = true;
 
   programs.firefox.enable = true;
 
