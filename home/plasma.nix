@@ -18,12 +18,6 @@
       iconTheme = "Fluent";
       colorScheme = "UtterlyNord";
 
-      # # Window decorations (KWin/Aurorae)
-      # windowDecorations = {
-      #   theme = "__aurorae__svg__Utterly-Round-Dark";
-      #   library = "org.kde.kwin.aurorae";
-      # };
-
       enableMiddleClickPaste = false;
     };
 
@@ -61,8 +55,10 @@
           longitude = "22.55550986842104";
         };
         mode = "location";
-        temperature.night = 3400;
+        temperature.night = 3200;
       };
+
+      virtualDesktops.number = 4;
 
       effects = {
         blur = {
@@ -77,70 +73,67 @@
       };
     };
 
-    hotkeys.commands = {
-
-    };
-
-
     shortcuts = {
-      ## 🔊 System Volume / Brightness
-      "kmix"."increase_volume" = ["Meta+PgUp" "Meta+PgUp,Increase Volume"];
-      "kmix"."decrease_volume" = ["Meta+PgDown" "Meta+PgDown,Decrease Volume"];
-      "kmix"."mute" = ["Meta+M" "Meta+M,Mute Audio"];
-      "kmix"."mic_mute" = ["Meta+Shift+M" "Meta+Shift+M,Mute Microphone"];
+      kmix = {
+        increase_volume = "Meta+PgUp";
+        decrease_volume = "Meta+PgDown";
+        mute = "Meta+M";
+        mic_mute = "Meta+Shift+M";
+      };
 
-      ## 🔒 Session
-      "ksmserver"."Lock Session" = ["Meta+L" "Screensaver,Meta+L"];
-      "ksmserver"."Log Out" = ["Meta+Esc" "Meta+Esc,Show Logout Screen"];
+      ksmserver = {
+        "Lock Session" = "Meta+L";
+        "Log Out" = "Meta+Esc";
+      };
 
-      ## 🪟 Window Management
-      "kwin"."Overview" = ["Meta+Tab" "Meta+Tab,Toggle Overview"];
-      "kwin"."ExposeClass" = ["Meta+W" "Meta+W,Present Windows of Same App"];
-      "kwin"."Walk Through Windows" = ["Alt+Tab" "Alt+Tab,Walk Through Windows"];
-      "kwin"."Window Close" = ["Alt+F4" "Alt+F4,Close Window"];
-      "kwin"."Window Minimize" = ["Meta+Down" "Meta+Down,Minimize Window"];
-      "kwin"."Window Maximize" = ["Meta+Up" "Meta+Up,Maximize Window"];
-      "kwin"."Window Quick Tile Left" = ["Meta+Left" "Meta+Left,Quick Tile Left"];
-      "kwin"."Window Quick Tile Right" = ["Meta+Right" "Meta+Right,Quick Tile Right"];
-      "kwin"."Window Quick Tile Top" = ["Meta+Shift+Up" "Meta+Shift+Up,Quick Tile Top"];
-      "kwin"."Window Quick Tile Bottom" = ["Meta+Shift+Down" "Meta+Shift+Down,Quick Tile Bottom"];
-      "kwin"."Kill Window" = ["Meta+Ctrl+Esc" "Meta+Ctrl+Esc,Kill Window"];
+      kwin = {
+        # Window Management
+        Overview = "Meta+Tab";
+        ExposeClass = "Meta+W";
+        "Walk Through Windows" = "Alt+Tab";
+        "Window Close" = "Alt+F4";
+        "Window Minimize" = "Meta+Down";
+        "Window Maximize" = "Meta+Up";
+        "Window Quick Tile Left" = "Meta+Left";
+        "Window Quick Tile Right" = "Meta+Right";
+        "Window Quick Tile Top" = "Meta+Shift+Up";
+        "Window Quick Tile Bottom" = "Meta+Shift+Down";
+        "Kill Window" = "Meta+Ctrl+Esc";
 
-      ## 🖥️ Virtual Desktops
-      "kwin"."Switch One Desktop to the Left" = ["Meta+Ctrl+Left" "Meta+Ctrl+Left,Switch One Desktop Left"];
-      "kwin"."Switch One Desktop to the Right" = ["Meta+Ctrl+Right" "Meta+Ctrl+Right,Switch One Desktop Right"];
-      "kwin"."Window One Desktop to the Left" = ["Meta+CSStrl+Shift+Left" "Meta+Ctrl+Shift+Left,Move Window to Desktop Left"];
-      "kwin"."Window One Desktop to the Right" = ["Meta+Ctrl+Shift+Right" "Meta+Ctrl+Shift+Right,Move Window to Desktop Right"];
+        # Virtual Desktops
+        "Switch One Desktop to the Left" = "Meta+Ctrl+Left";
+        "Switch One Desktop to the Right" = "Meta+Ctrl+Right";
+        "Window One Desktop to the Left" = "Meta+Ctrl+Shift+Left";
+        "Window One Desktop to the Right" = "Meta+Ctrl+Shift+Right";
+      };
 
-      ## ⌨️ App Launchers
-      "plasmashell"."activate application launcher" = ["Meta" "Meta,Activate Application Launcher"];
-      "plasmashell"."activate task manager entry 1" = ["Meta+1" "Meta+1,Activate Task Manager Entry 1"];
-      "plasmashell"."activate task manager entry 2" = ["Meta+2" "Meta+2,Activate Task Manager Entry 2"];
-      "plasmashell"."activate task manager entry 3" = ["Meta+3" "Meta+3,Activate Task Manager Entry 3"];
-      "plasmashell"."activate task manager entry 4" = ["Meta+4" "Meta+4,Activate Task Manager Entry 4"];
-      "plasmashell"."activate task manager entry 5" = ["Meta+5" "Meta+5,Activate Task Manager Entry 5"];
-      "plasmashell"."activate task manager entry 6" = ["Meta+6" "Meta+6,Activate Task Manager Entry 6"];
-      "plasmashell"."activate task manager entry 7" = ["Meta+7" "Meta+7,Activate Task Manager Entry 7"];
-      "plasmashell"."activate task manager entry 8" = ["Meta+8" "Meta+8,Activate Task Manager Entry 8"];
-      "plasmashell"."activate task manager entry 9" = ["Meta+9" "Meta+9,Activate Task Manager Entry 9"];
+      plasmashell = {      
+        # System Controls
+        "toggle do not disturb" = "Meta+Shift+D";
+        show-on-mouse-pos = "Meta+V";
+      };
 
-      ## 🖼️ Clipboard & Tools
-      "plasmashell"."show-on-mouse-pos" = ["Meta+V" "Meta+V,Show Clipboard at Mouse Position"];
-      "services/net.local.ocr-kde.sh.desktop"."_launch" = "Meta+Shift+T";
-      "services/org.gnome.Nautilus.desktop"."_launch" = "Meta+E";
-      "services/systemsettings.desktop"."_launch" = "Meta+I";
-      "plasma-desktop"."_launch_terminal" = "Meta+T";
-      "plasma-desktop"."_launch_browser" = "Meta+B";
+      mediacontrol = {
+        playpausemedia = "Meta+P";
+        nextmedia = "Meta+Alt+Right";
+        previousmedia = "Meta+Alt+Left";
+        stopmedia = "Meta+Alt+Down";
+      };
 
-      ## 🎵 Media Control
-      "mediacontrol"."playpausemedia" = ["Meta+P" "Meta+P,Play/Pause"];
-      "mediacontrol"."nextmedia" = ["Meta+Alt+Right" "Meta+Alt+Right,Next Track"];
-      "mediacontrol"."previousmedia" = ["Meta+Alt+Left" "Meta+Alt+Left,Previous Track"];
-      "mediacontrol"."stopmedia" = ["Meta+Alt+Down" "Meta+Alt+Down,Stop Media"];
+      # Apps & Tools
+      "services/com.mitchellh.ghostty.desktop" = { "_launch" = "Meta+T"; };
+      "services/net.local.ocr-kde.sh.desktop"  = { "_launch" = "Meta+Shift+T"; };
+      "services/org.gnome.Nautilus.desktop"    = { "_launch" = "Meta+E"; };
+      "services/systemsettings.desktop"        = { "_launch" = "Meta+I"; };
+      "services/zen-twilight.desktop"          = { "_launch" = "Meta+B"; };
+      "services/code.desktop"                  = { "_launch" = "Meta+C"; };
+      "services/obsidian.desktop"              = { "_launch" = "Meta+O"; };
 
-      ## ☀️ Brightness (if laptop)
-      "powerdevil"."increase_brightness" = ["Meta+Shift+PgUp" "Meta+Shift+PgUp,Increase Brightness"];
-      "powerdevil"."decrease_brightness" = ["Meta+Shift+PgDown" "Meta+Shift+PgDown,Decrease Brightness"];
+      # Brightness (if laptop)
+      powerdevil = {
+        increase_brightness = "Meta+Shift+PgUp";
+        decrease_brightness = "Meta+Shift+PgDown";
+      };
     };
 
      panels = [
@@ -191,7 +184,7 @@
                 use24hFormat = false;
                 showSeconds = "InTooltip";
                 showTimeZone = "WhenDifferent";
-                timeZoneDisplay = "Code";             # "Code" | "City" | "Offset"
+                timeZoneDisplay = "Code";
               };
             };
           }
