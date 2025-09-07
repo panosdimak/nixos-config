@@ -136,7 +136,7 @@
       };
     };
 
-     panels = [
+    panels = [
       {
         location = "bottom";
         height = 48;
