@@ -15,7 +15,8 @@
   boot.kernelParams = [ 
     "usbcore.autosuspend=-1" 
     "zswap.enabled=1"
-    "zswap.compressor=lz4"
+    "zswap.compressor=lz4"  # Use lz4 for zswap compression
+    "8250.nr_uarts=0"       # Disable serial ports
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
