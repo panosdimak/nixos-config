@@ -15,7 +15,7 @@
     git git-credential-manager curl wget unzip tree fastfetch
     
     # Editors / IDE / Writing
-    obsidian vscode libreoffice onlyoffice-desktopeditors
+    obsidian vscode onlyoffice-desktopeditors
 
     # Terminal / Shell
     ghostty starship ripgrep fzf bat lsd procs nnn
@@ -25,7 +25,7 @@
     wl-clipboard grim slurp tesseract
 
     # Media
-    mpv obs-studio spotify
+    mpv obs-studio spotify gapless
    
     # Emulation utils
     wineWow64Packages.staging winetricks
@@ -38,7 +38,8 @@
     ollama
 
     # System utilities
-    nautilus numlockx btop cpuid qpwgraph  
+    nautilus numlockx  qpwgraph  
+    btop cpuid cpu-x hardinfo2 mission-center resources
     gnome-calculator kdePackages.kcolorchooser warp
 
     # Misc
