@@ -16,4 +16,13 @@
     configPackages = [ pkgs.kdePackages.plasma-workspace ];
     extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
   };
+
+  # Exclude some KDE applications from the default install
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    baloo-widgets
+    kate
+    konsole
+    krdp
+    xwaylandvideobridge
+  ];
 }
