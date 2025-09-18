@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 
 {
   imports = [
@@ -11,6 +11,7 @@
     ../modules/system.nix
     ../modules/security.nix
     ../modules/desktop/plasma.nix
+    ../modules/hyprland/hyprland.nix
     ../modules/nvidia.nix
     ../modules/audio.nix
     ../modules/users/panos.nix
