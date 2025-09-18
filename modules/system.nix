@@ -16,4 +16,7 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+  
+  environment.enableDebugInfo = true; # expose debug outputs to gdb/DrKonqi
+  systemd.coredump.enable = true;
 }
