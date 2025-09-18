@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     fluent-icon-theme
-    utterly-nord-plasma
+    # utterly-nord-plasma # Causes taskbar reload issue!
     utterly-round-plasma-style
     kde-rounded-corners
   ];
@@ -13,10 +13,13 @@
     overrideConfig = true;
 
     workspace = {
-      lookAndFeel = "Utterly-Nord";
-      theme = "Utterly-Round";
+      # theme = "Utterly-Round";  # plasma-apply-desktoptheme --list-themes
       iconTheme = "Fluent";
-      colorScheme = "UtterlyNord";
+      
+      windowDecorations = {
+        library = "org.kde.kwin.aurorae";
+        theme = "__aurorae__svg__Utterly-Round-Dark";
+      };
 
       enableMiddleClickPaste = false;
     };
@@ -123,7 +126,7 @@
       # Apps & Tools
       "services/com.mitchellh.ghostty.desktop" = { "_launch" = "Meta+T"; };
       "services/net.local.ocr-kde.sh.desktop"  = { "_launch" = "Meta+Shift+T"; };
-      "services/org.gnome.Nautilus.desktop"    = { "_launch" = "Meta+E"; };
+      "services/org.kde.dolphin.desktop"       = { "_launch" = "Meta+E"; };
       "services/systemsettings.desktop"        = { "_launch" = "Meta+I"; };
       "services/zen-twilight.desktop"          = { "_launch" = "Meta+B"; };
       "services/code.desktop"                  = { "_launch" = "Meta+C"; };
@@ -151,13 +154,14 @@
             config = {
               General = {
                 launchers = [
-                  "applications:org.gnome.Nautilus.desktop"
+                  "applications:org.kde.dolphin.desktop"
                   "applications:zen-twilight.desktop"
                   "applications:com.mitchellh.ghostty.desktop"          
                   "applications:code.desktop"
                   "applications:obsidian.desktop"
                   "applications:spotify.desktop"
                   "applications:vesktop.desktop"
+                  "applications:org.kde.kalk.desktop"
                 ];
               };
             };
