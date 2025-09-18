@@ -40,7 +40,7 @@
     # System utilities
     nautilus numlockx  qpwgraph  
     btop cpuid cpu-x hardinfo2 mission-center resources
-    gnome-calculator kdePackages.kcolorchooser warp
+    kdePackages.kalk kdePackages.kcolorchooser warp
 
     # Misc
     sl cowsay fortune lolcat
