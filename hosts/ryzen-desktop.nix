@@ -16,6 +16,7 @@
     ../modules/audio.nix
     ../modules/users/panos.nix
     ../modules/programs/common.nix
+    ../modules/stylix.nix
   ];
 
   # Every host needs this
