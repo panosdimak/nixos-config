@@ -118,8 +118,6 @@
   programs.ghostty = { 
     enable = true;
     settings = {
-    theme = "xcodedark";
-    font-family = "JetBrainsMonoNL Nerd Font";
     background-opacity = 0.8;
     background-blur = true;
     cursor-style = "bar";
