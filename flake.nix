@@ -14,6 +14,12 @@
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
 
+    # Stylix
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Musnix
     musnix.url = "github:musnix/musnix";
     musnix.inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +30,7 @@
     zen-browser.inputs.home-manager.follows = "home-manager";
   };
 
-  outputs = { self, nixpkgs, home-manager, musnix, zen-browser, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, musnix, stylix, zen-browser, ... }@inputs: {
     nixosConfigurations = {
       ryzen-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -42,6 +48,9 @@
             home-manager.users.panos = import ./home/panos.nix;
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
+          
+          # Stylix module
+          stylix.nixosModules.stylix
 
           # Musnix module
           musnix.nixosModules.musnix
