@@ -1,9 +1,6 @@
 { ... }:
 
 {
-  # AMD CPU microcode updates
-  hardware.cpu.amd.updateMicrocode = true;
-  
   # Trim support for SSDs
   services.fstrim.enable = true;
 
@@ -17,8 +14,5 @@
       };
     };
   };
-
-  # 32-bit OpenGL/Vulkan for Wine plugin UIs (new-style options)
-  hardware.graphics.enable = true;
-  hardware.graphics.enable32Bit = true;
+  
 }
