@@ -54,7 +54,8 @@
             home-manager.sharedModules = [
               inputs.plasma-manager.homeModules."plasma-manager"
             ];
-            home-manager.users.panos = import ./home/panos.nix;
+            # Use per-host Home Manager module composition
+            home-manager.users.panos = import ./home/hosts/desktop.nix;
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
           
