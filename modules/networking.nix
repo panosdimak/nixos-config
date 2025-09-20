@@ -1,7 +1,6 @@
 { ... }:
 
 {
-  networking.hostName = "ryzen-desktop";
   networking.networkmanager.enable = true;
-  # networking.wireless.enable = true; # optional
+  networking.wireless.enable = true;
 }
