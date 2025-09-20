@@ -14,6 +14,7 @@
     rofi-wayland
     swaynotificationcenter
     networkmanagerapplet
+    blueman
     waybar
     hyprpaper
     hyprpolkitagent
