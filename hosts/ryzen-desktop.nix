@@ -11,14 +11,14 @@
     ../modules/system.nix
     ../modules/security.nix
     ../modules/desktop/plasma.nix
+    ../modules/desktop/common.nix
     ../modules/hyprland/hyprland.nix
     ../modules/nvidia.nix
-    ../modules/audio.nix
+    ../modules/advanced-audio.nix
     ../modules/users/panos.nix
     ../modules/programs/common.nix
     ../modules/stylix.nix
   ];
 
-  # Every host needs this
   system.stateVersion = "25.05";
 }
