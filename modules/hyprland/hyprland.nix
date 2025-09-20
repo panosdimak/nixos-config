@@ -11,20 +11,21 @@
   programs.seahorse.enable = true;
 
   environment.systemPackages = with pkgs; [
-    tofi
     rofi-wayland
-    mako
+    swaynotificationcenter
     networkmanagerapplet
     waybar
     hyprpaper
     hyprpolkitagent
     hypridle
+    hyprlock
     hyprpicker
     hyprsysteminfo
     hyprsunset
     cliphist
     playerctl
+    libsecret
   ];
-
+  
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }
