@@ -66,6 +66,26 @@
           musnix.nixosModules.musnix
         ];
       };
+
+      inspiron-15 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/inspiron-15.nix
+
+          # Home Manager as a NixOS module
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "hm-bak";
+            home-manager.users.panos = import ./home/hosts/laptop.nix;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+          }
+
+          # Stylix module
+          stylix.nixosModules.stylix
+        ];
+      };
     };
   };
 }
