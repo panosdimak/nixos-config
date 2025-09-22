@@ -248,7 +248,29 @@
         "nixpkgs": "nixpkgs",
         "plasma-manager": "plasma-manager",
         "stylix": "stylix",
+        "sunsetr": "sunsetr",
         "zen-browser": "zen-browser"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "sunsetr",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1757644300,
+        "narHash": "sha256-bVIDYz31bCdZId441sqgkImnA7aYr2UQzQlyl+O2DWc=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "591c5ae84f066bdfc9797b217df392d58eafd088",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "stylix": {
@@ -282,6 +304,27 @@
       "original": {
         "owner": "nix-community",
         "repo": "stylix",
+        "type": "github"
+      }
+    },
+    "sunsetr": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1757659451,
+        "narHash": "sha256-TLrdHvvWSUUp/s4CEGgONR12cO627TCFQaeNrncNoNE=",
+        "owner": "psi4j",
+        "repo": "sunsetr",
+        "rev": "2eae500b65722365f218148a7a92d7d41e5ca5e9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "psi4j",
+        "repo": "sunsetr",
         "type": "github"
       }
     },

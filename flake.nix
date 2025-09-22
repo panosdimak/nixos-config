@@ -36,6 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    sunsetr = {
+      url = "github:psi4j/sunsetr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   
   outputs = { self, nixpkgs, home-manager, musnix, stylix, zen-browser, ... }@inputs: {
@@ -65,6 +70,7 @@
           # Musnix module
           musnix.nixosModules.musnix
         ];
+        specialArgs = { inherit inputs; };
       };
 
       inspiron-15 = nixpkgs.lib.nixosSystem {
