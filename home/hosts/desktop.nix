@@ -10,5 +10,8 @@
     ../modules/neovim.nix
     ../modules/ssh.nix
     ../modules/starship.nix
+    ../modules/gtk.nix
   ];
+
+  profiles.gtk.iconThemeName = "Colloid-Pink-Gruvbox-Light";
 }
