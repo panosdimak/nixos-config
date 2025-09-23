@@ -23,5 +23,7 @@
     bibata-cursors
   ];
   
+  services.power-profiles-daemon.enable = true;
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }
