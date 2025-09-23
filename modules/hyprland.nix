@@ -1,15 +1,8 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   programs.hyprland.enable = true;
   
-  services.gnome.gnome-keyring.enable = true;
-  
-  security.pam.services.login.enableGnomeKeyring = true;
-  security.pam.services.sddm.enableGnomeKeyring = true;
-
-  programs.seahorse.enable = true;
-
   environment.systemPackages = with pkgs; [
     rofi-wayland
     swaynotificationcenter
@@ -23,9 +16,11 @@
     hyprpicker
     hyprsysteminfo
     hyprsunset
+    inputs.sunsetr.packages.${pkgs.system}.sunsetr
     cliphist
     playerctl
     libsecret
+    bibata-cursors
   ];
   
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
