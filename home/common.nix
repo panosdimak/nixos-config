@@ -11,11 +11,11 @@
     git git-credential-manager curl wget unzip tree fastfetch
     
     # Editors / IDE / Writing
-    obsidian vscode onlyoffice-desktopeditors evince
+    obsidian vscode onlyoffice-desktopeditors evince xfce.mousepad
 
     # Terminal / Shell
     ghostty starship ripgrep fzf bat lsd procs nnn
-    ncdu
+    ncdu duf dust hyperfine 
 
     # Clipboard / Screenshot / OCR
     wl-clipboard grim slurp tesseract
@@ -25,12 +25,15 @@
    
     # Internet
     inputs.zen-browser.packages.${pkgs.system}.twilight
-    vesktop telegram-desktop qbittorrent protonvpn-gui
+    vesktop telegram-desktop signal-desktop qbittorrent protonvpn-gui
 
     # System utilities
-    nautilus xfce.thunar numlockx  qpwgraph  
+    nautilus xfce.thunar xfce.thunar-archive-plugin ffmpegthumbnailer numlockx  qpwgraph  
     btop cpuid cpu-x hardinfo2 mission-center resources
     kdePackages.kalk warp
+
+    # Tools
+    localsend
 
     # Misc
     sl cowsay fortune lolcat
