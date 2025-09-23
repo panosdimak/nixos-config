@@ -9,6 +9,7 @@
     ../modules/locale.nix
     ../modules/system.nix
     ../modules/portals.nix
+    ../modules/secret-service.nix
     ../modules/hyprland.nix
     ../modules/audio.nix
     ../modules/users/panos.nix

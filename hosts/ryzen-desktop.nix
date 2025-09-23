@@ -13,6 +13,7 @@
     ../modules/security.nix
     ../modules/desktop/plasma.nix
     ../modules/portals.nix
+    ../modules/secret-service.nix
     ../modules/hyprland.nix
     ../modules/nvidia.nix
     ../modules/graphics-32bit.nix
