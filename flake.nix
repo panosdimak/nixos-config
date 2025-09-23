@@ -91,6 +91,7 @@
           # Stylix module
           stylix.nixosModules.stylix
         ];
+        specialArgs = { inherit inputs; };
       };
     };
   };
