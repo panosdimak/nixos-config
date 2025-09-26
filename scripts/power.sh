@@ -14,7 +14,3 @@ case "$choice" in
   "Reboot to Firmware") systemctl reboot --firmware-setup ;;
   Cancel|"") exit 0 ;;
 esac
-
-
-# systemctl reboot --boot-loader-entry=uefi-firmware \
-  #  || systemctl reboot --boot-loader-entry=setup
