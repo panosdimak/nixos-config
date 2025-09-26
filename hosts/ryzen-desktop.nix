@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   imports = [
     ./ryzen-desktop-hardware.nix
@@ -11,7 +9,7 @@
     ../modules/locale.nix
     ../modules/system.nix
     ../modules/security.nix
-    ../modules/desktop/plasma.nix
+    # ../modules/desktop/plasma.nix
     ../modules/portals.nix
     ../modules/secret-service.nix
     ../modules/hyprland.nix
@@ -22,7 +20,7 @@
     ../modules/programs/common.nix
     ../modules/programs/gaming.nix
     ../modules/stylix.nix
-  ../modules/display-manager.nix
+    ../modules/display-manager.nix
   ];
 
   system.stateVersion = "25.05";
@@ -30,7 +28,7 @@
 
   # Choose display manager for this host
   profiles.displayManager = {
-    dm = "sddm";
+    dm = "gdm";
     wayland = true;
   };
 
