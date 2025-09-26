@@ -41,9 +41,15 @@
       url = "github:psi4j/sunsetr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # San Francisco Fonts | Apple Fonts
+    apple-fonts = {
+      url= "github:Lyndeno/apple-fonts.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   
-  outputs = { self, nixpkgs, home-manager, musnix, stylix, zen-browser, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, musnix, stylix, zen-browser, apple-fonts, ... }@inputs: {
     nixosConfigurations = {
       ryzen-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
