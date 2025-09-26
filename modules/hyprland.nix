@@ -4,8 +4,10 @@
   programs.hyprland.enable = true;
   
   environment.systemPackages = with pkgs; [
-    rofi-wayland
+    fuzzel
     swaynotificationcenter
+    libnotify
+    swappy
     networkmanagerapplet
     blueman
     waybar
@@ -22,6 +24,9 @@
     libsecret
     bibata-cursors
   ];
+ 
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
   
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }
