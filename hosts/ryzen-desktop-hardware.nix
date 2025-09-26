@@ -21,14 +21,14 @@
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/9A31-8052";
       fsType = "vfat";
-      neededForBoot = false;
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/7C14A40114A3BD10";
     fsType = "ntfs";
-    options = [ "uid=1001" "gid=100" "umask=002" ];
+    neededForBoot = false;
+    options = [ "uid=1001" "gid=100" "umask=002" "noauto" "nofail" ];
   };
 
   swapDevices = [ ];
