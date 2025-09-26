@@ -28,7 +28,7 @@
     vesktop telegram-desktop signal-desktop qbittorrent protonvpn-gui
 
     # System utilities
-    nautilus xfce.thunar xfce.thunar-archive-plugin ffmpegthumbnailer numlockx  qpwgraph  
+    nautilus xfce.thunar xfce.thunar-archive-plugin xfce.thunar-volman numlockx  qpwgraph  
     btop cpuid cpu-x hardinfo2 mission-center resources
     kdePackages.kalk warp
 
