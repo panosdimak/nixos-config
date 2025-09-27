@@ -28,7 +28,7 @@
     device = "/dev/disk/by-uuid/7C14A40114A3BD10";
     fsType = "ntfs";
     neededForBoot = false;
-    options = [ "uid=1001" "gid=100" "umask=002" "noauto" "nofail" ];
+    options = [ "uid=1001" "gid=100" "umask=002" ];
   };
 
   swapDevices = [ ];
