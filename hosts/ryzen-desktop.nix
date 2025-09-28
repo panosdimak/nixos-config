@@ -18,7 +18,6 @@
     ../modules/advanced-audio.nix
     ../modules/users/panos.nix
     ../modules/programs/common.nix
-    ../modules/programs/gaming.nix
     ../modules/stylix.nix
     ../modules/display-manager.nix
   ];
