@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-options="Lock\nSleep\nLogout\nReboot\nShutdown\nReboot to Firmware\nCancel"
+options=" Lock\n⏾ Sleep\n󰍃 Logout\n Reboot\n⏻ Shutdown\n Reboot to Firmware\nCancel"
 
 choice=$(echo -e "$options" | fuzzel --dmenu --lines=6 --prompt="Power > ") || exit 0
 
-case "$choice" in
+# Strip leading icon (everything up to the first space) so matching works with icons
+label="$choice"
+if [[ "$label" == *" "* ]]; then
+  label="${label#* }"
+fi
+
+case "$label" in
   Lock) hyprlock ;;
   Sleep) systemctl suspend ;;
   Reboot) systemctl reboot ;;
