@@ -2,7 +2,7 @@
 {
   imports = [ 
     ../common.nix
-    ../modules/plasma.nix
+    # ../modules/plasma.nix
     ../modules/music-production.nix
     ../modules/bash.nix
     ../modules/ghostty.nix
