@@ -21,7 +21,7 @@
     wl-clipboard grim slurp tesseract
 
     # Media
-    mpv obs-studio spotify gapless loupe
+    mpv obs-studio gapless loupe
    
     # Internet
     inputs.zen-browser.packages.${pkgs.system}.twilight
