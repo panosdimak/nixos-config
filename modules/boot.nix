@@ -10,7 +10,7 @@
 
   boot.initrd.systemd.enable = true;
   boot.initrd.kernelModules = [ "lz4" ];
-  boot.plymouth.enable = false;
+  boot.plymouth.enable = true;
 
   boot.kernelParams = [ 
     "usbcore.autosuspend=-1" 
