@@ -1,19 +1,20 @@
-{ pkgs, ...}:
+{ pkgs, inputs, ...}:
 
 {
   stylix = {
     enable = true;
-  
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light-soft.yaml";
+    targets.plymouth.enable = true;
 
     fonts = {
       monospace = { 
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font Mono";
+        package = inputs.apple-fonts.packages.${pkgs.system}.sf-mono-nerd;
+        name = "SFMono Nerd Font";
       };
       sansSerif = { 
-        package = pkgs.inter;
-        name = "Inter";
+        package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;
+        name = "SFProDisplay Nerd Font";
       };
 
       serif     = { package = pkgs.noto-fonts; name = "Noto Serif"; };
@@ -23,10 +24,8 @@
         applications = 10;  # GTK app/UI text (Firefox chrome)
         desktop      = 10;  # titles, bars
         popups       = 10;  # menus/notifications
-        terminal     = 11;
+        terminal     = 12;
       };
-
     };
-    targets.qt.enable = false;
   };
 }
