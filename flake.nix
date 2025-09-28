@@ -37,6 +37,7 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    # Sunsetr
     sunsetr = {
       url = "github:psi4j/sunsetr";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,11 +48,18 @@
       url= "github:Lyndeno/apple-fonts.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Spicetify-Nix
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   
   outputs = { self, nixpkgs, home-manager, musnix, stylix, zen-browser, apple-fonts, ... }@inputs: {
     nixosConfigurations = {
       ryzen-desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
           ./hosts/ryzen-desktop.nix
@@ -76,10 +84,10 @@
           # Musnix module
           musnix.nixosModules.musnix
         ];
-        specialArgs = { inherit inputs; };
       };
 
       inspiron-15 = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
           ./hosts/inspiron-15.nix
@@ -97,7 +105,6 @@
           # Stylix module
           stylix.nixosModules.stylix
         ];
-        specialArgs = { inherit inputs; };
       };
     };
   };
