@@ -70,7 +70,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "hm-bak";
-            home-manager.sharedModules = [ inputs.plasma-manager.homeModules."plasma-manager" ];
+            # home-manager.sharedModules = [ inputs.plasma-manager.homeModules."plasma-manager" ];
             # Use per-host Home Manager module composition
             home-manager.users.panos = import ./home/users/panos/hosts/ryzen-desktop.nix;
             home-manager.extraSpecialArgs = { inherit inputs; };
@@ -103,20 +103,6 @@
           # Stylix module
           stylix.nixosModules.stylix
         ];
-      };
-    };
-
-    # Optional: stand-alone HM outputs for `home-manager switch --flake .#panos@host`
-    homeConfigurations = {
-      "panos@ryzen-desktop" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { system = "x86_64-linux"; }; 
-        modules = [ ./home/users/panos/hosts/ryzen-desktop.nix ];
-        extraSpecialArgs = { inherit inputs; };
-      };
-      "panos@inspiron-15" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { system = "x86_64-linux"; }; 
-        modules = [ ./home/users/panos/hosts/inspiron-15.nix ];
-        extraSpecialArgs = { inherit inputs; };
       };
     };
   };
