@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-options=" Lock\n⏾ Sleep\n󰍃 Logout\n Reboot\n⏻ Shutdown\n Reboot to Firmware\nCancel"
+options=" Lock\n⏾ Sleep\n󰍃 Logout\n Reboot\n Shutdown\n Reboot to Firmware\nCancel"
 
 choice=$(echo -e "$options" | fuzzel --dmenu --lines=6 --prompt="Power > ") || exit 0
 

@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }:
-
 {
+
+  # Common packages and settings (moved from home/common.nix)
   home.username = "panos";
   home.homeDirectory = "/home/panos";
   home.stateVersion = "25.05";
@@ -39,7 +40,6 @@
     sl cowsay fortune lolcat
   ];
   
-  # Environment variables that are user-scoped
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
@@ -48,15 +48,12 @@
   programs = {
     direnv = {
       enable = true;
-      enableBashIntegration = true; # see note on other shells below
+      enableBashIntegration = true;
       nix-direnv.enable = true;
       silent = true;
     };
   };
 
-  # Syncthing as a user service (starts automatically on login)
   services.syncthing.enable = true;
-
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
