@@ -11,10 +11,11 @@
     ../modules/starship.nix
     ../modules/gtk.nix
     ../modules/hyprland.nix
-  ../modules/hyprpaper.nix
-  ../modules/hypridle.nix
-  ../modules/hyprlock.nix
-  ../modules/tray.nix
+    ../modules/hyprpaper.nix
+    ../modules/hypridle.nix
+    ../modules/hyprlock.nix
+    ../modules/tray.nix
+    ../modules/fuzzel.nix
   ];
 
 }
