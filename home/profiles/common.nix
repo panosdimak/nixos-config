@@ -16,6 +16,7 @@
     ../modules/hyprlock.nix
     ../modules/tray.nix
     ../modules/fuzzel.nix
+    ../modules/development.nix
   ];
 
 }

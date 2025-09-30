@@ -45,15 +45,6 @@
     VISUAL = "nvim";
   };
 
-  programs = {
-    direnv = {
-      enable = true;
-      enableBashIntegration = true; # see note on other shells below
-      nix-direnv.enable = true;
-      silent = true;
-    };
-  };
-
   # Syncthing as a user service (starts automatically on login)
   services.syncthing.enable = true;
 
