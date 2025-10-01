@@ -12,5 +12,7 @@
     fuzzel.enable = true;
     vesktop.enable = true;
     ghostty.enable = true;
+    # Let hyprpaper manage the wallpaper
+    hyprpaper.enable = false;
   };
 }
