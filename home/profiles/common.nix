@@ -15,6 +15,7 @@
     ../modules/hypridle.nix
     ../modules/hyprlock.nix
     ../modules/tray.nix
+    ../modules/waybar.nix
     ../modules/fuzzel.nix
     ../modules/development.nix
   ];
