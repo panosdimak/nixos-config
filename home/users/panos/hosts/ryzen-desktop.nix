@@ -7,7 +7,6 @@
   ../default.nix
   # Host-specific extras
   ../../../modules/music-production.nix
-  ../../../modules/spicetify.nix
   ];
 
   profiles.gtk.iconThemeName = "Colloid-Pink-Gruvbox-Light";

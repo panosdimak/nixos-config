@@ -18,6 +18,7 @@
     ../modules/waybar.nix
     ../modules/fuzzel.nix
     ../modules/development.nix
+    ../modules/spicetify.nix
   ];
 
 }
