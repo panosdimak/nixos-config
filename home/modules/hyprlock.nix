@@ -1,9 +1,15 @@
-{ lib, ... }:
+{ config, ... }:
 {
 	programs.hyprlock = {
 		enable = true;
 		settings = {
 			general.hide_cursor = false;
+
+			background = {
+				monitor = "";
+				path = "${config.home.homeDirectory}/Pictures/Wallpapers/mountain-village.png";
+				blur_passes = 2;
+			};
 
 			animations = {
 				enabled = true;
