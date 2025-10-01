@@ -6,7 +6,7 @@
     settings = {
       format = "$directory$git_branch$git_status$cmd_duration$fill$cmake$cpp$nix_shell$jobs$line_break$character";
 
-      fill.symbol = "-";
+      fill.symbol = " ";
 
       c = {
         style = "";
