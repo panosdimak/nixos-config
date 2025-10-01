@@ -3,6 +3,9 @@
   # Hyprland (user-scoped config via Home Manager)
   wayland.windowManager.hyprland = {
     enable = true;
+    # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+    package = null;
+    portalPackage = null;
     systemd.enable = true;
 
   settings = {
@@ -14,7 +17,10 @@
 
       # Autostart
       exec-once = [
-        # Managed by HM services: nm-applet, swaync, hypridle, hyprpaper
+        "nm-applet"
+        "swaync"
+        "hypridle"
+        "hyprpaper"
         "waybar"
         "sunsetr"
         "wl-paste --watch cliphist store"
@@ -117,6 +123,7 @@
         force_default_wallpaper = -1;
         disable_hyprland_logo = true;
         middle_click_paste = false;
+        focus_on_activate = true;
       };
 
       # Input
