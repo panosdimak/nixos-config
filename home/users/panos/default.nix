@@ -7,16 +7,16 @@
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
-    # Development tools
-    gcc gnumake coreutils gnused gawk findutils bashInteractive binutils
-    git git-credential-manager curl wget unzip tree fastfetch
-    
-    # Editors / IDE / Writing
-    obsidian vscode onlyoffice-desktopeditors evince xfce.mousepad
+    # Core utilities
+    coreutils gnused gawk findutils bashInteractive
+    curl wget unzip tree fastfetch
+
+    # Editors / Writing
+    obsidian onlyoffice-desktopeditors evince xfce.mousepad
 
     # Terminal / Shell
-    ghostty starship ripgrep fzf bat lsd procs nnn
-    ncdu duf dust hyperfine 
+    ghostty starship lsd procs nnn
+    ncdu duf dust 
 
     # Clipboard / Screenshot / OCR
     wl-clipboard grim slurp tesseract
@@ -31,7 +31,7 @@
     # System utilities
     nautilus xfce.thunar xfce.thunar-archive-plugin xfce.thunar-volman numlockx  qpwgraph  
     btop cpuid cpu-x hardinfo2 mission-center resources
-    kdePackages.kalk warp
+    kdePackages.kalk warp hyperfine
 
     # Tools
     localsend
