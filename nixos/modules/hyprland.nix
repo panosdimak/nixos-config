@@ -16,7 +16,7 @@
     hyprlock
     hyprpicker
     hyprsysteminfo
-  brightnessctl
+    brightnessctl
     inputs.sunsetr.packages.${pkgs.system}.sunsetr
     cliphist
     playerctl
