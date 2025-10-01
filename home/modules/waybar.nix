@@ -8,8 +8,8 @@
     position = "top";
     height = 40;
     margin-top = 0;
-    margin-left = 2;
-    margin-right = 2;
+    margin-left = 0;
+    margin-right = 0;
 
     modules-left = [
       "hyprland/workspaces"
@@ -28,6 +28,7 @@
       "keyboard-state"
       "hyprland/language"
       "custom/rofi"
+      "battery"
       "custom/notification"
       "custom/power"
     ];
@@ -111,6 +112,26 @@
     "tray" = {
       "icon-size" = 16;
       "spacing" = 8;
+    };
+
+    "battery" = {
+      # base label
+      "format" = "{icon} {capacity}%";
+      # when actually charging
+      "format-charging" = "{icon} {capacity}%";
+      # when the adapter is plugged (AC online) but not charging
+      "format-plugged" = " {capacity}%";        # Font Awesome "plug"
+      # show the plug even when the battery is full
+      "format-full" = " {capacity}%";
+      # pick icons by status/capacity (optional)
+      "format-icons" = {
+        # discharging icons from empty → full
+        "default" = ["" "" "" "" ""];
+        # charging set (if you want a different look while charging)
+        "charging" = ["" "" "" "" "" "" ""];
+        # single icon when simply plugged
+        "plugged" = "";
+      };
     };
 
     # --- Custom buttons ---
