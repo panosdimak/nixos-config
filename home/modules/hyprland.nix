@@ -136,14 +136,13 @@
         numlock_by_default = true;
         follow_mouse = 1;
         sensitivity = 0;
-        touchpad.natural_scroll = false;
+        touchpad = {
+          natural_scroll = true;
+          scroll_factor = 0.25;
+        };
       };
 
-      gestures.workspace_swipe = false;
-
-      device = [
-        { name = "epic-mouse-v1"; sensitivity = -0.5; }
-      ];
+      gestures.workspace_swipe = true;
 
       # Keybindings
       "$mainMod" = "SUPER";
