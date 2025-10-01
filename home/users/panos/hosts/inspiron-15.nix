@@ -12,6 +12,11 @@
       "eDP-1, 1920x1080@60, 0x0, 1.2"
     ];
 
+    env = [
+      # Fix Electron apps rendering with fractional scaling
+      "ELECTRON_OZONE_PLATFORM_HINT,auto"
+    ];
+
     device = [
         { name = "ven_04f3:00-04f3:3259-touchpad"; sensitivity = -0.1; }
     ];
