@@ -21,9 +21,4 @@
     dm = "gdm";
     wayland = true;
   };
-
-  profiles.portals = {
-    session = "hyprland";
-    enableGtkFallback = true;
-  };
 }

@@ -19,10 +19,4 @@
     dm = "gdm";
     wayland = true;
   };
-
-  # Choose portals for this host
-  profiles.portals = {
-    session = "hyprland";
-    enableGtkFallback = true;
-  };
 }
