@@ -17,5 +17,10 @@
       "LIBVA_DRIVER_NAME,nvidia"
       "__GLX_VENDOR_LIBRARY_NAME,nvidia"
     ];
+
+    device = [
+      { name = "epic-mouse-v1"; sensitivity = -0.5; }
+    ];
+
   };
 }
