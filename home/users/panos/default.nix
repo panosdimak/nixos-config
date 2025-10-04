@@ -9,14 +9,14 @@
   home.packages = with pkgs; [
     # Core utilities
     coreutils gnused gawk findutils bashInteractive
-    curl wget unzip tree fastfetch
+    curl wget zip unzip tree fastfetch
 
     # Editors / Writing
     obsidian onlyoffice-desktopeditors evince xfce.mousepad
 
     # Terminal / Shell
     ghostty starship lsd procs nnn
-    ncdu duf dust 
+    ncdu duf dust
 
     # Clipboard / Screenshot / OCR
     wl-clipboard grim slurp tesseract
@@ -29,7 +29,7 @@
     vesktop telegram-desktop signal-desktop qbittorrent protonvpn-gui
 
     # System utilities
-    nautilus xfce.thunar xfce.thunar-archive-plugin xfce.thunar-volman numlockx  qpwgraph  
+    nautilus xfce.thunar xfce.thunar-archive-plugin xfce.thunar-volman file-roller numlockx  qpwgraph  
     btop cpuid cpu-x hardinfo2 mission-center resources
     kdePackages.kalk warp hyperfine
 
@@ -43,15 +43,6 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-  };
-
-  programs = {
-    direnv = {
-      enable = true;
-      enableBashIntegration = true;
-      nix-direnv.enable = true;
-      silent = true;
-    };
   };
 
   services.syncthing.enable = true;
