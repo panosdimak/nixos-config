@@ -7,7 +7,7 @@
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
     settings = {
       General = {
         Experimental = true; # show battery charge of Bluetooth devices
