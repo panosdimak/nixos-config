@@ -12,6 +12,7 @@
   profiles.gtk.iconThemeName = "Colloid-Pink-Gruvbox-Light";
 
   wayland.windowManager.hyprland.settings = {
+    exec-once = ["qpwgraph"];
     monitor = [ "HDMI-A-1, 1920x1080@72, 0x0, 1" ];
     env = [
       "LIBVA_DRIVER_NAME,nvidia"

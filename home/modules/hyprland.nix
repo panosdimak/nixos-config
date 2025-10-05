@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ ... }:
 {
   # Hyprland (user-scoped config via Home Manager)
   wayland.windowManager.hyprland = {
@@ -18,13 +18,13 @@
       # Autostart
       exec-once = [
         "nm-applet"
+        "blueman-applet"
         "swaync"
         "hypridle"
         "hyprpaper"
         "waybar"
         "sunsetr"
         "wl-paste --watch cliphist store"
-        "qpwgraph"
         "hyprctl setcursor Bibata-Modern-Classic 24"
         "ghostty --quit-after-last-window-closed=false --initial-window=false"
         "thunar --daemon"
@@ -235,6 +235,9 @@
         ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
       ];
       bindl = [
+        ", switch:on:Lid Switch, exec, hyprctl dispatch dpms off"
+        ", switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
+
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPause, exec, playerctl play-pause"
         ", XF86AudioPlay, exec, playerctl play-pause"
