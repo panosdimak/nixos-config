@@ -9,7 +9,7 @@
 
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "eDP-1, 1920x1080@60, 0x0, 1.2"
+      "eDP-1, 1920x1080@60, 0x0, 1"
     ];
 
     env = [
@@ -28,15 +28,19 @@
   services.hypridle.settings = {
     listener = [
       {
-        timeout = 300;
+        timeout = 120;  # Dim screen after 2 minutes
+        "on-timeout" = "brightnessctl set 10%";
+        "on-resume" = "brightnessctl set 100%";
+      }
+      {
+        timeout = 240;  # Turn off screen after 4 minutes
         "on-timeout" = "hyprctl dispatch dpms off";
         "on-resume" = "hyprctl dispatch dpms on";
       }
       {
-        timeout = 900;
+        timeout = 600;  # Suspend after 10 minutes
         "on-timeout" = "systemctl suspend";
       }
-
     ];
   };
 }
