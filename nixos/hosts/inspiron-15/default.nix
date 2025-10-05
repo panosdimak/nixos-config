@@ -9,6 +9,7 @@
   # Host-specific hardware/stack choices
   ../../modules/intel.nix
   ../../modules/audio.nix
+  ../../modules/power-management.nix
   ];
 
   system.stateVersion = "25.05";
