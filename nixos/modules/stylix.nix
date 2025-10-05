@@ -21,9 +21,9 @@
       emoji     = { package = pkgs.noto-fonts-emoji; name = "Noto Color Emoji"; };
     
       sizes = {
-        applications = 10;  # GTK app/UI text (Firefox chrome)
-        desktop      = 10;  # titles, bars
-        popups       = 10;  # menus/notifications
+        applications = 11;  # GTK app/UI text (Firefox chrome)
+        desktop      = 11;  # titles, bars
+        popups       = 11;  # menus/notifications
         terminal     = 12;
       };
     };
