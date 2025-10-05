@@ -79,10 +79,6 @@
         };
       };
 
-      # Keep a couple of lines raw to match your original placement
-      # and avoid any module limitations around these keys.
-      # These are appended after settings below via extraConfig.
-
       animations = {
         enabled = true;
         bezier = [
@@ -141,8 +137,6 @@
           scroll_factor = 0.25;
         };
       };
-
-      gestures.workspace_swipe = true;
 
       # Keybindings
       "$mainMod" = "SUPER";
@@ -248,6 +242,13 @@
       windowrule = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+      ];
+
+      # Gestures
+      gesture = [
+        "3, horizontal, workspace"           # Swipe between workspaces
+        "3, up, fullscreen"                  # Swipe up to toggle fullscreen
+        "3, down, close"                # Swipe down to close window
       ];
     };
 
