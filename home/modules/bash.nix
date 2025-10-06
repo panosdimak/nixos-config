@@ -14,7 +14,11 @@
     '';
 
     shellAliases = {
+      # NixOS
       nixbuildflake = "sudo nixos-rebuild switch --flake ~/nixos-config#$(hostname)";
+      nixclean = "sudo nix-collect-garbage -d";
+      nixoptimize = "nix-store --optimise";
+
       vim = "nvim";
       
       # ls aliases
