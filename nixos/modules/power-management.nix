@@ -77,12 +77,13 @@
   powerManagement.enable = true;
   
   services.logind = {
-    lidSwitch = "ignore";
-    lidSwitchDocked = "ignore";
-    # lidSwitchExternalPower = "lock";
     settings = {
       Login = {
+        HandleLidSwitchDocked = "ignore";
+        HandleLidSwitch = "ignore";
+        HandleLidSwitchExternalPower = "ignore";
         LidSwitchIgnoreInhibited = "no";
+        HandlePowerKey = "suspend";
         InhibitDelayMaxSec = 10;
       };
     };
