@@ -248,7 +248,7 @@
       gesture = [
         "3, horizontal, workspace"           # Swipe between workspaces
         "3, up, fullscreen"                  # Swipe up to toggle fullscreen
-        "3, down, close"                # Swipe down to close window
+        "4, down, close"                # Swipe down to close window
       ];
     };
 
