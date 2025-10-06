@@ -8,6 +8,7 @@
     ../modules/locale.nix
     ../modules/system.nix
     ../modules/portals.nix
+    ../modules/security.nix
     ../modules/secret-service.nix
     ../modules/hyprland.nix
     ../modules/users/panos.nix

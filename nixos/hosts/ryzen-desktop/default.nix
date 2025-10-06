@@ -8,7 +8,6 @@
 
   # Host-specific hardware/stack choices
   ../../modules/amd.nix
-  ../../modules/security.nix
   ../../modules/nvidia.nix
   ../../modules/graphics-32bit.nix
   ../../modules/advanced-audio.nix
