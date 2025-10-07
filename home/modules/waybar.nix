@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   programs.waybar.enable = true;
@@ -12,6 +12,7 @@
     margin-right = 0;
 
     modules-left = [
+      "custom/apps"
       "hyprland/workspaces"
       "hyprland/window"
     ];
@@ -23,11 +24,9 @@
       "tray"
       "pulseaudio"
       # "network",
-      "memory"
-      "cpu"
-      "keyboard-state"
+      #"memory"
+      #"cpu"
       "hyprland/language"
-      "custom/rofi"
       "battery"
       "custom/notification"
       "custom/power"
@@ -59,7 +58,7 @@
     # --- Core status ---
     "clock" = {
       "format" = "{:%a %d %b  %H:%M}";
-      "tooltip-format" = "{:%Y-%m-%d}\nWeek %V";
+      tooltip = false;
     };
 
     "pulseaudio" = {
@@ -135,8 +134,8 @@
     };
 
     # --- Custom buttons ---
-    "custom/rofi" = {
-      "format" = " apps";
+    "custom/apps" = {
+      "format" = "";
       "tooltip" = false;
       "on-click" = "fuzzel";
     };
@@ -180,11 +179,12 @@
       }
 
       window#waybar {
-        border: 2px solid #3C3836;
+        border: 2px solid #${config.lib.stylix.colors.base00};
         border-radius: 14px;
         background: alpha(@theme_bg_color, 0.80);
       }
 
+      #custom-apps,
       #workspaces,
       #tray,
       #cpu, #memory,
@@ -193,16 +193,14 @@
       #clock,
       #window,
       #idle_inhibitor,
-      #custom-rofi,
       #custom-power,
       #custom-notification,
       #language {
-        /* background: #3C3836; */
-        padding: 8px 10px;
-        /* margin: 0 6px; */
-        /* border-radius: 12px; */
-        /* box-shadow: 0 2px 10px rgba(0,0,0,0.35); */
-        /* border: 2px solid transparent; */
+        padding: 6px 10px;
+      }
+
+      #custom-apps {
+        font-size: 14pt;
       }
 
       #custom-notification {
@@ -210,21 +208,17 @@
       }
 
       #workspaces button {
-        padding: 0 8px;
-        border-radius: 10px;
+        border-radius: 14px;
       }
 
       #workspaces button.active {
-        /*color: #121212;*/
+        background: alpha(@theme_selected_bg_color, 1.0);
+        color: @theme_selected_fg_color;
       }
 
       #workspaces button.urgent {
         background: #b3261e;
         color: #fff;
-      }
-
-      #pulseaudio.muted {
-        /* color: #595959; */
       }
     '';
   

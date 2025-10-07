@@ -14,5 +14,6 @@
     ghostty.enable = true;
     # Let hyprpaper manage the wallpaper
     hyprpaper.enable = false;
+    waybar.enable = false;
   };
 }
