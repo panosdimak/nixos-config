@@ -1,4 +1,7 @@
 { config, ... }:
+let
+	wallpaperPath = "~/Pictures/gruvbox-wallpapers/wallpapers/photography/berries.jpg";
+in
 {
 	programs.hyprlock = {
 		enable = true;
@@ -7,7 +10,7 @@
 
 			background = {
 				monitor = "";
-				path = "${config.home.homeDirectory}/Pictures/Wallpapers/mountain-village.png";
+				path = wallpaperPath;
 				blur_passes = 2;
 			};
 
@@ -28,7 +31,7 @@
 				fade_on_empty = false;
 				rounding = 15;
 				font_family = "Monospace";
-				placeholder_text = "Input password...";
+				placeholder_text = "Enter password...";
 				fail_text = "$PAMFAIL";
 				dots_spacing = 0.3;
 				position = "0, -20";
