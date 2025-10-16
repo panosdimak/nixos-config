@@ -17,6 +17,7 @@
 
       # Autostart
       exec-once = [
+        "waypaper --restore"
         "nm-applet"
         "blueman-applet"
         "swaync"
