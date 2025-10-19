@@ -6,7 +6,7 @@ in {
   options.profiles.gtk = {
     iconThemeName = lib.mkOption {
       type = lib.types.str;
-      default = "Colloid-Pink-Gruvbox-Light";
+      default = "Colloid-Dark";
       description = "GTK icon theme name to use.";
     };
     cursor = {

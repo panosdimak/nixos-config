@@ -5,7 +5,7 @@
     ../default.nix
   ];
 
-  profiles.gtk.iconThemeName = "Colloid-Teal-Gruvbox-Light";
+  profiles.gtk.iconThemeName = "Colloid-Dark";
 
   wayland.windowManager.hyprland.settings = {
     monitor = [

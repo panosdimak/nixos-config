@@ -25,6 +25,7 @@
     playerctl
     libsecret
     bibata-cursors
+    colloid-icon-theme
   ];
  
   services.gvfs.enable = true;

@@ -9,7 +9,7 @@
   ../../../modules/music-production.nix
   ];
 
-  profiles.gtk.iconThemeName = "Colloid-Pink-Gruvbox-Light";
+  profiles.gtk.iconThemeName = "Colloid-Dark";
 
   wayland.windowManager.hyprland.settings = {
     exec-once = ["qpwgraph"];
