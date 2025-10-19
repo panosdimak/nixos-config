@@ -119,17 +119,16 @@
       # when actually charging
       "format-charging" = "{icon} {capacity}%";
       # when the adapter is plugged (AC online) but not charging
-      "format-plugged" = " {capacity}%";        # Font Awesome "plug"
+      "format-plugged" = "{icon} {capacity}%";        # Font Awesome "plug"
       # show the plug even when the battery is full
-      "format-full" = " {capacity}%";
+      "format-full" = " {icon} {capacity}%";
       # pick icons by status/capacity (optional)
       "format-icons" = {
         # discharging icons from empty → full
         "default" = ["" "" "" "" ""];
         # charging set (if you want a different look while charging)
-        "charging" = ["" "" "" "" "" "" ""];
         # single icon when simply plugged
-        "plugged" = "";
+        "charging" = ["" "" "" "" ""];
       };
     };
 
