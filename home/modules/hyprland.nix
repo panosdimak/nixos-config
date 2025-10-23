@@ -230,9 +230,6 @@
         ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
       ];
       bindl = [
-        ", switch:on:Lid Switch, exec, hyprctl dispatch dpms off"
-        ", switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
-
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPause, exec, playerctl play-pause"
         ", XF86AudioPlay, exec, playerctl play-pause"
@@ -247,9 +244,12 @@
 
       # Gestures
       gesture = [
-        "3, horizontal, workspace"           # Swipe between workspaces
-        "3, up, fullscreen"                  # Swipe up to toggle fullscreen
-        "4, down, close"                # Swipe down to close window
+        "3, horizontal, workspace"
+        "3, up, fullscreen"
+        "4, down, close"
+        "2, pinch, mod: SUPER, resize"
+        "3, right, mod: SUPER, dispatcher, movetoworkspace, r-1"
+        "3, left, mod: SUPER, dispatcher, movetoworkspace, r+1"
       ];
     };
 
