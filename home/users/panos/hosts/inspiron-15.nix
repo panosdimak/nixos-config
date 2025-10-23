@@ -9,7 +9,7 @@
 
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "eDP-1, 1920x1080@60, 0x0, 1"
+      "eDP-1, 1920x1080@60, 0x0, 1.2"
     ];
 
     env = [
@@ -29,8 +29,8 @@
     listener = [
       {
         timeout = 120;  # Dim screen after 2 minutes
-        "on-timeout" = "brightnessctl set 10%";
-        "on-resume" = "brightnessctl set 100%";
+        "on-timeout" = "brightnessctl -s set 10";
+        "on-resume" = "brightnessctl -r";
       }
       {
         timeout = 240;  # Turn off screen after 4 minutes
