@@ -30,7 +30,7 @@ in
 				outline_thickness = 3;
 				fade_on_empty = false;
 				rounding = 15;
-				font_family = "Monospace";
+				font_family = "Sans Serif";
 				placeholder_text = "Enter password...";
 				fail_text = "$PAMFAIL";
 				dots_spacing = 0.3;
@@ -44,7 +44,7 @@ in
 					monitor = "";
 					text = "$TIME";
 					font_size = 90;
-					font_family = "Monospace";
+					font_family = "Sans Serif";
 					position = "0, 200";
 					halign = "center";
 					valign = "center";
@@ -53,7 +53,7 @@ in
 					monitor = "";
 					text = "cmd[update:60000] date +\"%A, %d %B %Y\"";
 					font_size = 25;
-					font_family = "Monospace";
+					font_family = "Sans Serif";
 					position = "0, 100";
 					halign = "center";
 					valign = "center";
