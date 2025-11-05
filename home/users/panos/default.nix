@@ -31,7 +31,7 @@
     # System utilities
     nautilus xfce.thunar xfce.thunar-archive-plugin xfce.thunar-volman file-roller numlockx  qpwgraph  
     btop cpuid cpu-x hardinfo2 mission-center resources
-    kdePackages.kalk warp hyperfine
+    gnome-calculator warp hyperfine
 
     # Tools
     localsend
