@@ -17,6 +17,7 @@
     nerd-fonts.martian-mono
     nerd-fonts.space-mono
     nerd-fonts.victor-mono
+    nerd-fonts.geist-mono
     inter
   ];
 }
