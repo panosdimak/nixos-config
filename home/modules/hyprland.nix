@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   # Hyprland (user-scoped config via Home Manager)
   wayland.windowManager.hyprland = {
@@ -30,6 +30,7 @@
         "ghostty --quit-after-last-window-closed=false --initial-window=false"
         "thunar --daemon"
         "vesktop --start-minimized"
+        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
       ];
 
       # Environment
@@ -146,7 +147,6 @@
         "SUPER, F12, exec, sh -lc 'env > /tmp/hypr-bind-env.txt'"
         "$mainMod, Return, exec, $terminal"
         "$mainMod, C, killactive,"
-        "$mainMod, M, exit,"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, B, exec, $browser"
         "$mainMod, F, fullscreen,"
