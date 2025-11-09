@@ -4,7 +4,7 @@
   programs.starship = {
     enable = true;
     settings = {
-      format = "$directory$git_branch$git_status$cmd_duration$fill$cmake$cpp$nix_shell$jobs$line_break$character";
+      format = "$directory$git_branch$git_status$cmd_duration$cmake$cpp$nix_shell$jobs$line_break$character";
 
       fill.symbol = " ";
       
@@ -24,11 +24,11 @@
         format = "[$name $version ]($style)";
       };
 
-      nix_shell = {
-        style = "bold blue";
-        symbol = "❄️";
-        format = "[$symbol (\($name\))]($style)";
-      };
+    #   nix_shell = {
+    #     style = "bold blue";
+    #     symbol = "❄️";
+    #     format = "[$symbol (\($name\))]($style)";
+    #   };
     };
   };
 }
