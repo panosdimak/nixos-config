@@ -15,6 +15,7 @@
     gnumake
     valgrind
     binutils
+    clang-tools
     git
     ripgrep
     fzf
