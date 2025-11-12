@@ -180,7 +180,7 @@
       window#waybar {
         border: 2px solid #${config.lib.stylix.colors.base00};
         border-radius: 14px;
-        background: alpha(@theme_bg_color, 0.80);
+        background: alpha(@theme_bg_color, 0.70);
       }
 
       #custom-apps,
@@ -211,7 +211,7 @@
       }
 
       #workspaces button.active {
-        background: alpha(@theme_selected_bg_color, 1.0);
+        background: alpha(@theme_selected_bg_color, 0.9);
         color: @theme_selected_fg_color;
       }
 
