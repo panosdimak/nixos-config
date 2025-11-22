@@ -21,12 +21,12 @@
     ];
     modules-right = [
       # "idle_inhibitor"
+      "hyprland/language"
       "tray"
       "pulseaudio"
       # "network",
       #"memory"
       #"cpu"
-      "hyprland/language"
       "battery"
       "custom/notification"
       "custom/power"
@@ -172,14 +172,14 @@
       * 
       {
         font-family: SFProDisplay Nerd Font, FiraCode Nerd Font, monospace;
-        font-size: 12.5pt;
+        font-size: 12pt;
         /* font-weight: bold; */
         min-height: 0;
       }
 
       window#waybar {
         border: 2px solid #${config.lib.stylix.colors.base00};
-        border-radius: 14px;
+        border-radius: 0 0 10px 10px;
         background: alpha(@theme_bg_color, 0.70);
       }
 
@@ -194,8 +194,10 @@
       #idle_inhibitor,
       #custom-power,
       #custom-notification,
-      #language {
-        padding: 6px 10px;
+      #battery,
+      #language,
+      #custom-power {
+        padding: 6px 6px;
       }
 
       #custom-apps {
