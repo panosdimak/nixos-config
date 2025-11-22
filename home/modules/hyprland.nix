@@ -257,6 +257,8 @@
       # Layer rules / blur for waybar
       blurls = waybar
       layerrule = blur,waybar
+      blurls = launcher
+      layerrule = blur,launcher
     '';
   };
 }

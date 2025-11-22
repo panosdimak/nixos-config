@@ -7,10 +7,12 @@
       settings = {
         main = {
           font = lib.mkForce "SFMono Nerd Font:size=12.5";
-          dpi-aware = "yes";
+          dpi-aware = "no";
+          use-bold = "yes";
         };
         border = {
-          selection-radius = 10;
+          width = 2;
+          selection-radius = 4;
         };
       };
     };
