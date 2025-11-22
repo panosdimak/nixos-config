@@ -1,19 +1,27 @@
-{ lib, ... }:
-{ 
-  programs = {
-    # Required so Stylix can inject its theme into fuzzel's config
-    fuzzel = {
-      enable = true;
-      settings = {
-        main = {
-          font = lib.mkForce "SFMono Nerd Font:size=12.5";
-          dpi-aware = "no";
-          use-bold = "yes";
-        };
-        border = {
-          width = 2;
-          selection-radius = 4;
-        };
+{ config, lib, ... }:
+
+let
+  alpha = "99"; # choose your transparency (00–FF)
+  bg = config.lib.stylix.colors.base00;     # RGB from Stylix theme
+in
+{
+  programs.fuzzel = {
+    enable = true;
+
+    settings = {
+      colors = {
+        background = lib.mkForce "${bg}${alpha}";
+      };
+
+      main = {
+        font = lib.mkForce "SFMono Nerd Font:size=12.5";
+        dpi-aware = "no";
+        use-bold = "yes";
+      };
+
+      border = {
+        width = 2;
+        selection-radius = 4;
       };
     };
   };
