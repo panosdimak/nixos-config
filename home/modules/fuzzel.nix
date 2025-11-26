@@ -17,6 +17,7 @@ in
         font = lib.mkForce "SFMono Nerd Font:size=12.5";
         dpi-aware = "no";
         use-bold = "yes";
+        icon-theme = "Colloid-Dark";
       };
 
       border = {
