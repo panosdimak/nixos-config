@@ -23,15 +23,23 @@
 
     # Media
     mpv obs-studio gapless loupe
-   
+
     # Internet
     inputs.zen-browser.packages.${pkgs.system}.twilight
     vesktop telegram-desktop signal-desktop qbittorrent protonvpn-gui
 
     # System utilities
-    nautilus xfce.thunar xfce.thunar-archive-plugin xfce.thunar-volman file-roller numlockx  qpwgraph  
+    nautilus    (xfce.thunar.override {
+      thunarPlugins = [ xfce.thunar-archive-plugin xfce.thunar-volman ];
+    })
+    numlockx  qpwgraph
     btop cpuid cpu-x hardinfo2 mission-center resources
     gnome-calculator warp hyperfine
+
+    # Archive utils
+    p7zip
+    unrar
+    xarchiver
 
     # Tools
     localsend
@@ -39,7 +47,7 @@
     # Misc
     sl cowsay fortune lolcat
   ];
-  
+
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
