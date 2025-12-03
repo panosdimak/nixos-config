@@ -23,5 +23,6 @@
     vscode
     zed-editor
     lazygit
+    wireshark
   ];
 }
