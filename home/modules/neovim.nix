@@ -87,6 +87,82 @@
         highlight = { enable = true },
       })
 
+      -- LSP
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      -- Helper function to start an LSP server correctly
+      local function start_server(cmd, root_markers, extra)
+        local config = vim.tbl_extend("force", {
+          cmd = cmd,
+          capabilities = capabilities,
+          root_dir = vim.fs.root(0, root_markers or { ".git" }),
+        }, extra or {})
+
+        vim.lsp.start(config)
+      end
+
+      -- lua-language-server
+      start_server(
+        { "lua-language-server" },
+        { ".git", "lua" },
+        {
+          settings = {
+            Lua = {
+              diagnostics = { globals = { "vim" }},
+            }
+          }
+        }
+      )
+
+      -- clangd
+      start_server(
+        { "clangd" },
+        { ".git", "compile_commands.json" }
+      )
+
+      -- nixd
+      start_server(
+        { "nixd" },
+        { ".git", "flake.nix", "default.nix" },
+        {
+          settings = {
+            nixd = {
+              nixpkgs = {
+                expr = 'import <nixpkgs> { }'
+              },
+              formatting = {
+                command = { "alejandra" }  -- or nixpkgs-fmt, treefmt, etc
+              },
+              options = {
+                -- allow evaluation of flake outputs
+                enable = true
+              }
+            }
+          }
+        }
+      )
+
+      -- bashls
+      start_server(
+        { "bash-language-server", "start" },
+        { ".git" }
+      )
+
+      -- jsonls
+      start_server(
+        { "vscode-json-language-server", "--stdio" },
+        { ".git" }
+      )
+
+      -- yamlls
+      start_server(
+        { "yaml-language-server", "--stdio" },
+        { ".git" }
+      )
+      -- Telescope
+      require("telescope").setup({})
+      require('telescope').load_extension('fzf')
+
       -- File explorer
       require("nvim-tree").setup({
         view = { width = 30 },
