@@ -24,5 +24,14 @@
     zed-editor
     lazygit
     wireshark
+
+    nixd
+    alejandra
+
+    # language servers
+    lua-language-server
+    bash-language-server
+    nodePackages.yaml-language-server
+    nodePackages.vscode-json-languageserver
   ];
 }
