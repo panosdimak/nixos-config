@@ -6,8 +6,6 @@
 
   environment.systemPackages = with pkgs; [
     vim
-    nixd
-    alejandra
     usbutils
     uhubctl
   ];
