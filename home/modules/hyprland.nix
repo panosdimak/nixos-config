@@ -83,30 +83,35 @@
 
       animations = {
         enabled = true;
+        
         bezier = [
-          "easeOutQuint,0.23,1,0.32,1"
-          "easeInOutCubic,0.65,0.05,0.36,1"
-          "linear,0,0,1,1"
-          "almostLinear,0.5,0.5,0.75,1.0"
-          "quick,0.15,0,0.1,1"
+          "default, 0.42, 0, 0.58, 1"
+          "fastmid, 0.785, 0.135, 0.15, 0.86"
+          "inoutquart, 0.77, 0, 0.175, 1"
+          "inoutqubic, 0.6, 0.13, 0.355, 1"
+          "modern, 0.55, 0.12, 0, 0.93"
         ];
+
         animation = [
-          "global, 1, 10, default"
-          "border, 1, 5.39, easeOutQuint"
-          "windows, 1, 4.79, easeOutQuint"
-          "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
-          "windowsOut, 1, 1.49, linear, popin 87%"
-          "fadeIn, 1, 1.73, almostLinear"
-          "fadeOut, 1, 1.46, almostLinear"
-          "fade, 1, 3.03, quick"
-          "layers, 1, 3.81, easeOutQuint"
-          "layersIn, 1, 4, easeOutQuint, fade"
-          "layersOut, 1, 1.5, linear, fade"
-          "fadeLayersIn, 1, 1.79, almostLinear"
-          "fadeLayersOut, 1, 1.39, almostLinear"
-          "workspaces, 1, 1.94, almostLinear, fade"
-          "workspacesIn, 1, 1.21, almostLinear, fade"
-          "workspacesOut, 1, 1.94, almostLinear, fade"
+          "windows, 1, 3, modern, popin"
+          "windowsIn, 1, 3, modern, popin"
+          "windowsOut, 1, 3, modern, popin"
+          "windowsMove, 1, 4, modern, slide"
+
+          # "layersIn, 1, 3, fastmid, popin"
+          # "layersOut, 1, 3, fastmid, popin"
+
+          "fadeIn, 1, 5, modern"
+          "fadeOut, 1, 5, modern"
+          "fadeSwitch, 1, 5, modern"
+          "fadeShadow, 1, 5, modern"
+          "fadeDim, 1, 5, modern"
+          "fadeLayers, 1, 3, modern"
+          "fadePopups, 1, 3, default"
+
+          "border, 1, 5, modern"
+
+          "workspaces, 1, 5, modern, slide"
         ];
       };
 
@@ -154,6 +159,7 @@
         "$mainMod, A, exec, $menu"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
+        "$mainMod, S, exec, hyprshot -m window --clipboard-only"
         "$mainMod, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
         "$mainMod, L, exec, hyprlock"
         "$mainMod, G, exec, hyprpicker -a"
