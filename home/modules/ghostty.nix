@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       gtk-single-instance = true;
-      background-opacity = 0.8;
+      background-opacity = 0.7;
       background-blur = true;
     };
   };
