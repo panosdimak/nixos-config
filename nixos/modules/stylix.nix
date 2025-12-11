@@ -17,7 +17,7 @@
       };
 
       serif     = { package = pkgs.noto-fonts; name = "Noto Serif"; };
-      emoji     = { package = pkgs.noto-fonts-emoji; name = "Noto Color Emoji"; };
+      emoji     = { package = pkgs.noto-fonts-color-emoji; name = "Noto Color Emoji"; };
     
       sizes = {
         applications = 11;  # GTK app/UI text (Firefox chrome)
@@ -32,7 +32,7 @@
   fonts.packages = with pkgs; [
     noto-fonts                  # Latin etc.
     noto-fonts-cjk-sans         # JP/CJK coverage (Noto Sans CJK JP)
-    noto-fonts-emoji            # Color emoji
+    noto-fonts-color-emoji            # Color emoji
   ];
 
   # Define fallback order (what fontconfig prefers when glyphs are missing)
