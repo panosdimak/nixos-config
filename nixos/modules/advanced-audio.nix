@@ -13,14 +13,13 @@
     wireplumber.enable = true;
 
     extraConfig = {
-      # Keep the graph sane and consistent
       pipewire."10-lowlatency" = {
         "context.properties" = {
           "default.clock.allowed-rates" = [ 48000 ];
           "default.clock.rate" = 48000;
-          "default.clock.quantum" = 256;
-          "default.clock.min-quantum" = 256;
-          "default.clock.max-quantum" = 256;
+          "default.clock.quantum" = 512;
+          "default.clock.min-quantum" = 512;
+          "default.clock.max-quantum" = 512;
         };
       };
 
