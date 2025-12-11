@@ -34,7 +34,7 @@
     })
     numlockx  qpwgraph
     btop cpuid cpu-x hardinfo2 mission-center resources
-    gnome-calculator warp hyperfine
+    gnome-calculator warp hyperfine waypaper
 
     # Archive utils
     p7zip

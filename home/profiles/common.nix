@@ -18,7 +18,6 @@
     ../modules/fuzzel.nix
     ../modules/development.nix
     ../modules/spicetify.nix
-    ../modules/wallpaper.nix
     ../modules/swaync.nix
   ];
 
