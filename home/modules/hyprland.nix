@@ -243,9 +243,9 @@
       ];
 
       # Windows & rules
-      windowrule = [
+      windowrulev2 = [
         "suppressevent maximize, class:.*"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
       ];
 
       # Gestures
@@ -261,10 +261,10 @@
 
     extraConfig = ''
       # Layer rules / blur for waybar
-      blurls = waybar
-      layerrule = blur,waybar
-      blurls = launcher
-      layerrule = blur,launcher
+      layerrule = blur on, match:class waybar
+      layerrule = blur on, match:class launcher
+      layerrule = ignore_alpha 0.5, match:class waybar
+      layerrule = ignore_alpha 0.5, match:class launcher
     '';
   };
 }
