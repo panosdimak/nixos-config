@@ -11,13 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Plasma Manager
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     # Stylix
     stylix = {
       url = "github:nix-community/stylix";
@@ -58,6 +51,11 @@
     # Hyprland
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
