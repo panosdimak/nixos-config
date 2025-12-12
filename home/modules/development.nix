@@ -23,7 +23,6 @@
     vscode
     zed-editor
     lazygit
-    wireshark
 
     nixd
     alejandra
