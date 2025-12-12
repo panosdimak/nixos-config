@@ -14,7 +14,7 @@
     networkmanagerapplet
     blueman
     waybar
-    hyprpaper
+    inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
     hypridle
     hyprlock
     hyprpicker
