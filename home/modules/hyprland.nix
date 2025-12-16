@@ -10,7 +10,7 @@
 
   settings = {
       # Variables / apps
-      "$terminal" = "ghostty";
+      "$terminal" = "kitty";
       "$fileManager" = "thunar";
       "$browser" = "zen-twilight";
       "$menu" = "fuzzel";
@@ -27,7 +27,6 @@
         "sunsetr"
         "wl-paste --watch cliphist store"
         "hyprctl setcursor Bibata-Modern-Classic 24"
-        "ghostty --quit-after-last-window-closed=false --initial-window=false"
         "thunar --daemon"
         "vesktop --start-minimized"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
@@ -52,11 +51,9 @@
 
       # Look and Feel
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
+        gaps_in = 6;
+        gaps_out = 12;
         border_size = 2;
-        # "col.active_border" = "rgba(e2bc7bee) rgba(117cb0ee) 45deg";
-        # "col.inactive_border" = "rgba(595959aa)";
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";
@@ -69,9 +66,8 @@
         inactive_opacity = 1.0;
         shadow = {
           enabled = true;
-          range = 4;
-          render_power = 3;
-          # color = "rgba(1a1a1aee)";
+          range = 10;
+          render_power = 10;
         };
         blur = {
           enabled = true;
