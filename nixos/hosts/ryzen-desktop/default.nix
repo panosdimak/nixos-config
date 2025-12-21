@@ -23,4 +23,8 @@
   };
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest.yaml";
+
+  programs.steam.enable = true;
+  programs.wireshark.enable = true;
+  users.users.panos.extraGroups = [ "wireshark" ];
 }
