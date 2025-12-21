@@ -24,23 +24,4 @@
     ];
 
   };
-
-  services.hypridle.settings = {
-    listener = [
-      {
-        timeout = 120;  # Dim screen after 2 minutes
-        "on-timeout" = "brightnessctl -s set 10";
-        "on-resume" = "brightnessctl -r";
-      }
-      {
-        timeout = 240;  # Turn off screen after 4 minutes
-        "on-timeout" = "hyprctl dispatch dpms off";
-        "on-resume" = "hyprctl dispatch dpms on";
-      }
-      {
-        timeout = 600;  # Suspend after 10 minutes
-        "on-timeout" = "systemctl suspend";
-      }
-    ];
-  };
 }
