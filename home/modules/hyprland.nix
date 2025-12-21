@@ -94,18 +94,17 @@
           "windowsOut, 1, 3, modern, popin"
           "windowsMove, 1, 4, modern, slide"
 
-          # "layersIn, 1, 3, fastmid, popin"
-          # "layersOut, 1, 3, fastmid, popin"
+          "layersIn, 1, 2, inoutqubic, popin"
 
           "fadeIn, 1, 5, modern"
           "fadeOut, 1, 5, modern"
           "fadeSwitch, 1, 5, modern"
           "fadeShadow, 1, 5, modern"
           "fadeDim, 1, 5, modern"
-          "fadeLayers, 1, 3, modern"
+          "fadeLayers, 1, 4, inoutqubic"
           "fadePopups, 1, 3, default"
 
-          "border, 1, 5, modern"
+          "border, 1, 3, modern"
 
           "workspaces, 1, 5, modern, slide"
         ];
