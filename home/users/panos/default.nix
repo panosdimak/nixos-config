@@ -19,7 +19,7 @@
     ncdu duf dust
 
     # Clipboard / Screenshot / OCR
-    wl-clipboard grim slurp tesseract
+    wl-clipboard grim slurp grimblast charm-freeze tesseract
 
     # Media
     mpv obs-studio gapless loupe
