@@ -14,14 +14,14 @@
     networkmanagerapplet
     blueman
     waybar
-    inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
+    swww
     hypridle
     hyprlock
     hyprpicker
     hyprsysteminfo
     hyprshot
     brightnessctl
-    inputs.sunsetr.packages.${pkgs.system}.sunsetr
+    sunsetr
     cliphist
     playerctl
     libsecret
