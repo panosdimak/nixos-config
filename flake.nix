@@ -30,12 +30,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    # Sunsetr
-    sunsetr = {
-      url = "github:psi4j/sunsetr";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # San Francisco Fonts | Apple Fonts
     apple-fonts = {
       url= "github:Lyndeno/apple-fonts.nix";
@@ -93,6 +87,16 @@
         system = "x86_64-linux";
         modules = [
           ./nixos/hosts/inspiron-15
+
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                gtksourceview5 = prev.gtksourceview5.overrideAttrs (_: {
+                  checkPhase = ":";
+                });
+              })
+            ];
+          }
 
           # Home Manager as a NixOS module
           home-manager.nixosModules.home-manager
