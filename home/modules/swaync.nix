@@ -31,27 +31,27 @@
       }
 
       .control-center {
-        border-width: 4px;
+        border-width: 2px;
       }
 
       .widget-title > button {
-        border-width: 4px;
+        border-width: 2px;
       }
 
       .widget-dnd > switch {
-        border-width: 4px;
+        border-width: 2px;
       }
 
       .widget-mpris .widget-mpris-player {
-        border-width: 4px;
+        border-width: 2px;
       }
 
       .widget-mpris .widget-mpris-player > box > button {
-        border-width: 4px;
+        border-width: 2px;
       }
 
       .widget-mpris .widget-mpris-player > box > button:hover {
-        border-width: 4px;
+        border-width: 2px;
       }
     '';
   };
