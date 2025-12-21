@@ -11,8 +11,6 @@
     swaync.enable = true;
     fuzzel.enable = true;
     vesktop.enable = true;
-    # Let hyprpaper manage the wallpaper
-    hyprpaper.enable = false;
     waybar.enable = false;
   };
 }

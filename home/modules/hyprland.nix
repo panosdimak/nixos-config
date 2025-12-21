@@ -22,7 +22,7 @@
         "blueman-applet"
         "swaync"
         "hypridle"
-        "hyprpaper"
+        "sww-daemon"
         "waybar"
         "sunsetr"
         "wl-paste --watch cliphist store"
