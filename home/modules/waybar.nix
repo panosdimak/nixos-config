@@ -71,8 +71,8 @@
       on-click-right = "pavucontrol";
       format-icons = {
         "headphones" = "";
-        "handsfree" = "";
-        "headset" = "";
+        "handsfree" = "";
+        "headset" = "";
         "default" = ["" "" ""];
       };
     };
