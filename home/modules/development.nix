@@ -24,8 +24,13 @@
     zed-editor
     lazygit
 
+    claude-code
+    claude-monitor
+
     nixd
     alejandra
+
+    wireshark
 
     # language servers
     lua-language-server
