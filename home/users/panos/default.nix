@@ -15,7 +15,7 @@
     obsidian onlyoffice-desktopeditors evince xfce.mousepad
 
     # Terminal / Shell
-    neovim ghostty kitty kitty-themes starship lsd procs nnn
+    ghostty kitty kitty-themes starship lsd procs nnn
     ncdu duf dust
 
     # Clipboard / Screenshot / OCR
