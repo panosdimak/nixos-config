@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   # Hyprland (user-scoped config via Home Manager)
   wayland.windowManager.hyprland = {
@@ -7,6 +7,17 @@
     package = null;
     portalPackage = null;
     systemd.enable = true;
+
+    # Hyprland plugins (from hyprland-plugins flake)
+    # NOTE: hyprexpo temporarily disabled - incompatible with Hyprland 0.52.0 API
+    # See: https://github.com/hyprwm/hyprland-plugins for updates
+    # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
+      # hyprbars       # Window title bars
+      # hyprexpo       # Workspace overview (like GNOME overview) - API mismatch
+      # hyprtrails     # Trail effect behind moving windows
+      # hyprwinwrap    # Wallpaper windows
+      # borders-plus-plus  # Extra border styling
+    # ];
 
   settings = {
       # Variables / apps
@@ -71,15 +82,19 @@
         };
         blur = {
           enabled = true;
-          size = 3;
-          passes = 3;
-          vibrancy = 0.1696;
+          size = 12;
+          passes = 2;
+          noise = 0.1;
+          contrast = 2;
+          vibrancy = 0.5;
+          brightness = 0.8;
+          new_optimizations = true;
         };
       };
 
       animations = {
         enabled = true;
-        
+
         bezier = [
           "default, 0.42, 0, 0.58, 1"
           "fastmid, 0.785, 0.135, 0.15, 0.86"
