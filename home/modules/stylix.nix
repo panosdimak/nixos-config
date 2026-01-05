@@ -12,5 +12,9 @@
     fuzzel.enable = true;
     vesktop.enable = true;
     waybar.enable = false;
+    neovim.transparentBackground = {
+      main = true;
+      signColumn = true;
+    };
   };
 }
