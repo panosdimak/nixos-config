@@ -67,7 +67,7 @@
       general = {
         gaps_in = 6;
         gaps_out = 12;
-        border_size = 2;
+        border_size = 0;
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";
@@ -81,7 +81,7 @@
         shadow = {
           enabled = true;
           range = 10;
-          render_power = 10;
+          render_power = 20;
         };
         blur = {
           enabled = true;
