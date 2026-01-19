@@ -18,6 +18,9 @@
       # hyprwinwrap    # Wallpaper windows
       # borders-plus-plus  # Extra border styling
     # ];
+    plugins = [
+      inputs.hyprtasking.packages.${pkgs.system}.hyprtasking
+    ];
 
   settings = {
       # Variables / apps
@@ -192,7 +195,8 @@
         "$mainMod, 9, workspace, 9"
         "$mainMod, 0, workspace, 10"
 
-        "$mainMod, Tab, workspace, previous"
+        "ALT, Tab, workspace, previous"
+        "$mainMod, Tab, hyprtasking:toggle, all"
 
         # Next / prev workspace
         "SUPER, bracketright, workspace, r+1"
@@ -253,9 +257,9 @@
       ];
 
       # Windows & rules
-      windowrulev2 = [
-        "suppressevent maximize, class:.*"
-        "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
+      windowrule = [
+        "suppress_event maximize, match:class .*"
+        "no_focus on, match:class ^$, match:title ^$, match:xwayland true, match:float true, match:fullscreen false, match:pin false"
       ];
 
       # Gestures
