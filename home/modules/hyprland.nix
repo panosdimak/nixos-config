@@ -309,7 +309,7 @@
           linear = {
             height = 400;
             scroll_speed = 1.0;
-            blur = true;
+            blur = false;
           };
         };
       };
