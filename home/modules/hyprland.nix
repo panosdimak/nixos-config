@@ -196,7 +196,10 @@
         "$mainMod, 0, workspace, 10"
 
         "ALT, Tab, workspace, previous"
+
+        # hyprtasking
         "$mainMod, Tab, hyprtasking:toggle, all"
+        ", escape, hyprtasking:if_active, hyprtasking:toggle cursor"
 
         # Next / prev workspace
         "SUPER, bracketright, workspace, r+1"
@@ -271,6 +274,45 @@
         "3, right, mod: SUPER, dispatcher, movetoworkspace, r-1"
         "3, left, mod: SUPER, dispatcher, movetoworkspace, r+1"
       ];
+
+      # Hyprtasking plugin
+      plugin = {
+        hyprtasking = {
+          layout = "grid";
+
+          gap_size = 15;
+          bg_color = "0xff26233a";
+          border_size = 4;
+          exit_on_hovered = false;
+          warp_on_move_window = 1;
+          close_overview_on_reload = true;
+
+          drag_button = "0x111";
+          select_button = "0x110";
+
+          gestures = {
+            enabled = true;
+            move_fingers = 3;
+            move_distance = 300;
+            open_fingers = 4;
+            open_distance = 300;
+            open_positive = true;
+          };
+
+          grid = {
+            rows = 3;
+            cols = 3;
+            loop = false;
+            gaps_use_aspect_ratio = false;
+          };
+
+          linear = {
+            height = 400;
+            scroll_speed = 1.0;
+            blur = true;
+          };
+        };
+      };
     };
 
     extraConfig = ''
