@@ -209,7 +209,10 @@
       }
 
       #workspaces button {
-        border-radius: 14px;
+        border-radius: 50%;
+        min-width: 28px;
+        min-height: 28px;
+        padding: 0;
       }
 
       #workspaces button.active {
