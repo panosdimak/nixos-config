@@ -109,17 +109,17 @@
         animation = [
           "windows, 1, 3, modern, popin"
           "windowsIn, 1, 3, modern, popin"
-          "windowsOut, 1, 3, modern, popin"
+          "windowsOut, 1, 2, modern, popin"
           "windowsMove, 1, 4, modern, slide"
 
-          "layersIn, 1, 2, inoutqubic, popin"
+          "layersIn, 1, 1, inoutqubic, popin"
 
           "fadeIn, 1, 5, modern"
-          "fadeOut, 1, 5, modern"
+          "fadeOut, 1, 3, modern"
           "fadeSwitch, 1, 5, modern"
           "fadeShadow, 1, 5, modern"
           "fadeDim, 1, 5, modern"
-          "fadeLayers, 1, 4, inoutqubic"
+          "fadeLayers, 1, 3, inoutqubic"
           "fadePopups, 1, 3, default"
 
           "border, 1, 3, modern"
