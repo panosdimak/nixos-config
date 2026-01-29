@@ -291,7 +291,7 @@
           select_button = "0x110";
 
           gestures = {
-            enabled = true;
+            enabled = false;
             move_fingers = 3;
             move_distance = 300;
             open_fingers = 4;
