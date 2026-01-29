@@ -80,7 +80,7 @@
         inactive_opacity = 1.0;
         shadow = {
           enabled = true;
-          range = 10;
+          range = 20;
           render_power = 20;
         };
         blur = {
