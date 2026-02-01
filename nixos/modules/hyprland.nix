@@ -27,6 +27,7 @@
     libsecret
     bibata-cursors
     colloid-icon-theme
+    kdePackages.breeze-icons
   ];
  
   services.gvfs.enable = true;
