@@ -54,5 +54,11 @@
   };
 
   services.syncthing.enable = true;
+
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;  # Adds the system tray indicator
+  };
+
   programs.home-manager.enable = true;
 }
