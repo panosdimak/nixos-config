@@ -173,7 +173,7 @@
       {
         font-family: SFProDisplay Nerd Font, FiraCode Nerd Font, monospace;
         font-size: 12pt;
-        /* font-weight: bold; */
+        font-weight: bold;
         min-height: 0;
       }
 
