@@ -178,9 +178,9 @@
       }
 
       window#waybar {
-        border: 2px solid #${config.lib.stylix.colors.base00};
-        border-radius: 0 0 10px 10px;
-        background: alpha(@theme_bg_color, 0.70);
+        border: 0px solid #${config.lib.stylix.colors.base00};
+        border-radius: 0 0 12px 12px;
+        background: alpha(@theme_bg_color, 0.60);
       }
 
       #custom-apps,
