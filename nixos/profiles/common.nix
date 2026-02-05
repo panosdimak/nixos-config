@@ -11,8 +11,8 @@
     ../modules/security.nix
     ../modules/secret-service.nix
     ../modules/hyprland.nix
-    ../modules/users/panos.nix
-    ../modules/programs/common.nix
+    ../modules/user-panos.nix
+    ../modules/packages.nix
     ../modules/stylix.nix
     ../modules/display-manager.nix
   ];

@@ -28,13 +28,6 @@
     };
   };
 
-# Make sure the fallback fonts are actually installed
-  fonts.packages = with pkgs; [
-    noto-fonts                  # Latin etc.
-    noto-fonts-cjk-sans         # JP/CJK coverage (Noto Sans CJK JP)
-    noto-fonts-color-emoji            # Color emoji
-  ];
-
   # Define fallback order (what fontconfig prefers when glyphs are missing)
   fonts.fontconfig.defaultFonts = {
     sansSerif = [

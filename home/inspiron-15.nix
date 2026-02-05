@@ -1,11 +1,9 @@
 { ... }:
 {
   imports = [
-    ../../../profiles/common.nix
-    ../default.nix
+    ./common.nix
+    ./default.nix
   ];
-
-  profiles.gtk.iconThemeName = "Colloid-Dark";
 
   wayland.windowManager.hyprland.settings = {
     monitor = [
@@ -13,10 +11,7 @@
     ];
 
     env = [
-      # Fix Electron apps rendering with fractional scaling
       "ELECTRON_OZONE_PLATFORM_HINT,auto"
-      # Additional flags for Spotify/Electron apps
-      "NIXOS_OZONE_WL,1"
     ];
 
     device = [

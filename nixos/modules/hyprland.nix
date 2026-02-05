@@ -8,6 +8,7 @@
   
   environment.systemPackages = with pkgs; [
     fuzzel
+    vicinae
     swaynotificationcenter
     libnotify
     swappy

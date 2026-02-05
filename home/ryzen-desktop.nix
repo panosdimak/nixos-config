@@ -1,15 +1,12 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
-  # Common Home profile used by all hosts
-  ../../../profiles/common.nix
-  # User defaults
-  ../default.nix
-  # Host-specific extras
-  ../../../modules/music-production.nix
+    ./common.nix
+    ./default.nix
+    ./modules/music-production.nix
   ];
 
-  profiles.gtk.iconThemeName = "Colloid-Dark";
+  home.packages = with pkgs; [ qpwgraph ];
 
   wayland.windowManager.hyprland.settings = {
     exec-once = ["qpwgraph"];

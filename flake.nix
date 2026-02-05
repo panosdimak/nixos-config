@@ -52,40 +52,34 @@
       url = "github:raybbian/hyprtasking";
       inputs.hyprland.follows = "hyprland";
     };
-
-    # Hyprland plugins
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
   };
-  
-  outputs = { self, nixpkgs, home-manager, musnix, stylix, zen-browser, apple-fonts, ... }@inputs: {
+
+  outputs = { self, nixpkgs, home-manager, musnix, stylix, zen-browser, apple-fonts, ... }@inputs:
+  let
+    # Shared modules included in every host configuration
+    commonModules = [
+      home-manager.nixosModules.home-manager
+      stylix.nixosModules.stylix
+      musnix.nixosModules.musnix
+    ];
+
+    # Home Manager settings shared across all hosts
+    mkHome = hostModule: {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.backupFileExtension = "hm-bak";
+      home-manager.users.panos = import hostModule;
+      home-manager.extraSpecialArgs = { inherit inputs; };
+    };
+  in {
     nixosConfigurations = {
       ryzen-desktop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
           ./nixos/hosts/ryzen-desktop
-
-          # Home Manager as a NixOS module
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "hm-bak";
-            # home-manager.sharedModules = [ inputs.plasma-manager.homeModules."plasma-manager" ];
-            # Use per-host Home Manager module composition
-            home-manager.users.panos = import ./home/users/panos/hosts/ryzen-desktop.nix;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-          
-          # Stylix module
-          stylix.nixosModules.stylix
-
-          # Musnix module
-          musnix.nixosModules.musnix
-        ];
+          (mkHome ./home/ryzen-desktop.nix)
+        ] ++ commonModules;
       };
 
       inspiron-15 = nixpkgs.lib.nixosSystem {
@@ -93,7 +87,7 @@
         system = "x86_64-linux";
         modules = [
           ./nixos/hosts/inspiron-15
-
+          (mkHome ./home/inspiron-15.nix)
           {
             nixpkgs.overlays = [
               (final: prev: {
@@ -103,20 +97,7 @@
               })
             ];
           }
-
-          # Home Manager as a NixOS module
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "hm-bak";
-            home-manager.users.panos = import ./home/users/panos/hosts/inspiron-15.nix;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-
-          # Stylix module
-          stylix.nixosModules.stylix
-        ];
+        ] ++ commonModules;
       };
     };
   };

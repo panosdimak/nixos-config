@@ -1,8 +1,21 @@
-{ config, ... }:
-let
-	wallpaperPath = "~/Pictures/gruvbox-wallpapers/wallpapers/photography/berries.jpg";
-in
+{ ... }:
+
 {
+	services.hypridle = {
+		enable = true;
+		settings = {
+			general = {
+				lock_cmd = "pidof hyprlock || hyprlock";
+				inhibit_sleep = 3;
+				before_sleep_cmd = "loginctl lock-session";
+				after_sleep_cmd = "hyprctl dispatch dpms on";
+				ignore_dbus_inhibit = false;
+				ignore_systemd_inhibit = false;
+				ignore_wayland_inhibit = false;
+			};
+		};
+	};
+
 	programs.hyprlock = {
 		enable = true;
 		settings = {
@@ -10,16 +23,17 @@ in
 
 			background = {
 				monitor = "";
-				path = wallpaperPath;
-				blur_passes = 2;
+				path = "screenshot";  # Use current screen as background
+				blur_passes = 4;
+				blur_size = 8;
 			};
 
 			animations = {
 				enabled = true;
 				bezier = [ "linear, 1, 1, 0, 0" ];
 				animation = [
-					"fadeIn, 1, 4, linear"
-					"fadeOut, 1, 4, linear"
+					"fadeIn, 1, 3, linear"
+					"fadeOut, 1, 3, linear"
 					"inputFieldDots, 1, 1, linear"
 				];
 			};

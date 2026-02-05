@@ -11,7 +11,7 @@
   ../../modules/amd.nix
   ../../modules/nvidia.nix
   ../../modules/graphics-32bit.nix
-  ../../modules/advanced-audio.nix
+  ../../modules/audio.nix
   ];
 
   system.stateVersion = "25.05";
@@ -23,6 +23,8 @@
   };
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest.yaml";
+
+  profiles.audio.lowLatency = true;
 
   programs.steam.enable = true;
   programs.wireshark.enable = true;

@@ -1,4 +1,89 @@
-{ pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
+
+let
+  power-menu = pkgs.writeShellApplication {
+    name = "power-menu";
+    runtimeInputs = with pkgs; [ fuzzel hyprlock ];
+    text = ''
+      options=" Lock\n⏾ Sleep\n󰍃 Logout\n Reboot\n Shutdown\n Reboot to Firmware\nCancel"
+
+      choice=$(echo -e "$options" | fuzzel --dmenu --lines=6 --prompt="Power > ") || exit 0
+
+      # Strip leading icon (everything up to the first space) so matching works with icons
+      label="$choice"
+      if [[ "$label" == *" "* ]]; then
+        label="''${label#* }"
+      fi
+
+      case "$label" in
+        Lock) hyprlock ;;
+        Sleep) systemctl suspend ;;
+        Reboot) systemctl reboot ;;
+        Shutdown) systemctl poweroff ;;
+        Logout) hyprctl dispatch exit ;;
+        "Reboot to Firmware") systemctl reboot --firmware-setup ;;
+        Cancel|"") exit 0 ;;
+      esac
+    '';
+  };
+
+  snipping-tool = pkgs.writeShellApplication {
+    name = "snipping-tool";
+    runtimeInputs = with pkgs; [ grim slurp wl-clipboard libnotify swappy coreutils ];
+    text = ''
+      DIR="$HOME/Pictures/Screenshots"
+      mkdir -p "$DIR"
+
+      TMP="$(mktemp --suffix=.png)"
+
+      if ! grim -g "$(slurp)" "$TMP"; then
+        rm -f "$TMP"
+        exit 0
+      fi
+
+      wl-copy < "$TMP"
+
+      choice="$(
+        notify-send \
+          -a "Screenshot" \
+          -i "$TMP" \
+          -u low \
+          -t 6000 \
+          -A "edit=Edit in Swappy" \
+          -A "save=Save to file" \
+          -A "discard=Discard" \
+          "Screenshot taken" "Choose what to do (or ignore)" \
+          --wait
+      )"
+
+      case "$choice" in
+        edit|1)
+          swappy -f "$TMP"
+          rm -f "$TMP"
+          ;;
+        save|2)
+          FILE="$DIR/Screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png"
+          mv "$TMP" "$FILE"
+          notify-send -a "Screenshot" -i "$FILE" "Saved" "$FILE"
+          ;;
+        discard|3|"")
+          rm -f "$TMP"
+          ;;
+      esac
+    '';
+  };
+
+  ocr-screenshot = pkgs.writeShellApplication {
+    name = "ocr-screenshot";
+    runtimeInputs = with pkgs; [ grim slurp tesseract wl-clipboard ];
+    text = ''
+      IMG=$(mktemp --suffix=.png)
+      grim -g "$(slurp)" "$IMG"
+      tesseract "$IMG" - -l eng+ell | wl-copy
+      rm -f "$IMG"
+    '';
+  };
+in
 {
   # Hyprland (user-scoped config via Home Manager)
   wayland.windowManager.hyprland = {
@@ -8,16 +93,6 @@
     portalPackage = null;
     systemd.enable = true;
 
-    # Hyprland plugins (from hyprland-plugins flake)
-    # NOTE: hyprexpo temporarily disabled - incompatible with Hyprland 0.52.0 API
-    # See: https://github.com/hyprwm/hyprland-plugins for updates
-    # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
-      # hyprbars       # Window title bars
-      # hyprexpo       # Workspace overview (like GNOME overview) - API mismatch
-      # hyprtrails     # Trail effect behind moving windows
-      # hyprwinwrap    # Wallpaper windows
-      # borders-plus-plus  # Extra border styling
-    # ];
     plugins = [
       inputs.hyprtasking.packages.${pkgs.system}.hyprtasking
     ];
@@ -36,7 +111,8 @@
         "blueman-applet"
         "swaync"
         "hypridle"
-        "sww-daemon"
+        "swww-daemon"
+        "vicinae server"
         "waybar"
         "sunsetr"
         "wl-paste --watch cliphist store"
@@ -59,8 +135,7 @@
         "HYPRCURSOR_SIZE,24"
         "XCURSOR_THEME,Bibata-Modern-Classic"
         "XCURSOR_SIZE,24"
-        # Keep as-is from your config; harmless if redundant
-        "NIX_PROFILES,/etc/profiles/per-user/panos /run/current-system/sw /nix/var/nix/profiles/default /home/panos/.local/state/nix/profile /nix/profile /home/panos/.nix-profile"
+        "NIX_PROFILES,/etc/profiles/per-user/${config.home.username} /run/current-system/sw /nix/var/nix/profiles/default ${config.home.homeDirectory}/.local/state/nix/profile /nix/profile ${config.home.homeDirectory}/.nix-profile"
       ];
 
       # Look and Feel
@@ -85,8 +160,8 @@
         };
         blur = {
           enabled = true;
-          size = 12;
-          passes = 2;
+          size = 8;
+          passes = 3;
           noise = 0.1;
           contrast = 2;
           vibrancy = 0.5;
@@ -169,7 +244,7 @@
         "$mainMod, B, exec, $browser"
         "$mainMod, F, fullscreen,"
         "$mainMod SHIFT, F, togglefloating"
-        "$mainMod, A, exec, $menu"
+        "$mainMod, A, exec, vicinae vicinae://toggle"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
         "$mainMod, S, exec, hyprshot -m window --clipboard-only"
@@ -231,9 +306,9 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # Power menu & tools
-        "$mainMod, ESCAPE, exec, ~/nixos-config/scripts/power.sh"
-        "$mainMod SHIFT, S, exec, ~/nixos-config/scripts/snipping-tool.sh"
-        "$mainMod SHIFT, T, exec, ~/nixos-config/scripts/ocr-hyprland.sh"
+        "$mainMod, ESCAPE, exec, ${power-menu}/bin/power-menu"
+        "$mainMod SHIFT, S, exec, ${snipping-tool}/bin/snipping-tool"
+        "$mainMod SHIFT, T, exec, ${ocr-screenshot}/bin/ocr-screenshot"
         ", PRINT, exec, grim ~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png && notify-send \"Saved screenshot\""
       ];
 
@@ -281,7 +356,7 @@
           layout = "grid";
 
           gap_size = 15;
-          bg_color = "0xff26233a";
+          # bg_color is set in extraConfig after sourcing colors.conf
           border_size = 4;
           exit_on_hovered = false;
           warp_on_move_window = 1;
@@ -316,11 +391,24 @@
     };
 
     extraConfig = ''
+      # Source matugen-generated colors
+      source = ~/.config/hypr/colors.conf
+
+      # Note: border colors and hyprtasking bg_color are set dynamically by wallpaper-theme.sh
+      # extraConfig nested settings (general:col.active_border) don't expand variables properly
+
       # Layer rules / blur for waybar
       layerrule = blur on, match:class waybar
       layerrule = blur on, match:class launcher
       layerrule = ignore_alpha 0.5, match:class waybar
       layerrule = ignore_alpha 0.5, match:class launcher
+
+      layerrule {
+        name = vicinae-blur
+        blur = on
+        ignore_alpha = 0
+        match:namespace = vicinae
+      }
     '';
   };
 }
