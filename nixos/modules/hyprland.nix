@@ -28,6 +28,7 @@
     libsecret
     bibata-cursors
     colloid-icon-theme
+    fluent-icon-theme
     kdePackages.breeze-icons
   ];
  
