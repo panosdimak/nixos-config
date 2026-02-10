@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   cfg = config.profiles.gtk;
@@ -6,7 +6,7 @@ in {
   options.profiles.gtk = {
     iconThemeName = lib.mkOption {
       type = lib.types.str;
-      default = "Colloid-Dark";
+      default = "Fluent-dark";
       description = "GTK icon theme name to use.";
     };
     cursor = {
@@ -31,6 +31,22 @@ in {
         name = cfg.cursor.name;
         size = cfg.cursor.size;
       };
+
+      # Use adw-gtk3 which respects libadwaita color definitions
+      theme = {
+        name = "adw-gtk3-dark";
+        package = pkgs.adw-gtk3;
+      };
+
+      # Import matugen-generated colors in GTK3
+      gtk3.extraCss = ''
+        @import url("file://${config.xdg.configHome}/gtk-3.0/colors.css");
+      '';
+
+      # Import matugen-generated colors in GTK4
+      gtk4.extraCss = ''
+        @import url("file://${config.xdg.configHome}/gtk-4.0/colors.css");
+      '';
     };
   };
 }
