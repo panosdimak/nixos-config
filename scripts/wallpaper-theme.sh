@@ -63,6 +63,9 @@ if [[ ! -f "$WALLPAPER" ]]; then
     exit 1
 fi
 
+# Create/update symlink for hyprlock to use
+ln -sf "$WALLPAPER" "$CACHE_HOME/current_wallpaper"
+
 echo "Generating theme from: $WALLPAPER"
 
 # Run matugen to generate colors from wallpaper
