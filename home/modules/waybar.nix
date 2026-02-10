@@ -136,7 +136,7 @@
     "custom/apps" = {
       "format" = "";
       "tooltip" = false;
-      "on-click" = "fuzzel";
+      "on-click" = "vicinae toggle";
     };
 
   "custom/notification" = {
@@ -160,27 +160,30 @@
       "escape" = true;
     };
 
-    "custom/power" = {
-      "format" = "";
-      "tooltip" = "Power menu";
-      "on-click" = "~/nixos-config/scripts/power.sh";
-    };
+    # "custom/power" = {
+    #   "format" = "";
+    #   "tooltip" = "Power menu";
+    #   "on-click" = "~/nixos-config/scripts/power.sh";
+    # };
   };
 
   programs.waybar.style =
     ''
-      * 
-      {
+      /* Import matugen-generated colors */
+      @import url("file://${config.home.homeDirectory}/.config/waybar/colors.css");
+
+      * {
         font-family: SFProDisplay Nerd Font, FiraCode Nerd Font, monospace;
-        font-size: 12pt;
+        font-size: 10.5pt;
         font-weight: bold;
         min-height: 0;
       }
 
       window#waybar {
-        border: 0px solid #${config.lib.stylix.colors.base00};
+        border: 0px solid @background;
         border-radius: 0 0 12px 12px;
-        background: alpha(@theme_bg_color, 0.60);
+        background: alpha(@background, 0.60);
+        color: @foreground;
       }
 
       #custom-apps,
@@ -216,13 +219,13 @@
       }
 
       #workspaces button.active {
-        background: alpha(@theme_selected_bg_color, 0.9);
-        color: @theme_selected_fg_color;
+        background: alpha(@primary, 0.9);
+        color: @on_primary;
       }
 
       #workspaces button.urgent {
-        background: #b3261e;
-        color: #fff;
+        background: @error;
+        color: @on_primary;
       }
     '';
   
