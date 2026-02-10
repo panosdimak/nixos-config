@@ -1,39 +1,62 @@
-{ pkgs, inputs, ...}:
+{ pkgs, inputs, ... }:
+
+# Stylix system configuration
+#
+# Role division:
+# - Stylix: Fonts and font rendering
+# - Matugen: All colors (dynamic, wallpaper-based via home/modules/matugen.nix)
 
 {
   stylix = {
     enable = true;
-   
+
     targets.plymouth.enable = true;
 
     fonts = {
-      monospace = { 
+      monospace = {
         package = inputs.apple-fonts.packages.${pkgs.system}.sf-mono-nerd;
-        name = "SFMono Nerd Font";
+        name = "Geist Mono Nerd Font";
       };
-      sansSerif = { 
+      sansSerif = {
         package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;
         name = "SFProDisplay Nerd Font";
       };
+      serif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
 
-      serif     = { package = pkgs.noto-fonts; name = "Noto Serif"; };
-      emoji     = { package = pkgs.noto-fonts-color-emoji; name = "Noto Color Emoji"; };
-    
       sizes = {
-        applications = 11;  # GTK app/UI text (Firefox chrome)
-        desktop      = 11;  # titles, bars
-        popups       = 11;  # menus/notifications
-        terminal     = 12;
+        applications = 11;
+        desktop = 11;
+        popups = 11;
+        terminal = 12;
       };
     };
   };
 
-  # Define fallback order (what fontconfig prefers when glyphs are missing)
-  fonts.fontconfig.defaultFonts = {
-    sansSerif = [
-      "SF Pro Display"          # your main UI font
-      "Noto Sans CJK JP"        # JP fallback (covers ［］／弦… etc.)
-      "Noto Color Emoji"        # emoji fallback
+  fonts.fontconfig = {
+    defaultFonts.sansSerif = [
+      "SF Pro Display"
+      "Noto Sans CJK JP"
+      "Noto Color Emoji"
     ];
+
+    hinting = {
+      enable = true;
+      style = "slight";
+      autohint = false;
+    };
+
+    subpixel = {
+      rgba = "rgb";
+      lcdfilter = "light";
+    };
+
+    antialias = true;
   };
 }
