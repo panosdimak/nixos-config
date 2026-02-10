@@ -5,7 +5,7 @@ let
     name = "power-menu";
     runtimeInputs = with pkgs; [ fuzzel hyprlock ];
     text = ''
-      options=" Lock\n⏾ Sleep\n󰍃 Logout\n Reboot\n Shutdown\n Reboot to Firmware\nCancel"
+    options=" Lock\n⏾ Sleep\n󰍃 Logout\n Reboot\n Shutdown\n Reboot to Firmware\nCancel"
 
       choice=$(echo -e "$options" | fuzzel --dmenu --lines=6 --prompt="Power > ") || exit 0
 
@@ -117,13 +117,13 @@ in
         "sunsetr"
         "wl-paste --watch cliphist store"
         "hyprctl setcursor Bibata-Modern-Classic 24"
-        "thunar --daemon"
         "vesktop --start-minimized"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
       ];
 
       # Environment
   env = [
+        "TERMINAL,kitty"
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "GTK_USE_PORTAL,1"
@@ -248,7 +248,7 @@ in
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
         "$mainMod, S, exec, hyprshot -m window --clipboard-only"
-        "$mainMod, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
+        "$mainMod, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
         "$mainMod, L, exec, hyprlock"
         "$mainMod, G, exec, hyprpicker -a"
 
@@ -394,8 +394,10 @@ in
       # Source matugen-generated colors
       source = ~/.config/hypr/colors.conf
 
-      # Note: border colors and hyprtasking bg_color are set dynamically by wallpaper-theme.sh
-      # extraConfig nested settings (general:col.active_border) don't expand variables properly
+      # Apply colors from variables (must be after source)
+      general:col.active_border = $active_border
+      general:col.inactive_border = $inactive_border
+      plugin:hyprtasking:bg_color = $hyprtaskingBg
 
       # Layer rules / blur for waybar
       layerrule = blur on, match:class waybar
