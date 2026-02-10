@@ -19,65 +19,100 @@
 	programs.hyprlock = {
 		enable = true;
 		settings = {
-			general.hide_cursor = false;
+			general = {
+				no_fade_in = false;
+				grace = 0;
+				disable_loading_bar = false;
+			};
 
 			background = {
 				monitor = "";
-				path = "screenshot";  # Use current screen as background
-				blur_passes = 4;
-				blur_size = 8;
+				path = "$HOME/.cache/current_wallpaper";
+				blur_passes = 3;
+				contrast = 0.8916;
+				brightness = 0.8172;
+				vibrancy = 0.1696;
+				vibrancy_darkness = 0.0;
 			};
 
-			animations = {
-				enabled = true;
-				bezier = [ "linear, 1, 1, 0, 0" ];
-				animation = [
-					"fadeIn, 1, 3, linear"
-					"fadeOut, 1, 3, linear"
-					"inputFieldDots, 1, 1, linear"
-				];
+			# User box shape
+			shape = {
+				monitor = "";
+				size = "300, 60";
+				color = "rgba(255, 255, 255, 0.1)";
+				rounding = -1;
+				border_size = 0;
+				border_color = "rgba(253, 198, 135, 0)";
+				rotate = 0;
+				xray = false;
+				position = "0, -130";
+				halign = "center";
+				valign = "center";
 			};
 
 			"input-field" = {
 				monitor = "";
-				size = "20%, 5%";
-				outline_thickness = 3;
+				size = "300, 60";
+				outline_thickness = 2;
+				dots_size = 0.2;
+				dots_spacing = 0.2;
+				dots_center = true;
+				outer_color = "rgba(0, 0, 0, 0)";
+				inner_color = "rgba(255, 255, 255, 0.1)";
+				font_color = "rgb(200, 200, 200)";
 				fade_on_empty = false;
-				rounding = 15;
-				font_family = "Sans Serif";
-				placeholder_text = "Enter password...";
-				fail_text = "$PAMFAIL";
-				dots_spacing = 0.3;
-				position = "0, -20";
+				font_family = "SF Pro Display Bold";
+				placeholder_text = ''<i><span foreground="##ffffff99">Enter Password</span></i>'';
+				hide_input = false;
+				position = "0, -210";
 				halign = "center";
 				valign = "center";
 			};
 
 			label = [
+				# Day-Month-Date
 				{
 					monitor = "";
-					text = "$TIME";
-					font_size = 90;
-					font_family = "Sans Serif";
+					text = ''cmd[update:1000] echo -e "$(date +"%A, %B %d")"'';
+					color = "rgba(216, 222, 233, 0.70)";
+					font_size = 25;
+					font_family = "SF Pro Display Bold";
 					position = "0, 200";
 					halign = "center";
 					valign = "center";
 				}
+				# Time
 				{
 					monitor = "";
-					text = "cmd[update:60000] date +\"%A, %d %B %Y\"";
-					font_size = 25;
-					font_family = "Sans Serif";
+					text = ''cmd[update:1000] echo "<span>$(date +"%I:%M")</span>"'';
+					color = "rgba(216, 222, 233, 0.70)";
+					font_size = 120;
+					font_family = "SF Pro Display Bold";
 					position = "0, 100";
 					halign = "center";
 					valign = "center";
 				}
+				# User
+				{
+					monitor = "";
+					text = "    $USER";
+					color = "rgba(216, 222, 233, 0.70)";
+					outline_thickness = 2;
+					font_size = 18;
+					font_family = "SF Pro Display Bold";
+					position = "0, -130";
+					halign = "center";
+					valign = "center";
+				}
+				# Keyboard layout
 				{
 					monitor = "";
 					text = "$LAYOUT[en,gr]";
+					color = "rgba(216, 222, 233, 0.70)";
 					font_size = 20;
+					font_family = "SF Pro Display Bold";
 					onclick = "hyprctl switchxkblayout all next";
-					position = "250, -20";
+					position = "250, -210";
 					halign = "center";
 					valign = "center";
 				}
