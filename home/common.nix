@@ -3,7 +3,7 @@
   # Shared, host-agnostic Home Manager modules for all machines.
   imports = [
     ./modules/stylix.nix
-    ./modules/matugen.nix
+    ./modules/matugen
     ./modules/bash.nix
     ./modules/git.nix
     ./modules/neovim.nix

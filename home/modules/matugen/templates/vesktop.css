@@ -1,0 +1,151 @@
+/**
+ * @name midnight (vencord)
+ * @description a dark, customizable discord theme. based on https://github.com/nanoqoi/vencord-theme.
+ * @author refact0r
+ * @version 2.1.1
+ * @invite nz87hXyvcy
+ * @website https://github.com/refact0r/midnight-discord
+ * @source https://github.com/refact0r/midnight-discord/blob/master/themes/midnight-vencord.theme.css
+ * @authorId 508863359777505290
+ * @authorLink https://www.refact0r.dev
+*/
+
+/* import theme modules */
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
+
+body {
+    /* font, set to empty string for default discord font */
+    --font: '';
+    --code-font: '';
+    font-weight: 500;
+
+    /* sizes */
+    --gap: 4px;
+    --divider-thickness: 2px;
+    --border-thickness: 0px;
+
+    /* animation/transition options */
+    --animations: on;
+    --list-item-transition: 0.2s ease;
+    --dms-icon-svg-transition: 0.4s ease;
+    --border-hover-transition: 0.2s ease;
+
+    /* top bar options */
+    --top-bar-height: var(--gap);
+    --top-bar-button-position: titlebar;
+    --top-bar-title-position: off;
+    --subtle-top-bar-title: off;
+
+    /* window controls */
+    --custom-window-controls: on;
+    --window-control-size: 14px;
+
+    /* dms button options */
+    --custom-dms-icon: off;
+    --dms-icon-svg-url: url('');
+    --dms-icon-svg-size: 90%;
+    --dms-icon-color-before: {{colors.on_surface.default.hex}};
+    --dms-icon-color-after: var(--white);
+    --custom-dms-background: off;
+    --dms-background-image-url: url('');
+    --dms-background-image-size: cover;
+    --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2));
+
+    /* background image options */
+    --background-image: off;
+    --background-image-url: url('');
+
+    /* transparency/blur options */
+    --transparency-tweaks: off;
+    --remove-bg-layer: off;
+    --panel-blur: off;
+    --blur-amount: 12px;
+    --bg-floating: var(--bg-2);
+
+    /* chatbar options */
+    --custom-chatbar: seperated;
+    --chatbar-height: 56px;
+    --chatbar-padding: 8px;
+
+    /* other options */
+    --small-user-panel: on;
+}
+
+/* color options */
+:root {
+    --colors: on;
+
+    /* text colors - hardcoded neutrals to avoid wallpaper hue tinting */
+    --text-0: {{colors.surface.default.hex}};
+    --text-1: #ffffff;
+    --text-2: #dcddde;
+    --text-3: #dcddde;
+    --text-4: #949ba4;
+    --text-5: #72767d;
+
+    /* background and dark colors */
+    --bg-1: {{colors.surface_variant.default.hex}};
+    --bg-2: {{colors.surface_container_highest.default.hex}};
+    --bg-3: {{colors.surface_container_high.default.hex}};
+    --bg-4: {{colors.surface_container.default.hex}};
+    --hover: hsla(0, 0%, 100%, 0.08);
+    --active: hsla(0, 0%, 100%, 0.12);
+    --active-2: hsla(0, 0%, 100%, 0.16);
+    --message-hover: hsla(0, 0%, 100%, 0.04);
+
+    /* accent colors */
+    --accent-1: {{colors.tertiary.default.hex}};
+    --accent-2: {{colors.primary.default.hex}};
+    --accent-3: {{colors.primary.default.hex}};
+    --accent-4: {{colors.surface_bright.default.hex}};
+    --accent-5: {{colors.primary_fixed_dim.default.hex}};
+    --accent-new: var(--accent-2);
+    --mention: {{colors.surface_container_highest.default.hex}};
+    --mention-hover: {{colors.surface_container_high.default.hex}};
+    --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent);
+    --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent);
+
+    /* status indicator colors */
+    --online: {{colors.primary.default.hex}};
+    --dnd: {{colors.error.default.hex}};
+    --idle: {{colors.tertiary.default.hex}};
+    --streaming: {{colors.on_primary.default.hex}};
+    --offline: var(--text-4);
+
+    /* border colors */
+    --border-light: var(--hover);
+    --border: var(--active);
+    --border-hover: var(--active);
+    --button-border: hsl(0, 0%, 100%, 0.1);
+
+    /* base colors */
+    --red-1: {{colors.error.default.hex}};
+    --red-2: {{colors.error.default.hex}};
+    --red-3: {{colors.error.default.hex}};
+    --red-4: {{colors.error.default.hex}};
+    --red-5: {{colors.error.default.hex}};
+
+    --green-1: {{colors.primary.default.hex}};
+    --green-2: {{colors.primary.default.hex}};
+    --green-3: {{colors.primary.default.hex}};
+    --green-4: {{colors.primary.default.hex}};
+    --green-5: {{colors.primary.default.hex}};
+
+    --blue-1: {{colors.primary.default.hex}};
+    --blue-2: {{colors.primary_fixed.default.hex}};
+    --blue-3: {{colors.primary_fixed_dim.default.hex}};
+    --blue-4: {{colors.primary.default.hex}};
+    --blue-5: {{colors.on_primary_fixed.default.hex}};
+
+    --yellow-1: {{colors.tertiary.default.hex}};
+    --yellow-2: {{colors.tertiary_fixed.default.hex}};
+    --yellow-3: {{colors.tertiary_fixed_dim.default.hex}};
+    --yellow-4: {{colors.tertiary.default.hex}};
+    --yellow-5: {{colors.on_tertiary_fixed.default.hex}};
+
+    --purple-1: {{colors.primary.default.hex}};
+    --purple-2: {{colors.primary_fixed.default.hex}};
+    --purple-3: {{colors.primary_fixed_dim.default.hex}};
+    --purple-4: {{colors.primary.default.hex}};
+    --purple-5: {{colors.on_primary_fixed.default.hex}};
+}
