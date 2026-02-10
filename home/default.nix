@@ -11,27 +11,27 @@
     curl wget zip unzip tree fastfetch jq
 
     # Editors / Writing
-    obsidian onlyoffice-desktopeditors evince xfce.mousepad
+    obsidian onlyoffice-desktopeditors kdePackages.okular featherpad
 
     # Terminal / Shell
-    ghostty kitty kitty-themes starship lsd procs nnn
+    ghostty kitty kitty-themes starship lsd procs yazi
     ncdu duf dust
 
     # Clipboard / Screenshot / OCR
     wl-clipboard grim slurp grimblast charm-freeze tesseract
 
     # Media
-    mpv haruna obs-studio gapless loupe tidal-hifi
+    mpv haruna obs-studio gapless nomacs qimgv tidal-hifi
 
     # Internet
     inputs.zen-browser.packages.${pkgs.system}.twilight
-    vesktop telegram-desktop signal-desktop qbittorrent protonvpn-gui
+    telegram-desktop signal-desktop qbittorrent protonvpn-gui
 
     # Theming
     matugen
 
     # System utilities
-    kdePackages.dolphin
+    nemo
     (xfce.thunar.override {
       thunarPlugins = [ xfce.thunar-archive-plugin xfce.thunar-volman ];
     })
