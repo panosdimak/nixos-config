@@ -343,7 +343,7 @@ in
       # Gestures
       gesture = [
         "3, horizontal, workspace"
-        "3, up, fullscreen"
+        "3, up, dispatcher, hyprtasking:toggle, all"
         "4, down, close"
         "2, pinch, mod: SUPER, resize"
         "3, right, mod: SUPER, dispatcher, movetoworkspace, r-1"
