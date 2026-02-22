@@ -73,7 +73,7 @@
 				# Day-Month-Date
 				{
 					monitor = "";
-					text = ''cmd[update:1000] echo -e "$(date +"%A, %B %d")"'';
+					text = ''cmd[update:1000] echo -e "$(date +"%A, %d %B")"'';
 					color = "rgba(216, 222, 233, 0.70)";
 					font_size = 25;
 					font_family = "SF Pro Display Bold";
