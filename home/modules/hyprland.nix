@@ -246,7 +246,7 @@ in
         "$mainMod SHIFT, F, togglefloating"
         "$mainMod, A, exec, vicinae vicinae://toggle"
         "$mainMod, P, pseudo,"
-        "$mainMod, J, togglesplit,"
+        "$mainMod, D, togglesplit,"
         "$mainMod, S, exec, hyprshot -m window --clipboard-only"
         "$mainMod, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
         "$mainMod, L, exec, hyprlock"
@@ -257,6 +257,12 @@ in
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
+
+        # Swap windows
+        "$mainMod SHIFT, left, swapwindow, l"
+        "$mainMod SHIFT, right, swapwindow, r"
+        "$mainMod SHIFT, up, swapwindow, u"
+        "$mainMod SHIFT, down, swapwindow, d"
 
         # Workspaces 1-10
         "$mainMod, 1, workspace, 1"
