@@ -65,6 +65,7 @@ COLOREOF
   starship = import ./starship.nix args;
   vesktop = import ./vesktop.nix args;
   zed = import ./zed.nix args;
+  neovim = import ./neovim.nix args;
   vicinae = import ./vicinae.nix args;
 in
 {
@@ -115,6 +116,10 @@ in
         input_path = "${configHome}/matugen/templates/vicinae.toml"
         output_path = "${config.home.homeDirectory}/.local/share/vicinae/themes/matugen.toml"
 
+        [templates.neovim]
+        input_path = "${configHome}/matugen/templates/nvim-colors.lua"
+        output_path = "${configHome}/nvim/matugen-colors.lua"
+
         [templates.zed]
         input_path = "${configHome}/matugen/templates/zed-colors.json"
         output_path = "${configHome}/zed/themes/matugen.json"
@@ -127,6 +132,7 @@ in
     // gtk.configFile
     // kitty.configFile
     // starship.configFile
+    // neovim.configFile
     // vesktop.configFile
     // zed.configFile
     // vicinae.configFile;
@@ -139,6 +145,7 @@ in
     ${swaync.fallback}
     ${gtk.fallback}
     ${kitty.fallback}
+    ${neovim.fallback}
     ${vesktop.fallback}
     ${vicinae.fallback}
     ${zed.fallback}

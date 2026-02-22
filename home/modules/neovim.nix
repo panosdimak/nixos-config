@@ -9,7 +9,17 @@
     vimdiffAlias = true;
 
     plugins = [
-      pkgs.vimPlugins.nvim-treesitter
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+        p.c
+        p.cpp
+        p.nix
+        p.lua
+        p.bash
+        p.json
+        p.yaml
+        p.toml
+        p.markdown
+      ]))
       pkgs.vimPlugins.comment-nvim
       pkgs.vimPlugins.lualine-nvim
       pkgs.vimPlugins.gitsigns-nvim
@@ -44,20 +54,8 @@
       pkgs.vimPlugins.nvim-surround
       pkgs.vimPlugins.which-key-nvim
 
-      # Colorscheme
-      pkgs.vimPlugins.tokyonight-nvim
-    ];
-
-    extraPackages = with pkgs.tree-sitter-grammars; [
-      tree-sitter-c
-      tree-sitter-cpp
-      tree-sitter-nix
-      tree-sitter-lua
-      tree-sitter-bash
-      tree-sitter-json
-      tree-sitter-yaml
-      tree-sitter-toml
-      tree-sitter-markdown
+      # Colorscheme (mini.base16, themed by matugen)
+      pkgs.vimPlugins.mini-nvim
     ];
 
     extraLuaConfig = ''
@@ -72,7 +70,18 @@
       vim.opt.mouse = "a"              -- Enable mouse support
       vim.opt.hidden = true            -- Allow switching buffers without saving
       vim.opt.termguicolors = true     -- Better colors
-      vim.cmd("colorscheme tokyonight")
+
+      -- Load matugen-generated base16 colors
+      local matugen_colors = vim.fn.stdpath("config") .. "/matugen-colors.lua"
+      pcall(dofile, matugen_colors)
+
+      -- Reload colors on SIGUSR1 (triggered by wallpaper-theme.sh)
+      vim.api.nvim_create_autocmd("Signal", {
+        pattern = "SIGUSR1",
+        callback = function()
+          pcall(dofile, matugen_colors)
+        end,
+      })
 
       -- Plugins
       require("gitsigns").setup()
@@ -83,8 +92,10 @@
           component_separators = "",
         }
       })
-      require("nvim-treesitter.configs").setup({
-        highlight = { enable = true },
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
       })
 
       -- LSP

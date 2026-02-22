@@ -118,6 +118,9 @@ for socket in /tmp/kitty-*; do
     fi
 done
 
+# Reload Neovim colors (SIGUSR1 triggers color reload via Signal autocommand)
+pkill -SIGUSR1 nvim 2>/dev/null || true
+
 # Note: GTK and QT apps need to be restarted to pick up new colors
 # Vesktop/Discord needs to be restarted to pick up new theme colors
 # Fuzzel reads colors on each launch, so it will use new colors automatically

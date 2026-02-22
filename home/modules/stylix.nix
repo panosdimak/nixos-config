@@ -24,11 +24,9 @@
     btop.enable = false;
     starship.enable = false;
 
+    neovim.enable = false;  # matugen handles neovim colors
+
     # Enabled
     nixos-icons.enable = true;
-    neovim.transparentBackground = {
-      main = true;
-      signColumn = true;
-    };
   };
 }
