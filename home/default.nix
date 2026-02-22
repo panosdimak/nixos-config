@@ -11,7 +11,7 @@
     curl wget zip unzip tree fastfetch jq
 
     # Editors / Writing
-    obsidian onlyoffice-desktopeditors kdePackages.okular featherpad
+    obsidian onlyoffice-desktopeditors evince featherpad
 
     # Terminal / Shell
     ghostty kitty kitty-themes starship lsd procs yazi
@@ -21,7 +21,7 @@
     wl-clipboard grim slurp grimblast charm-freeze tesseract
 
     # Media
-    mpv haruna obs-studio gapless nomacs qimgv tidal-hifi
+    celluloid obs-studio gapless nomacs qimgv tidal-hifi
 
     # Internet
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
