@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   cfg = config.profiles.displayManager;
@@ -37,7 +37,16 @@ in {
       services.displayManager.sddm = {
         enable = true;
         wayland.enable = cfg.wayland;
+        theme = "sddm-astronaut-theme";
+        extraPackages = with pkgs; [
+          sddm-astronaut
+          kdePackages.qtmultimedia
+        ];
       };
+      environment.systemPackages = with pkgs; [
+        sddm-astronaut
+        kdePackages.qtmultimedia
+      ];
       # Unlock gnome-keyring at login for SDDM if enabled
       security.pam.services = lib.mkIf cfg.enableGnomeKeyringPam {
         sddm.enableGnomeKeyring = true;

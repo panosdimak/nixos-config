@@ -27,7 +27,7 @@
 
   # Choose display manager for this host
   profiles.displayManager = {
-    dm = "gdm";
+    dm = "sddm";
     wayland = true;
   };
 
