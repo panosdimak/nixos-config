@@ -5,6 +5,9 @@
     # Base Nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Pinned nixpkgs for yabridge (Wine compatibility issue with newer versions)
+    nixpkgs-yabridge.url = "github:NixOS/nixpkgs/1306659b587dc277866c7b69eb97e5f07864d8c4";
+
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -79,6 +82,19 @@
         modules = [
           ./nixos/hosts/ryzen-desktop
           (mkHome ./home/ryzen-desktop.nix)
+          {
+            nixpkgs.overlays = [
+              (final: prev: let
+                pkgsYabridge = import inputs.nixpkgs-yabridge {
+                  system = "x86_64-linux";
+                  config.allowUnfree = true;
+                };
+              in {
+                yabridge = pkgsYabridge.yabridge;
+                yabridgectl = pkgsYabridge.yabridgectl;
+              })
+            ];
+          }
         ] ++ commonModules;
       };
 
