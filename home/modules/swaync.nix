@@ -89,6 +89,7 @@
       /* CONTROL CENTER */
       .control-center {
         background: alpha(@background, .55);
+        border: 2px solid @border;
         border-radius: 24px;
         box-shadow: 0 0 10px 0 rgba(0,0,0,.6);
         margin: 18px;
