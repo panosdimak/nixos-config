@@ -94,7 +94,7 @@ in
     systemd.enable = true;
 
     plugins = [
-      inputs.hyprtasking.packages.${pkgs.system}.hyprtasking
+      inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking
     ];
 
   settings = {

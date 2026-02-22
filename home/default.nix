@@ -24,7 +24,7 @@
     mpv haruna obs-studio gapless nomacs qimgv tidal-hifi
 
     # Internet
-    inputs.zen-browser.packages.${pkgs.system}.twilight
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
     telegram-desktop signal-desktop qbittorrent protonvpn-gui
 
     # Theming
@@ -32,8 +32,8 @@
 
     # System utilities
     nemo
-    (xfce.thunar.override {
-      thunarPlugins = [ xfce.thunar-archive-plugin xfce.thunar-volman ];
+    (thunar.override {
+      thunarPlugins = [ thunar-archive-plugin thunar-volman ];
     })
     btop cpuid cpu-x hardinfo2 mission-center resources
     gnome-calculator warp hyperfine waypaper wdisplays

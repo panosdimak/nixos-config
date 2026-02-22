@@ -18,7 +18,7 @@
         xorg.libX11
         xorg.libXrandr
         xorg.libXinerama
-        xorg.libXcursor
+        libxcursor
         xorg.libXi 
         xorg.libXxf86vm
         freetype
