@@ -181,7 +181,7 @@
 
       window#waybar {
         border: 0px solid @background;
-        border-radius: 0 0 12px 12px;
+        border-radius: 0 0 0px 0px;
         background: alpha(@background, 0.60);
         color: @foreground;
       }
@@ -228,5 +228,4 @@
         color: @on_primary;
       }
     '';
-  
 }
