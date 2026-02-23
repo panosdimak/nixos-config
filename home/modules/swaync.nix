@@ -13,11 +13,11 @@
       cssPriority = "user";
 
       control-center-width = 380;
-      control-center-height = 860;
-      control-center-margin-top = 2;
-      control-center-margin-bottom = 2;
-      control-center-margin-right = 1;
-      control-center-margin-left = 0;
+      # control-center-height = 860;
+      # control-center-margin-top = 0;
+      # control-center-margin-bottom = 0;
+      # control-center-margin-right = 0;
+      # control-center-margin-left = 0;
 
       notification-window-width = 400;
       notification-icon-size = 48;
@@ -28,7 +28,7 @@
       timeout-low = 2;
       timeout-critical = 6;
 
-      fit-to-screen = false;
+      fit-to-screen = true;
       keyboard-shortcuts = true;
       image-visibility = "when-available";
       transition-time = 200;
@@ -75,9 +75,9 @@
       * {
         color: @foreground;
         all: unset;
-        font-size: 16px;
-        font-weight: 600;
-        font-family: "JetBrains Mono Nerd Font 10";
+        font-size: 15px;
+        font-weight: 500;
+        font-family: "Inter";
         transition: 200ms;
       }
 
@@ -88,11 +88,11 @@
 
       /* CONTROL CENTER */
       .control-center {
-        background: alpha(@background, .55);
-        border: 2px solid @border;
-        border-radius: 24px;
+        background: alpha(@background, .6);
+        border: 0px solid @border;
+        border-radius: 12px 0 0 0;
         box-shadow: 0 0 10px 0 rgba(0,0,0,.6);
-        margin: 18px;
+        margin: 5px 0 0 0;
         padding: 12px;
       }
 
@@ -265,11 +265,24 @@
       }
 
       .widget-mpris button {
-        color: alpha(@foreground, .6);
+        all: unset;
+        background: transparent;
+        border-radius: 50%;
+        padding: 7px;
+        color: alpha(@foreground, 0.88);
+        font-size: 16px;
+        min-width: 34px;
+        min-height: 34px;
+        transition: background-color 0.15s ease, color 0.15s ease;
       }
 
       .widget-mpris button:hover {
+        background-color: rgba(150, 155, 165, 0.40);
         color: @foreground;
+      }
+
+      .widget-mpris button:disabled {
+        color: alpha(@foreground, 0.3);
       }
 
       .widget-mpris-album-art {
@@ -283,7 +296,7 @@
 
       .widget-mpris-subtitle {
         font-weight: 500;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
 
       picture.mpris-background {
