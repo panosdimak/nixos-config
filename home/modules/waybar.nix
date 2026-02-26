@@ -12,7 +12,7 @@
     margin-right = 0;
 
     modules-left = [
-      "custom/apps"
+      "custom/overview"
       "hyprland/workspaces"
       "hyprland/window"
     ];
@@ -20,13 +20,9 @@
       "clock"
     ];
     modules-right = [
-      # "idle_inhibitor"
       "hyprland/language"
       "tray"
       "pulseaudio"
-      # "network",
-      #"memory"
-      #"cpu"
       "battery"
       "custom/notification"
       "custom/power"
@@ -133,6 +129,11 @@
     };
 
     # --- Custom buttons ---
+    "custom/overview" = {
+      "format" = "";
+      "on-click" = "hyprctl dispatch hyprtasking:toggle all";
+    };
+
     "custom/apps" = {
       "format" = "";
       "tooltip" = false;
@@ -187,6 +188,7 @@
       }
 
       #custom-apps,
+      #custom-overview,
       #workspaces,
       #tray,
       #cpu, #memory,
