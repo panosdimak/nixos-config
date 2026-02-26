@@ -211,21 +211,42 @@
         font-family: "NotoSansMono Nerd Font";
       }
 
+      #workspaces {
+        background-color: transparent;
+        margin: 2px 4px;
+        padding: 0 5px;
+        border-radius: 20px;
+        opacity: 0.9;
+      }
+
       #workspaces button {
-        border-radius: 50%;
-        min-width: 28px;
-        min-height: 28px;
-        padding: 0;
+        color: @foreground;
+        background-color: transparent;
+        margin: 4px 2px;
+        padding: 0 5px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+      }
+
+      #workspaces button:hover {
+        background-color: @surface_container;
+        color: @foreground;
       }
 
       #workspaces button.active {
-        background: alpha(@primary, 0.9);
+        background-color: @primary;
         color: @on_primary;
+        min-width: 30px;
+        background-size: 400% 400%;
       }
 
       #workspaces button.urgent {
-        background: @error;
-        color: @on_primary;
+        color: #ff0000;
+        background-color: @error;
+      }
+
+      #workspaces button.empty {
+        color: @surface_bright;
       }
     '';
 }
