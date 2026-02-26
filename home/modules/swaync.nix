@@ -76,8 +76,8 @@
         color: @foreground;
         all: unset;
         font-size: 15px;
-        font-weight: 500;
-        font-family: "Inter";
+        font-weight: 600;
+        font-family: "SFProDisplay Nerd Font";
         transition: 200ms;
       }
 
