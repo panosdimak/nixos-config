@@ -67,6 +67,7 @@ COLOREOF
   zed = import ./zed.nix args;
   neovim = import ./neovim.nix args;
   vicinae = import ./vicinae.nix args;
+  quickshell = import ./quickshell.nix args;
 in
 {
   xdg.configFile =
@@ -123,6 +124,10 @@ in
         [templates.zed]
         input_path = "${configHome}/matugen/templates/zed-colors.json"
         output_path = "${configHome}/zed/themes/matugen.json"
+
+        [templates.quickshell]
+        input_path = "${configHome}/matugen/templates/quickshell-colors.qml"
+        output_path = "${configHome}/quickshell/overview/common/Appearance.colors.qml"
       '';
     }
     // hyprland.configFile
@@ -135,7 +140,8 @@ in
     // neovim.configFile
     // vesktop.configFile
     // zed.configFile
-    // vicinae.configFile;
+    // vicinae.configFile
+    // quickshell.configFile;
 
   # Create fallback color files on first boot (before matugen runs)
   home.activation.createDefaultColors = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -150,5 +156,6 @@ in
     ${vicinae.fallback}
     ${zed.fallback}
     ${starship.fallback}
+    ${quickshell.fallback}
   '';
 }
