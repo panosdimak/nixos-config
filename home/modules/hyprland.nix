@@ -106,6 +106,7 @@ in
 
       # Autostart
       exec-once = [
+        "qs -c overview"
         "waypaper --restore"
         "nm-applet"
         "blueman-applet"
@@ -140,8 +141,8 @@ in
 
       # Look and Feel
       general = {
-        gaps_in = 6;
-        gaps_out = 12;
+        gaps_in = 10;
+        gaps_out = 20;
         border_size = 0;
         resize_on_border = false;
         allow_tearing = false;
@@ -278,9 +279,8 @@ in
 
         "ALT, Tab, workspace, previous"
 
-        # hyprtasking
-        "$mainMod, Tab, hyprtasking:toggle, all"
-        ", escape, hyprtasking:if_active, hyprtasking:toggle cursor"
+        # Overview
+        "$mainMod, Tab, exec, qs ipc -c overview call overview toggle"
 
         # Next / prev workspace
         "SUPER, bracketright, workspace, r+1"

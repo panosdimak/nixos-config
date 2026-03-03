@@ -30,6 +30,8 @@
     colloid-icon-theme
     fluent-icon-theme
     kdePackages.breeze-icons
+    quickshell
+    qt6.qtwayland
   ];
  
   services.gvfs.enable = true;
