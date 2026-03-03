@@ -26,7 +26,7 @@
       color12 {{colors.on_primary_container.default.hex}}
       color13 {{colors.tertiary_fixed.default.hex}}
       color14 {{colors.secondary_fixed.default.hex}}
-      color15 {{colors.surface_bright.default.hex}}
+      color15 {{colors.inverse_surface.default.hex}}
     '';
   };
 
