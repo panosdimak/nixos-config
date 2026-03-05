@@ -25,6 +25,7 @@
 
     # Internet
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
+    librewolf
     telegram-desktop signal-desktop qbittorrent protonvpn-gui
 
     # Theming
