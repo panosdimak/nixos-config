@@ -6,27 +6,15 @@
 # - Stylix: Fonts only (configured in nixos/modules/stylix.nix)
 # - Matugen: All colors (dynamic, wallpaper-based)
 #
-# We disable all color-related Stylix targets since matugen
-# generates colors at runtime when the wallpaper changes.
+# autoEnable = false disables all targets, then we allow-list
+# only font-related ones so no Stylix colors leak through.
 
 {
+  stylix.autoEnable = false;
+
   stylix.targets = {
-    # Disabled - matugen handles these dynamically
-    gtk.enable = false;
-    swaync.enable = false;
-    fuzzel.enable = false;
-    waybar.enable = false;
-    hyprland.enable = false;
-    hyprlock.enable = false;
-    qt.enable = false;
-    kde.enable = false;
-    vesktop.enable = false;
-    btop.enable = false;
-    starship.enable = false;
-
-    neovim.enable = false;  # matugen handles neovim colors
-
-    # Enabled
+    fontconfig.enable = true;
+    font-packages.enable = true;
     nixos-icons.enable = true;
   };
 }

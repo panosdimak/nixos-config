@@ -9,17 +9,19 @@
 {
   stylix = {
     enable = true;
+    autoEnable = false;           # disable all color theming
 
-    targets.plymouth.enable = true;
+    targets.fontconfig.enable = true;      # set fonts in fontconfig defaults
+    targets.font-packages.enable = true;   # install the font packages
 
     fonts = {
       monospace = {
         package = inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-mono-nerd;
-        name = "Geist Mono Nerd Font";
+        name = "SFMono Nerd Font";
       };
       sansSerif = {
         package = inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-pro-nerd;
-        name = "SFProDisplay Nerd Font";
+        name = "SFRounded Nerd Font";
       };
       serif = {
         package = pkgs.noto-fonts;
