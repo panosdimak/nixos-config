@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Wallpaper theme script - generates colors from current wallpaper and reloads apps
+# Wallpaper theme script - generates colors from current wallpaper
 # This is called by waypaper's post_command after setting a new wallpaper
+# App reloads are handled by matugen's post_hook in config.toml
 #
 # Usage: wallpaper-theme.sh [wallpaper_path]
 # If wallpaper_path is provided, use it directly (waypaper passes $wallpaper)
@@ -68,62 +69,7 @@ ln -sf "$WALLPAPER" "$CACHE_HOME/current_wallpaper"
 
 echo "Generating theme from: $WALLPAPER"
 
-# Run matugen to generate colors from wallpaper
+# Run matugen to generate colors and reload apps (via post_hook in config.toml)
 matugen image "$WALLPAPER" --mode dark
-
-# Wait a moment for files to be written
-sleep 0.3
-
-# Reload applications to pick up new colors
-
-# Reload Hyprland config (picks up new colors.conf)
-hyprctl reload 2>/dev/null || true
-
-# Extract and set colors for Hyprland AFTER reload
-# (reload resets plugin settings to config values, so we set them after)
-COLORS_CONF="$CONFIG_HOME/hypr/colors.conf"
-if [[ -f "$COLORS_CONF" ]]; then
-    # Extract the hex color from $surface = rgb(XXXXXX)
-    BG_HEX=$(grep '\$surface = ' "$COLORS_CONF" | sed 's/.*rgb(\([^)]*\)).*/\1/' | tr -d '[:space:]' || echo "")
-    if [[ -n "$BG_HEX" ]]; then
-        # Set hyprtasking bg_color (format: 0xAARRGGBB)
-        hyprctl keyword plugin:hyprtasking:bg_color "0xff${BG_HEX}" 2>/dev/null || true
-    fi
-
-    # Extract border colors: $active_border = rgba(XXXXXXff)
-    ACTIVE_BORDER=$(grep '\$active_border = ' "$COLORS_CONF" | sed 's/.*rgba(\([^)]*\)).*/\1/' | tr -d '[:space:]' || echo "")
-    INACTIVE_BORDER=$(grep '\$inactive_border = ' "$COLORS_CONF" | sed 's/.*rgba(\([^)]*\)).*/\1/' | tr -d '[:space:]' || echo "")
-
-    if [[ -n "$ACTIVE_BORDER" ]]; then
-        hyprctl keyword general:col.active_border "rgba(${ACTIVE_BORDER})" 2>/dev/null || true
-    fi
-    if [[ -n "$INACTIVE_BORDER" ]]; then
-        hyprctl keyword general:col.inactive_border "rgba(${INACTIVE_BORDER})" 2>/dev/null || true
-    fi
-fi
-
-# Reload Waybar (SIGUSR2 reloads styles)
-pkill -SIGUSR2 waybar 2>/dev/null || killall -SIGUSR2 waybar 2>/dev/null || true
-
-# Reload SwayNC styles
-swaync-client --reload-css 2>/dev/null || true
-
-# Reload Vicinae theme
-vicinae theme set matugen 2>/dev/null || true
-
-# Reload Kitty colors (for all running kitty instances)
-for socket in /tmp/kitty-*; do
-    if [[ -S "$socket" ]]; then
-        kitty @ --to unix:"$socket" set-colors --all "$CONFIG_HOME/kitty/colors.conf" 2>/dev/null || true
-    fi
-done
-
-# Reload Neovim colors (SIGUSR1 triggers color reload via Signal autocommand)
-pkill -SIGUSR1 nvim 2>/dev/null || true
-
-# Note: GTK and QT apps need to be restarted to pick up new colors
-# Vesktop/Discord needs to be restarted to pick up new theme colors
-# Fuzzel reads colors on each launch, so it will use new colors automatically
-# Starship re-reads its config on each prompt, so new prompts will use new colors
 
 echo "Theme updated successfully"

@@ -6,7 +6,7 @@
 # - Templates are stored in ~/.config/matugen/templates/
 # - matugen processes templates and outputs to app config dirs (waybar, hypr, etc.)
 # - waypaper's post_command triggers: wallpaper-theme.sh $wallpaper
-# - The script runs matugen and reloads apps
+# - The script runs matugen, which reloads apps via post_hook in config.toml
 #
 # On first boot, fallback colors are created so apps don't break before
 # matugen runs for the first time.
@@ -75,7 +75,6 @@ in
       # Main matugen config
       "matugen/config.toml".text = ''
         [config]
-        reload_apps = false  # We handle reloads in wallpaper-theme.sh
 
         [templates.hyprland]
         input_path = "${configHome}/matugen/templates/hyprland-colors.conf"
@@ -84,6 +83,7 @@ in
         [templates.waybar]
         input_path = "${configHome}/matugen/templates/waybar-colors.css"
         output_path = "${configHome}/waybar/colors.css"
+        post_hook = "pkill -SIGUSR2 waybar"
 
         [templates.fuzzel]
         input_path = "${configHome}/matugen/templates/fuzzel-colors.ini"
@@ -92,6 +92,7 @@ in
         [templates.swaync]
         input_path = "${configHome}/matugen/templates/swaync-colors.css"
         output_path = "${configHome}/swaync/colors.css"
+        post_hook = "swaync-client -rs"
 
         [templates.gtk3]
         input_path = "${configHome}/matugen/templates/gtk.css"
@@ -108,6 +109,7 @@ in
         [templates.kitty]
         input_path = "${configHome}/matugen/templates/kitty-colors.conf"
         output_path = "${configHome}/kitty/colors.conf"
+        post_hook = "for s in /tmp/kitty-*; do [ -S \"$s\" ] && kitty @ --to unix:\"$s\" set-colors --all ${configHome}/kitty/colors.conf 2>/dev/null; done; true"
 
         [templates.starship]
         input_path = "${configHome}/matugen/templates/starship.toml"
@@ -116,10 +118,12 @@ in
         [templates.vicinae]
         input_path = "${configHome}/matugen/templates/vicinae.toml"
         output_path = "${config.home.homeDirectory}/.local/share/vicinae/themes/matugen.toml"
+        post_hook = "vicinae theme set matugen || true"
 
         [templates.neovim]
         input_path = "${configHome}/matugen/templates/nvim-colors.lua"
         output_path = "${configHome}/nvim/matugen-colors.lua"
+        post_hook = "pkill -SIGUSR1 nvim"
 
         [templates.zed]
         input_path = "${configHome}/matugen/templates/zed-colors.json"
