@@ -94,7 +94,7 @@ in
     systemd.enable = true;
 
     plugins = [
-      inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking
+      # inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking
     ];
 
   settings = {
@@ -168,6 +168,8 @@ in
           vibrancy = 0.5;
           brightness = 0.8;
           new_optimizations = true;
+          popups = true;
+          popups_ignorealpha = 0.2;
         };
       };
 
@@ -247,7 +249,7 @@ in
         "$mainMod SHIFT, F, togglefloating"
         "$mainMod, A, exec, vicinae vicinae://toggle"
         "$mainMod, P, pseudo,"
-        "$mainMod, D, togglesplit,"
+        "$mainMod, D, layoutmsg, togglesplit"
         "$mainMod, S, exec, hyprshot -m window --clipboard-only"
         "$mainMod, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
         "$mainMod, L, exec, hyprlock"
