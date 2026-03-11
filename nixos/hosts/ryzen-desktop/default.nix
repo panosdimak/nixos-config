@@ -18,7 +18,7 @@
   networking.hostName = "ryzen-desktop";
 
   profiles.displayManager = {
-    dm = "sddm";
+    dm = "gdm";
     wayland = true;
   };
 
