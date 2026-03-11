@@ -1,7 +1,7 @@
 # NixOS Configuration
 
 <table>
-<tr><td><b>WM</b></td><td>Hyprland (+ hyprtasking plugin for overview)</td></tr>
+<tr><td><b>WM</b></td><td>Hyprland</td></tr>
 <tr><td><b>Bar</b></td><td>Waybar</td></tr>
 <tr><td><b>DM</b></td><td>SDDM</td></tr>
 <tr><td><b>Lock Screen</b></td><td>Hyprlock</td></tr>
