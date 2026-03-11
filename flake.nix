@@ -103,15 +103,6 @@
         modules = [
           ./nixos/hosts/inspiron-15
           (mkHome ./home/inspiron-15.nix)
-          {
-            nixpkgs.overlays = [
-              (final: prev: {
-                gtksourceview5 = prev.gtksourceview5.overrideAttrs (_: {
-                  checkPhase = ":";
-                });
-              })
-            ];
-          }
         ] ++ commonModules;
       };
     };
