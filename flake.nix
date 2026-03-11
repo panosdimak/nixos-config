@@ -51,10 +51,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprtasking = {
-      url = "github:raybbian/hyprtasking";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprtasking = {
+    #   url = "github:raybbian/hyprtasking";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
   };
 
   outputs = { self, nixpkgs, home-manager, musnix, stylix, zen-browser, apple-fonts, ... }@inputs:
