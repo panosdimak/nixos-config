@@ -202,7 +202,7 @@ in
 
           "border, 1, 3, modern"
 
-          "workspaces, 1, 5, modern, slide"
+          "workspaces, 1, 4, modern, slidefade"
         ];
       };
 
