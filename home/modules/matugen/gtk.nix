@@ -23,9 +23,9 @@
       @define-color error_bg_color #{{colors.error.default.hex_stripped}};
       @define-color error_fg_color #{{colors.on_error.default.hex_stripped}};
       @define-color error_color #{{colors.error.default.hex_stripped}};
-      @define-color window_bg_color #{{colors.surface.default.hex_stripped}};
+      @define-color window_bg_color #{{colors.surface_container_high.default.hex_stripped}};
       @define-color window_fg_color #{{colors.on_surface.default.hex_stripped}};
-      @define-color view_bg_color #{{colors.surface.default.hex_stripped}};
+      @define-color view_bg_color #{{colors.surface_container_high.default.hex_stripped}};
       @define-color view_fg_color #{{colors.on_surface.default.hex_stripped}};
       @define-color headerbar_bg_color #{{colors.surface_container.default.hex_stripped}};
       @define-color headerbar_fg_color #{{colors.on_surface.default.hex_stripped}};
