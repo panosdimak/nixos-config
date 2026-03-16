@@ -42,7 +42,7 @@
     # Archive utils
     p7zip
     unrar
-    xarchiver
+    file-roller
 
     # Tools
     localsend
