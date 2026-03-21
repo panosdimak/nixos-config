@@ -131,7 +131,7 @@
     # --- Custom buttons ---
     "custom/overview" = {
       "format" = "";
-      "on-click" = "hyprctl dispatch hyprtasking:toggle all";
+      "on-click" = "qs ipc -c overview call overview toggle";
     };
 
     "custom/apps" = {
