@@ -242,7 +242,7 @@ in
       bind = [
         "SUPER, F12, exec, sh -lc 'env > /tmp/hypr-bind-env.txt'"
         "$mainMod, Return, exec, $terminal"
-        "$mainMod, C, killactive,"
+        "$mainMod, Q, killactive,"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, B, exec, $browser"
         "$mainMod, F, fullscreen,"
