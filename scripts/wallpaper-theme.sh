@@ -70,6 +70,6 @@ ln -sf "$WALLPAPER" "$CACHE_HOME/current_wallpaper"
 echo "Generating theme from: $WALLPAPER"
 
 # Run matugen to generate colors and reload apps (via post_hook in config.toml)
-matugen image "$WALLPAPER" --mode dark
+matugen image "$WALLPAPER" --mode dark --source-color-index 0
 
 echo "Theme updated successfully"
