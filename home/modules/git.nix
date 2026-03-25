@@ -4,7 +4,7 @@
   programs.git = {
     enable = true;
     settings = {
-      user.email = "panosdimak13@gmail.com";
+      user.email = "pdimakakos@proton.me";
       user.name = "Panos Dimakakos";
     };
   };
