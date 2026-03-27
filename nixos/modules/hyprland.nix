@@ -32,10 +32,16 @@
     kdePackages.breeze-icons
     quickshell
     qt6.qtwayland
+    samba
   ];
  
-  services.gvfs.enable = true;
+  services.gvfs = {
+    enable = true;
+    package = pkgs.gvfs.override { samba = pkgs.samba; };
+  };
   services.tumbler.enable = true;
+
+  services.samba-wsdd.enable = true;
 
   environment.variables.NIXOS_OZONE_WL = "1";
 }
