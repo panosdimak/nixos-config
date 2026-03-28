@@ -131,6 +131,7 @@
     # --- Custom buttons ---
     "custom/overview" = {
       "format" = "";
+      "tooltip" = false;
       "on-click" = "qs ipc -c overview call overview toggle";
     };
 
@@ -203,6 +204,14 @@
       #language,
       #custom-power {
         padding: 6px 6px;
+      }
+
+      #custom-overview {
+        transition: all 0.3s ease;
+      }
+
+      #custom-overview:hover {
+        background-color: @surface_container;
       }
 
       #custom-apps {
