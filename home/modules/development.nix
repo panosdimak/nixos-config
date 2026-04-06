@@ -35,7 +35,7 @@
     # language servers
     lua-language-server
     bash-language-server
-    nodePackages.yaml-language-server
-    nodePackages.vscode-json-languageserver
+    yaml-language-server
+    vscode-json-languageserver
   ];
 }
