@@ -25,14 +25,14 @@
 
     # Internet
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
-    librewolf
-    telegram-desktop signal-desktop qbittorrent protonvpn-gui
+    mullvad-browser brave
+    telegram-desktop signal-desktop qbittorrent proton-vpn
 
     # Theming
     matugen
 
     # System utilities
-    nemo
+    nautilus
     (thunar.override {
       thunarPlugins = [ thunar-archive-plugin thunar-volman ];
     })
@@ -66,4 +66,19 @@
   };
 
   programs.home-manager.enable = true;
+
+  xdg.desktopEntries."zen-twilight" = {
+    name = "Zen Browser Twilight";
+    exec = "zen-twilight %U";
+    icon = "zen-browser";
+    categories = [ "Network" "WebBrowser" ];
+    mimeType = [
+      "text/html"
+      "text/xml"
+      "application/xhtml+xml"
+      "x-scheme-handler/http"
+      "x-scheme-handler/https"
+    ];
+    terminal = false;
+  };
 }
