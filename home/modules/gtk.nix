@@ -43,10 +43,13 @@ in {
         @import url("file://${config.xdg.configHome}/gtk-3.0/colors.css");
       '';
 
-      # Import matugen-generated colors in GTK4
-      gtk4.extraCss = ''
-        @import url("file://${config.xdg.configHome}/gtk-4.0/colors.css");
-      '';
+      gtk4 = {
+        theme = null;
+        # Import matugen-generated colors in GTK4
+        extraCss = ''
+          @import url("file://${config.xdg.configHome}/gtk-4.0/colors.css");
+        '';
+      };
     };
   };
 }
