@@ -59,7 +59,7 @@
       pkgs.vimPlugins.mini-nvim
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       -- Options
       vim.opt.number = true            -- Show line numbers
       vim.opt.relativenumber = false    -- Relative numbers for navigation
