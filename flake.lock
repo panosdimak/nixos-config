@@ -635,22 +635,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-claude": {
-      "locked": {
-        "lastModified": 1775111091,
-        "narHash": "sha256-gip1kskGdhWg6NhJIzF6XpDTRKC8k11kLEtbnk8e5PY=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d627f3795454b9019ee08daa88c8cba7d8b8ee55",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d627f3795454b9019ee08daa88c8cba7d8b8ee55",
-        "type": "github"
-      }
-    },
     "nixpkgs-yabridge": {
       "locked": {
         "lastModified": 1765779637,
@@ -669,11 +653,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1775036866,
-        "narHash": "sha256-ZojAnPuCdy657PbTq5V0Y+AHKhZAIwSIT2cb8UgAz/U=",
+        "lastModified": 1775423009,
+        "narHash": "sha256-vPKLpjhIVWdDrfiUM8atW6YkIggCEKdSAlJPzzhkQlw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
+        "rev": "68d8aa3d661f0e6bd5862291b5bb263b2a6595c9",
         "type": "github"
       },
       "original": {
@@ -786,7 +770,6 @@
         "hyprland": "hyprland",
         "musnix": "musnix",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-claude": "nixpkgs-claude",
         "nixpkgs-yabridge": "nixpkgs-yabridge",
         "quickshell": "quickshell",
         "spicetify-nix": "spicetify-nix",
