@@ -635,22 +635,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-yabridge": {
-      "locked": {
-        "lastModified": 1765779637,
-        "narHash": "sha256-KJ2wa/BLSrTqDjbfyNx70ov/HdgNBCBBSQP3BIzKnv4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "1306659b587dc277866c7b69eb97e5f07864d8c4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "1306659b587dc277866c7b69eb97e5f07864d8c4",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1775423009,
@@ -770,7 +754,6 @@
         "hyprland": "hyprland",
         "musnix": "musnix",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-yabridge": "nixpkgs-yabridge",
         "quickshell": "quickshell",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
