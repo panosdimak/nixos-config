@@ -1,6 +1,38 @@
 { pkgs, ... }:
 
+let
+  gccUnwrapped = pkgs.gcc.cc;
+  gccVersion = gccUnwrapped.version;
+  target = pkgs.stdenv.hostPlatform.config;
+in
 {
+  xdg.configFile."clangd/config.yaml".text = ''
+    If:
+      PathMatch: .*\.(cpp|cc|cxx|hpp|hxx|h)$
+    CompileFlags:
+      Add:
+        - -std=c++23
+        - -isystem
+        - ${gccUnwrapped}/include/c++/${gccVersion}
+        - -isystem
+        - ${gccUnwrapped}/include/c++/${gccVersion}/${target}
+        - -isystem
+        - ${gccUnwrapped}/lib/gcc/${target}/${gccVersion}/include
+        - -isystem
+        - ${pkgs.glibc.dev}/include
+
+    ---
+    If:
+      PathMatch: .*\.c$
+    CompileFlags:
+      Add:
+        - -std=c17
+        - -isystem
+        - ${pkgs.glibc.dev}/include
+        - -isystem
+        - ${pkgs.liburing.dev}/include
+  '';
+
   programs.neovim = {
     enable = true;
 
@@ -102,19 +134,25 @@
       -- LSP
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      -- Helper function to start an LSP server correctly
-      local function start_server(cmd, root_markers, extra)
-        local config = vim.tbl_extend("force", {
-          cmd = cmd,
-          capabilities = capabilities,
-          root_dir = vim.fs.root(0, root_markers or { ".git" }),
-        }, extra or {})
-
-        vim.lsp.start(config)
+      -- Helper: register an LSP server on specific filetypes
+      local function start_server(filetypes, cmd, root_markers, extra)
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = filetypes,
+          callback = function()
+            local config = vim.tbl_extend("force", {
+              name = cmd[1],
+              cmd = cmd,
+              capabilities = capabilities,
+              root_dir = vim.fs.root(0, root_markers or { ".git" }),
+            }, extra or {})
+            vim.lsp.start(config)
+          end,
+        })
       end
 
       -- lua-language-server
       start_server(
+        { "lua" },
         { "lua-language-server" },
         { ".git", "lua" },
         {
@@ -128,12 +166,14 @@
 
       -- clangd
       start_server(
+        { "c", "cpp" },
         { "clangd" },
         { ".git", "compile_commands.json" }
       )
 
       -- nixd
       start_server(
+        { "nix" },
         { "nixd" },
         { ".git", "flake.nix", "default.nix" },
         {
@@ -143,10 +183,9 @@
                 expr = 'import <nixpkgs> { }'
               },
               formatting = {
-                command = { "alejandra" }  -- or nixpkgs-fmt, treefmt, etc
+                command = { "alejandra" }
               },
               options = {
-                -- allow evaluation of flake outputs
                 enable = true
               }
             }
@@ -156,21 +195,69 @@
 
       -- bashls
       start_server(
+        { "sh", "bash" },
         { "bash-language-server", "start" },
         { ".git" }
       )
 
       -- jsonls
       start_server(
+        { "json", "jsonc" },
         { "vscode-json-language-server", "--stdio" },
         { ".git" }
       )
 
       -- yamlls
       start_server(
+        { "yaml" },
         { "yaml-language-server", "--stdio" },
         { ".git" }
       )
+      -- Completion
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+      require("luasnip.loaders.from_vscode").lazy_load()
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+        }, {
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
+
       -- Telescope
       require("telescope").setup({})
       require('telescope').load_extension('fzf')
