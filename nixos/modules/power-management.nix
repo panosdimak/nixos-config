@@ -7,6 +7,7 @@
     tlp
   ];
 
+  services.upower.enable = true;      # Battery info for desktop widgets
   services.thermald.enable = true;   # Intel CPU thermal management
 
   # TLP for advanced power management
