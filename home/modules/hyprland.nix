@@ -100,21 +100,17 @@ in
   settings = {
       # Variables / apps
       "$terminal" = "kitty";
-      "$fileManager" = "thunar";
+      "$fileManager" = "nautilus";
       "$browser" = "zen-twilight";
       "$menu" = "fuzzel";
 
       # Autostart
       exec-once = [
-        "qs -c overview"
         "waypaper --restore"
         "nm-applet"
         "blueman-applet"
-        "swaync"
         "hypridle"
-        "swww-daemon"
         "vicinae server"
-        "waybar"
         "sunsetr"
         "wl-paste --watch cliphist store"
         "hyprctl setcursor Bibata-Modern-Classic 24"
@@ -282,7 +278,7 @@ in
         "ALT, Tab, workspace, previous"
 
         # Overview
-        "$mainMod, Tab, exec, qs ipc -c overview call overview toggle"
+        "$mainMod, Tab, exec, dms ipc call hypr toggleOverview"
 
         # Next / prev workspace
         "SUPER, bracketright, workspace, r+1"
@@ -346,6 +342,9 @@ in
       windowrule = [
         "suppress_event maximize, match:class .*"
         "no_focus on, match:class ^$, match:title ^$, match:xwayland true, match:float true, match:fullscreen false, match:pin false"
+        # Center floating XWayland dialogs (e.g. REAPER/OnlyOffice confirm
+        # dialogs that otherwise spawn in the top-left corner)
+        "center 1, match:class .*, match:xwayland true, match:float true"
       ];
 
       # Gestures
