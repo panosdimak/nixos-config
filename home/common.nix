@@ -16,7 +16,6 @@
     ./modules/fuzzel.nix
     ./modules/development.nix
     ./modules/spicetify.nix
-    ./modules/swaync.nix
   ];
 
 }
