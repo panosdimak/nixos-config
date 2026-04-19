@@ -5,7 +5,7 @@
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   };
-  
+
   environment.systemPackages = with pkgs; [
     fuzzel
     vicinae
@@ -15,7 +15,6 @@
     networkmanagerapplet
     blueman
     waybar
-    swww
     hypridle
     hyprlock
     hyprpicker
@@ -30,11 +29,10 @@
     colloid-icon-theme
     fluent-icon-theme
     kdePackages.breeze-icons
-    quickshell
     qt6.qtwayland
     samba
   ];
- 
+
   services.gvfs = {
     enable = true;
     package = pkgs.gvfs.override { samba = pkgs.samba; };
