@@ -22,11 +22,12 @@ alejandra .
 
 This is a NixOS flake managing two hosts with shared modules and per-host overrides.
 
-**Flake structure:** `flake.nix` defines two `nixosConfigurations` (`ryzen-desktop`, `inspiron-15`). Both share `commonModules` (home-manager, stylix, musnix) and use `mkHome` to wire Home Manager as a NixOS module (not standalone). The `inputs` follow nixpkgs-unstable; Hyprland uses its own nixpkgs.
+**Flake structure:** `flake.nix` defines two `nixosConfigurations` (`ryzen-desktop`, `inspiron-15`). Both share `commonModules` (home-manager, stylix, musnix) and use `mkHome` to wire Home Manager as a NixOS module (not standalone). The `inputs` follow nixpkgs-unstable; Hyprland and Quickshell use their own nixpkgs.
 
 **System layer** (`nixos/`):
 - `profiles/common.nix` — imports all shared system modules
 - `modules/` — individual concerns (boot, audio, networking, nvidia, etc.)
+- `modules/dms.nix` — DankMaterialShell (DMS) via Quickshell, providing the status bar, notification center, and overview for all hosts
 - `hosts/<name>/` — host-specific hardware config and module selection (e.g. ryzen-desktop enables nvidia + musnix, inspiron-15 enables power-management)
 
 **Home layer** (`home/`):
@@ -36,11 +37,11 @@ This is a NixOS flake managing two hosts with shared modules and per-host overri
 - `modules/` — individual HM modules (hyprland, waybar, neovim, etc.)
 - `modules/matugen/` — dynamic wallpaper-to-color theming with templates for each app and post-hooks for live reload
 
-**Theming:** Two systems work together — **Stylix** manages fonts and base16 color scheme per host, **matugen** generates runtime colors from the current wallpaper. Matugen templates live in `home/modules/matugen/` with one `.nix` file per target app.
+**Theming:** Two systems work together — **Stylix** manages fonts and base16 color scheme per host, **matugen** generates runtime colors from the current wallpaper. Matugen templates live in `home/modules/matugen/` with one `.nix` file per target app (including `quickshell.nix` for DMS colors).
 
 **Dev shells** (`shells/`): Standalone flakes for rust, python, java, opengl — used via direnv.
 
-**Scripts** (`scripts/`): `wallpaper-theme.sh` detects the current wallpaper and runs matugen to regenerate colors.
+**Scripts** (`scripts/`): Utility scripts (wallpaper-theme.sh is legacy; DMS now handles wallpaper selection and triggers matugen natively).
 
 ## Conventions
 
