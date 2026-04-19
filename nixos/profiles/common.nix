@@ -15,5 +15,6 @@
     ../modules/packages.nix
     ../modules/stylix.nix
     ../modules/display-manager.nix
+    ../modules/dms.nix
   ];
 }
