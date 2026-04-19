@@ -83,7 +83,6 @@ in
         [templates.waybar]
         input_path = "${configHome}/matugen/templates/waybar-colors.css"
         output_path = "${configHome}/waybar/colors.css"
-        post_hook = "pkill -SIGUSR2 waybar"
 
         [templates.fuzzel]
         input_path = "${configHome}/matugen/templates/fuzzel-colors.ini"
@@ -92,7 +91,6 @@ in
         [templates.swaync]
         input_path = "${configHome}/matugen/templates/swaync-colors.css"
         output_path = "${configHome}/swaync/colors.css"
-        post_hook = "swaync-client -rs"
 
         [templates.gtk3]
         input_path = "${configHome}/matugen/templates/gtk.css"
@@ -123,7 +121,6 @@ in
         [templates.neovim]
         input_path = "${configHome}/matugen/templates/nvim-colors.lua"
         output_path = "${configHome}/nvim/matugen-colors.lua"
-        post_hook = "pkill -SIGUSR1 nvim"
 
         [templates.zed]
         input_path = "${configHome}/matugen/templates/zed-colors.json"
