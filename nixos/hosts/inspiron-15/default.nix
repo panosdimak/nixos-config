@@ -31,5 +31,8 @@
     wayland = true;
   };
 
+  # DMS enables power-profiles-daemon by default, which conflicts with TLP
+  services.power-profiles-daemon.enable = false;
+
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
 }
