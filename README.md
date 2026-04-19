@@ -2,12 +2,11 @@
 
 <table>
 <tr><td><b>WM</b></td><td>Hyprland</td></tr>
-<tr><td><b>Bar</b></td><td>Waybar</td></tr>
-<tr><td><b>DM</b></td><td>SDDM</td></tr>
+<tr><td><b>Desktop Shell</b></td><td>DankMaterialShell</td></tr>
+<tr><td><b>DM</b></td><td>GDM</td></tr>
 <tr><td><b>Lock Screen</b></td><td>Hyprlock</td></tr>
 <tr><td><b>Launcher</b></td><td>Vicinae</td></tr>
-<tr><td><b>Notification Center</b></td><td>SwayNC</td></tr>
-<tr><td><b>File Manager</b></td><td>Thunar</td></tr>
+<tr><td><b>File Manager</b></td><td>Nautilus</td></tr>
 <tr><td><b>Terminal</b></td><td>Kitty</td></tr>
 <tr><td><b>Shell</b></td><td>Bash + Starship + FZF</td></tr>
 <tr><td><b>Editor</b></td><td>Neovim · Zed</td></tr>
@@ -44,6 +43,6 @@
 └── scripts/                        # Utilities (wallpaper-theme.sh)
 ```
 
-## Theming (WIP)
+## Theming
 
-Colors are generated at runtime by [matugen](https://github.com/InioX/matugen) from the current wallpaper. Changing the wallpaper via [swww](https://github.com/LGFae/swww) automatically re-themes Hyprland, Waybar, Fuzzel, SwayNC, Kitty, Neovim, Zed, Vicinae, Vesktop, GTK, and Starship. Fonts are managed separately through Stylix (SF Pro Display/ Geist Mono).
+[Matugen](https://github.com/InioX/matugen) generates Material You colors from the current wallpaper and applies them across the desktop — Hyprland, DankMaterialShell, Fuzzel, Kitty, Neovim, Zed, Vicinae, Vesktop, GTK, and Starship all have matugen templates with fallback colors for first boot. DMS handles wallpaper selection natively. Fonts are managed separately through Stylix.
