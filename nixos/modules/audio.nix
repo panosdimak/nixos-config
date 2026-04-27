@@ -23,8 +23,8 @@ in {
             "default.clock.allowed-rates" = [ 48000 ];
             "default.clock.rate" = 48000;
             "default.clock.quantum" = 512;
-            "default.clock.min-quantum" = 512;
-            "default.clock.max-quantum" = 512;
+            "default.clock.min-quantum" = 64;
+            "default.clock.max-quantum" = 2048;
           };
         };
 
