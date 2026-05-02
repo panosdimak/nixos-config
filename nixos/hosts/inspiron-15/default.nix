@@ -16,6 +16,9 @@
   system.stateVersion = "25.05";
   networking.hostName = "inspiron-15";
 
+  # UoA eduroam requires their own CA (not in standard trust store)
+  security.pki.certificateFiles = [./uoa-ca.crt];
+
 
   services.udev.extraRules = ''
     # Autosuspend webcam
