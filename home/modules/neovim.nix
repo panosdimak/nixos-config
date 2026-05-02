@@ -1,11 +1,8 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   gccUnwrapped = pkgs.gcc.cc;
   gccVersion = gccUnwrapped.version;
   target = pkgs.stdenv.hostPlatform.config;
-in
-{
+in {
   xdg.configFile."clangd/config.yaml".text = ''
     If:
       PathMatch: .*\.(cpp|cc|cxx|hpp|hxx|h)$
@@ -51,6 +48,9 @@ in
         p.yaml
         p.toml
         p.markdown
+        p.markdown_inline
+        p.html
+        p.latex
       ]))
       pkgs.vimPlugins.comment-nvim
       pkgs.vimPlugins.lualine-nvim
@@ -67,7 +67,6 @@ in
       pkgs.vimPlugins.cmp-buffer
       pkgs.vimPlugins.cmp-path
       pkgs.vimPlugins.cmp_luasnip
-
 
       # Snippets
       pkgs.vimPlugins.luasnip
@@ -89,6 +88,9 @@ in
 
       # Colorscheme (mini.base16, themed by matugen)
       pkgs.vimPlugins.mini-nvim
+
+      # Markdown preview
+      pkgs.vimPlugins.markview-nvim
     ];
 
     initLua = ''
@@ -117,6 +119,8 @@ in
       })
 
       -- Plugins
+      require("markview").setup()
+      vim.keymap.set('n', '<leader>mt', '<cmd>Markview Toggle<cr>', { desc = 'Markview toggle' })
       require("gitsigns").setup()
       require("lualine").setup({
         options = {
@@ -272,6 +276,7 @@ in
         view = { width = 30 },
         filters = { dotfiles = false },
       })
+      vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>', { desc = 'Explorer toggle' })
     '';
   };
 }
