@@ -30,8 +30,6 @@
     nixd
     alejandra
 
-    wireshark
-
     # language servers
     lua-language-server
     bash-language-server
