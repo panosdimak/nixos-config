@@ -11,6 +11,12 @@
     initExtra = ''
       eval "$(starship init bash)"
       eval "$(fzf --bash)"
+
+      devshell() {
+        cp "$HOME/nixos-config/shells/$1/flake.nix" .
+        echo "use flake" > .envrc
+        direnv allow
+      }
     '';
 
     shellAliases = {
