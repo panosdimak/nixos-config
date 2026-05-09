@@ -23,6 +23,7 @@
     vscode
     zed-editor
     lazygit
+    gh
 
     claude-code
     claude-monitor
