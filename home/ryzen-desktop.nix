@@ -14,6 +14,7 @@
     env = [
       "LIBVA_DRIVER_NAME,nvidia"
       "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+      "VK_DRIVER_FILES,/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json"
     ];
 
     device = [
