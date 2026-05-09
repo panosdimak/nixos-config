@@ -21,6 +21,7 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
+    geist-font
 
     # Serif fonts
     crimson-pro
