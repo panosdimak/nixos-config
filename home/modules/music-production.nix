@@ -32,4 +32,15 @@ in
   # yabridge bundles Wine 9.21 which stack-overflows on some Neural DSP
   # plugins (Plini, Granophyre, Fortin). System Wine 11.x handles them fine.
   home.sessionVariables.WINELOADER = "${pkgs.wineWow64Packages.staging}/bin/wine";
+
+  # The chainloader stubs that yabridgectl drops into each .vst3 bundle look
+  # up the real libyabridge-*.so by walking $NIX_PROFILES. systemd-app scopes
+  # don't carry NIX_PROFILES, so Bitwig's sandboxed plugin hosts fail the
+  # lookup. ~/.local/share/yabridge is also searched by default and doesn't
+  # depend on env, so anchor the libs there.
+  home.file = {
+    ".local/share/yabridge/libyabridge-vst2.so".source = "${pkgs.yabridge}/lib/libyabridge-vst2.so";
+    ".local/share/yabridge/libyabridge-vst3.so".source = "${pkgs.yabridge}/lib/libyabridge-vst3.so";
+    ".local/share/yabridge/libyabridge-clap.so".source = "${pkgs.yabridge}/lib/libyabridge-clap.so";
+  };
 }
