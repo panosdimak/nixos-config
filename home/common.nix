@@ -1,5 +1,8 @@
-{ pkgs, inputs, ... }:
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   # Shared, host-agnostic Home Manager modules for all machines.
   imports = [
     ./modules/stylix.nix
@@ -14,8 +17,8 @@
     ./modules/hyprlock.nix
     ./modules/waybar.nix
     ./modules/fuzzel.nix
+    ./modules/kitty.nix
     ./modules/development.nix
     ./modules/spicetify.nix
   ];
-
 }
