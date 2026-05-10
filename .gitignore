@@ -7,3 +7,6 @@ result-*
 # secrets
 secrets.nix
 *.age
+
+# private claude notes
+CLAUDE.local.md

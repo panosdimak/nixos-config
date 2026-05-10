@@ -43,27 +43,6 @@ This is a NixOS flake managing two hosts with shared modules and per-host overri
 
 **Scripts** (`scripts/`): Utility scripts (wallpaper-theme.sh is legacy; DMS now handles wallpaper selection and triggers matugen natively).
 
-## Installing Windows VST Plugins
-
-Windows VST installers (InnoSetup `.exe`) can't run reliably under Wine's wow64 mode due to missing `cryptbase.dll`. Use `innoextract` instead:
-
-```bash
-# 1. Extract the installer (if split RAR, extract that first with unrar)
-nix-shell -p innoextract --run "innoextract -d /tmp/pluginname 'Setup Plugin.exe'"
-
-# 2. Copy plugin files to the yabridge-managed directory
-cp /tmp/pluginname/code\$GetDir\$VST3x64/*.vst3 "/data/Downloads/VSTPlugins/"
-cp /tmp/pluginname/code\$GetDir\$VST2x64/*.dll "/data/Downloads/VSTPlugins/"
-
-# 3. Copy presets/data if present
-cp -r /tmp/pluginname/commonappdata/* ~/.wine/drive_c/ProgramData/
-
-# 4. Sync yabridge
-yabridgectl sync
-```
-
-Plugin search path for yabridge: `/data/Downloads/VSTPlugins/` (Neural DSP plugins go in the `Neural DSP/` subdirectory).
-
 ## Conventions
 
 - Nix formatter: `alejandra` (no trailing commas, no semicolons after `in`)
