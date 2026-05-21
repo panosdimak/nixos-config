@@ -27,6 +27,4 @@
   profiles.audio.lowLatency = true;
 
   programs.steam.enable = true;
-  programs.wireshark.enable = true;
-  users.users.panos.extraGroups = [ "wireshark" ];
 }
