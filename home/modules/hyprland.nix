@@ -1,35 +1,38 @@
-{ config, pkgs, inputs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
   power-menu = pkgs.writeShellApplication {
     name = "power-menu";
-    runtimeInputs = with pkgs; [ fuzzel hyprlock ];
+    runtimeInputs = with pkgs; [fuzzel hyprlock];
     text = ''
-    options=" Lock\n⏾ Sleep\n󰍃 Logout\n Reboot\n Shutdown\n Reboot to Firmware\nCancel"
+      options=" Lock\n⏾ Sleep\n󰍃 Logout\n Reboot\n Shutdown\n Reboot to Firmware\nCancel"
 
-      choice=$(echo -e "$options" | fuzzel --dmenu --lines=6 --prompt="Power > ") || exit 0
+        choice=$(echo -e "$options" | fuzzel --dmenu --lines=6 --prompt="Power > ") || exit 0
 
-      # Strip leading icon (everything up to the first space) so matching works with icons
-      label="$choice"
-      if [[ "$label" == *" "* ]]; then
-        label="''${label#* }"
-      fi
+        # Strip leading icon (everything up to the first space) so matching works with icons
+        label="$choice"
+        if [[ "$label" == *" "* ]]; then
+          label="''${label#* }"
+        fi
 
-      case "$label" in
-        Lock) hyprlock ;;
-        Sleep) systemctl suspend ;;
-        Reboot) systemctl reboot ;;
-        Shutdown) systemctl poweroff ;;
-        Logout) hyprctl dispatch exit ;;
-        "Reboot to Firmware") systemctl reboot --firmware-setup ;;
-        Cancel|"") exit 0 ;;
-      esac
+        case "$label" in
+          Lock) hyprlock ;;
+          Sleep) systemctl suspend ;;
+          Reboot) systemctl reboot ;;
+          Shutdown) systemctl poweroff ;;
+          Logout) hyprctl dispatch exit ;;
+          "Reboot to Firmware") systemctl reboot --firmware-setup ;;
+          Cancel|"") exit 0 ;;
+        esac
     '';
   };
 
   snipping-tool = pkgs.writeShellApplication {
     name = "snipping-tool";
-    runtimeInputs = with pkgs; [ grim slurp wl-clipboard libnotify swappy coreutils ];
+    runtimeInputs = with pkgs; [grim slurp wl-clipboard libnotify swappy coreutils];
     text = ''
       DIR="$HOME/Pictures/Screenshots"
       mkdir -p "$DIR"
@@ -75,7 +78,7 @@ let
 
   ocr-screenshot = pkgs.writeShellApplication {
     name = "ocr-screenshot";
-    runtimeInputs = with pkgs; [ grim slurp tesseract wl-clipboard ];
+    runtimeInputs = with pkgs; [grim slurp tesseract wl-clipboard];
     text = ''
       IMG=$(mktemp --suffix=.png)
       grim -g "$(slurp)" "$IMG"
@@ -83,8 +86,15 @@ let
       rm -f "$IMG"
     '';
   };
-in
-{
+in {
+  # Symlink the quickshell-overview module files into ~/.config/quickshell/overview.
+  # recursive = true so the directory is real and config.json can be dropped in
+  # alongside the read-only symlinks to override defaults.
+  xdg.configFile."quickshell/overview" = {
+    source = inputs.quickshell-overview;
+    recursive = true;
+  };
+
   # Hyprland (user-scoped config via Home Manager)
   wayland.windowManager.hyprland = {
     enable = true;
@@ -97,7 +107,7 @@ in
       # inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking
     ];
 
-  settings = {
+    settings = {
       # Variables / apps
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
@@ -115,11 +125,12 @@ in
         "wl-paste --watch cliphist store"
         "hyprctl setcursor Bibata-Modern-Classic 24"
         "vesktop --start-minimized"
+        "qs -c overview"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
       ];
 
       # Environment
-  env = [
+      env = [
         "TERMINAL,kitty"
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
@@ -207,7 +218,7 @@ in
         preserve_split = true;
       };
 
-      master = { new_status = "master"; };
+      master = {new_status = "master";};
 
       misc = {
         force_default_wallpaper = -1;
@@ -277,8 +288,8 @@ in
 
         "ALT, Tab, workspace, previous"
 
-        # Overview
-        "$mainMod, Tab, exec, dms ipc call hypr toggleOverview"
+        # Overview (standalone quickshell-overview; DMS's hyprland overview is broken)
+        "$mainMod, Tab, exec, qs ipc -c overview call overview toggle"
 
         # Next / prev workspace
         "SUPER, bracketright, workspace, r+1"

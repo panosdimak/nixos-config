@@ -129,4 +129,11 @@
     ];
     terminal = false;
   };
+
+  # The zen-twilight.desktop file declares Icon=zen-browser, but no such file
+  # exists in the active icon themes. Quickshell-overview's icon lookup goes
+  # strictly by that name (no class-name fallback like DMS), so it renders the
+  # missing-icon rectangle. Symlink Fluent's zen-browser.svg into hicolor so
+  # the name resolves for every consumer.
+  home.file.".local/share/icons/hicolor/scalable/apps/zen-browser.svg".source = "${pkgs.fluent-icon-theme}/share/icons/Fluent-dark/scalable/apps/zen-browser.svg";
 }

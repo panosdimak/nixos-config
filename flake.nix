@@ -30,7 +30,7 @@
 
     # San Francisco Fonts | Apple Fonts
     apple-fonts = {
-      url= "github:Lyndeno/apple-fonts.nix";
+      url = "github:Lyndeno/apple-fonts.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -51,14 +51,28 @@
       url = "github:hyprwm/Hyprland";
     };
 
+    # Standalone Quickshell workspace overview (DMS's is broken on Hyprland)
+    quickshell-overview = {
+      url = "github:Shanu-Kumawat/quickshell-overview";
+      flake = false;
+    };
+
     # hyprtasking = {
     #   url = "github:raybbian/hyprtasking";
     #   inputs.hyprland.follows = "hyprland";
     # };
   };
 
-  outputs = { self, nixpkgs, home-manager, musnix, stylix, zen-browser, apple-fonts, ... }@inputs:
-  let
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    musnix,
+    stylix,
+    zen-browser,
+    apple-fonts,
+    ...
+  } @ inputs: let
     # Shared modules included in every host configuration
     commonModules = [
       home-manager.nixosModules.home-manager
@@ -72,26 +86,30 @@
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "hm-bak";
       home-manager.users.panos = import hostModule;
-      home-manager.extraSpecialArgs = { inherit inputs; };
+      home-manager.extraSpecialArgs = {inherit inputs;};
     };
   in {
     nixosConfigurations = {
       ryzen-desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         system = "x86_64-linux";
-        modules = [
-          ./nixos/hosts/ryzen-desktop
-          (mkHome ./home/ryzen-desktop.nix)
-        ] ++ commonModules;
+        modules =
+          [
+            ./nixos/hosts/ryzen-desktop
+            (mkHome ./home/ryzen-desktop.nix)
+          ]
+          ++ commonModules;
       };
 
       inspiron-15 = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         system = "x86_64-linux";
-        modules = [
-          ./nixos/hosts/inspiron-15
-          (mkHome ./home/inspiron-15.nix)
-        ] ++ commonModules;
+        modules =
+          [
+            ./nixos/hosts/inspiron-15
+            (mkHome ./home/inspiron-15.nix)
+          ]
+          ++ commonModules;
       };
     };
   };

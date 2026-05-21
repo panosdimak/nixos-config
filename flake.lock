@@ -745,6 +745,22 @@
         "url": "https://git.outfoxxed.me/quickshell/quickshell"
       }
     },
+    "quickshell-overview": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779124851,
+        "narHash": "sha256-x51GDmtcbWxVfXl0BBn1ZeDOSKAiI4IxpOk5n58ja1c=",
+        "owner": "Shanu-Kumawat",
+        "repo": "quickshell-overview",
+        "rev": "626c5a58fde948cf5e4635f04729953789380cc9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Shanu-Kumawat",
+        "repo": "quickshell-overview",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "apple-fonts": "apple-fonts",
@@ -753,6 +769,7 @@
         "musnix": "musnix",
         "nixpkgs": "nixpkgs_2",
         "quickshell": "quickshell",
+        "quickshell-overview": "quickshell-overview",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "zen-browser": "zen-browser"
