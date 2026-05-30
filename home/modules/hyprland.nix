@@ -4,32 +4,6 @@
   inputs,
   ...
 }: let
-  power-menu = pkgs.writeShellApplication {
-    name = "power-menu";
-    runtimeInputs = with pkgs; [fuzzel hyprlock];
-    text = ''
-      options=" Lock\n⏾ Sleep\n󰍃 Logout\n Reboot\n Shutdown\n Reboot to Firmware\nCancel"
-
-        choice=$(echo -e "$options" | fuzzel --dmenu --lines=6 --prompt="Power > ") || exit 0
-
-        # Strip leading icon (everything up to the first space) so matching works with icons
-        label="$choice"
-        if [[ "$label" == *" "* ]]; then
-          label="''${label#* }"
-        fi
-
-        case "$label" in
-          Lock) hyprlock ;;
-          Sleep) systemctl suspend ;;
-          Reboot) systemctl reboot ;;
-          Shutdown) systemctl poweroff ;;
-          Logout) hyprctl dispatch exit ;;
-          "Reboot to Firmware") systemctl reboot --firmware-setup ;;
-          Cancel|"") exit 0 ;;
-        esac
-    '';
-  };
-
   snipping-tool = pkgs.writeShellApplication {
     name = "snipping-tool";
     runtimeInputs = with pkgs; [grim slurp wl-clipboard libnotify swappy coreutils];
@@ -88,8 +62,8 @@
   };
 in {
   # Symlink the quickshell-overview module files into ~/.config/quickshell/overview.
-  # recursive = true so the directory is real and config.json can be dropped in
-  # alongside the read-only symlinks to override defaults.
+  # recursive = true so the directory is real and the user can drop in a config.json
+  # alongside the read-only symlinks if they want to override defaults.
   xdg.configFile."quickshell/overview" = {
     source = inputs.quickshell-overview;
     recursive = true;
@@ -121,7 +95,6 @@ in {
         "blueman-applet"
         "hypridle"
         "vicinae server"
-        "sunsetr"
         "wl-paste --watch cliphist store"
         "hyprctl setcursor Bibata-Modern-Classic 24"
         "vesktop --start-minimized"
@@ -151,32 +124,38 @@ in {
         gaps_in = 10;
         gaps_out = 20;
         border_size = 0;
+        float_gaps = -1; # use same gaps for floating windows as tiled (-1 = inherit)
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";
+        # Snap floating windows to each other and monitor edges
+        snap = {
+          enabled = true;
+          window_gap = 10; # min gap before snapping to other windows (px)
+          monitor_gap = 10; # min gap before snapping to monitor edges (px)
+        };
       };
 
       decoration = {
-        rounding = 10;
-        rounding_power = 2;
+        rounding = 12;
+        rounding_power = 4;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
         shadow = {
           enabled = true;
-          range = 20;
-          render_power = 20;
+          range = 10;
+          render_power = 2;
         };
         blur = {
           enabled = true;
           size = 8;
           passes = 3;
-          noise = 0.1;
+          noise = 0;
           contrast = 2;
           vibrancy = 0.5;
           brightness = 0.8;
-          new_optimizations = true;
           popups = true;
-          popups_ignorealpha = 0.2;
+          popups_ignorealpha = 0;
         };
       };
 
@@ -210,11 +189,14 @@ in {
           "border, 1, 3, modern"
 
           "workspaces, 1, 4, modern, slidefade"
+          # Animate the special workspace toggle (SUPER+Z)
+          "specialWorkspace, 1, 4, modern, slidefadevert"
+          # Fade effect when monitors turn on/off via DPMS
+          "fadeDpms, 1, 5, modern"
         ];
       };
 
       dwindle = {
-        pseudotile = true;
         preserve_split = true;
       };
 
@@ -225,6 +207,25 @@ in {
         disable_hyprland_logo = true;
         middle_click_paste = false;
         focus_on_activate = true;
+        vrr = 1; # enable variable refresh rate (FreeSync/G-Sync) on supported monitors
+      };
+
+      # Bind behavior tweaks
+      binds = {
+        workspace_center_on = 1; # center cursor on focused window (not workspace center) on switch
+      };
+
+      # Cursor behavior
+      cursor = {
+        persistent_warps = true; # restore cursor position when refocusing a window
+        hide_on_key_press = true; # auto-hide cursor while typing
+        warp_on_change_workspace = 1; # warp cursor to last focused window on workspace switch
+        inactive_timeout = 5; # hide cursor after 5 seconds of inactivity
+      };
+
+      # Rendering performance
+      render = {
+        direct_scanout = 1; # allow direct scanout for fullscreen apps (better perf, 0=off/1=try/2=force)
       };
 
       # Input
@@ -259,8 +260,11 @@ in {
         "$mainMod, D, layoutmsg, togglesplit"
         "$mainMod, S, exec, hyprshot -m window --clipboard-only"
         "$mainMod, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
-        "$mainMod, L, exec, hyprlock"
+        "$mainMod, L, exec, dms ipc lock lock"
         "$mainMod, G, exec, hyprpicker -a"
+
+        "$mainMod, C, centerwindow," # center focused floating window on monitor
+        "$mainMod, R, submap, resize" # enter resize mode (arrow keys to resize, Escape to exit)
 
         # Focus movement
         "$mainMod, left, movefocus, l"
@@ -321,7 +325,7 @@ in {
         "$mainMod, mouse_up, workspace, e-1"
 
         # Power menu & tools
-        "$mainMod, ESCAPE, exec, ${power-menu}/bin/power-menu"
+        "$mainMod, ESCAPE, exec, dms ipc call powermenu toggle"
         "$mainMod SHIFT, S, exec, ${snipping-tool}/bin/snipping-tool"
         "$mainMod SHIFT, T, exec, ${ocr-screenshot}/bin/ocr-screenshot"
         ", PRINT, exec, grim ~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png && notify-send \"Saved screenshot\""
@@ -354,8 +358,27 @@ in {
         "suppress_event maximize, match:class .*"
         "no_focus on, match:class ^$, match:title ^$, match:xwayland true, match:float true, match:fullscreen false, match:pin false"
         # Center floating XWayland dialogs (e.g. REAPER/OnlyOffice confirm
-        # dialogs that otherwise spawn in the top-left corner)
-        "center 1, match:class .*, match:xwayland true, match:float true"
+        # dialogs that otherwise spawn in the top-left corner).
+        # match:modal excludes dropdown/popup menus (which are never modal).
+        "center 1, match:class .*, match:xwayland true, match:float true, match:modal true"
+
+        # Prevent idle/lock while watching media (always for mpv, only fullscreen for browsers)
+        "idle_inhibit always, match:class mpv"
+        "idle_inhibit fullscreen, match:class firefox"
+        "idle_inhibit fullscreen, match:class zen"
+
+        # Auto-float, pin, and position picture-in-picture windows (bottom-right corner)
+        "float on, match:title (Picture-in-Picture)"
+        "pin on, match:title (Picture-in-Picture)"
+        "size 480 270, match:title (Picture-in-Picture)"
+        "move 100%-490 100%-280, match:title (Picture-in-Picture)"
+
+        # Preserve aspect ratio when resizing media windows
+        "keep_aspect_ratio on, match:class mpv"
+
+        # Mark game windows for VRR/tearing support
+        "content game, match:class steam_app_.*"
+        "immediate on, match:class steam_app_.*"
       ];
 
       # Gestures
@@ -366,6 +389,11 @@ in {
         "2, pinch, mod: SUPER, resize"
         "3, right, mod: SUPER, dispatcher, movetoworkspace, r-1"
         "3, left, mod: SUPER, dispatcher, movetoworkspace, r+1"
+      ];
+
+      # Workspace rules
+      workspace = [
+        "special:magic, gapsout:30" # larger outer gaps on the special workspace
       ];
 
       # Hyprtasking plugin
@@ -429,6 +457,15 @@ in {
         ignore_alpha = 0
         match:namespace = vicinae
       }
+
+      # Resize submap: enter with SUPER+R, use arrow keys to resize, Escape to exit
+      submap = resize
+      binde = , right, resizeactive, 30 0
+      binde = , left, resizeactive, -30 0
+      binde = , up, resizeactive, 0 -30
+      binde = , down, resizeactive, 0 30
+      bind = , escape, submap, reset
+      submap = reset
     '';
   };
 }
