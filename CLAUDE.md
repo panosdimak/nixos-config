@@ -20,9 +20,9 @@ alejandra .
 
 ## Architecture
 
-This is a NixOS flake managing two hosts with shared modules and per-host overrides.
+This is a NixOS flake managing two hosts with shared modules and per-host overrides. **Hyprland** is the Wayland compositor; **DankMaterialShell (DMS)** — a Quickshell QML frontend with a Go backend (`dgop` for telemetry, `dms` CLI tools) — is the desktop shell layered on top.
 
-**Flake structure:** `flake.nix` defines two `nixosConfigurations` (`ryzen-desktop`, `inspiron-15`). Both share `commonModules` (home-manager, stylix, musnix) and use `mkHome` to wire Home Manager as a NixOS module (not standalone). The `inputs` follow nixpkgs-unstable; Hyprland and Quickshell use their own nixpkgs.
+**Flake structure:** `flake.nix` defines two `nixosConfigurations` (`ryzen-desktop`, `inspiron-15`). Both share `commonModules` (home-manager, musnix) and use `mkHome` to wire Home Manager as a NixOS module (not standalone). The `inputs` follow nixpkgs-unstable; Hyprland and Quickshell use their own nixpkgs.
 
 **System layer** (`nixos/`):
 - `profiles/common.nix` — imports all shared system modules
@@ -37,7 +37,7 @@ This is a NixOS flake managing two hosts with shared modules and per-host overri
 - `modules/` — individual HM modules (hyprland, waybar, neovim, etc.)
 - `modules/matugen/` — dynamic wallpaper-to-color theming with templates for each app and post-hooks for live reload
 
-**Theming:** Two systems work together — **Stylix** manages fonts and base16 color scheme per host, **matugen** generates runtime colors from the current wallpaper. Matugen templates live in `home/modules/matugen/` with one `.nix` file per target app (including `quickshell.nix` for DMS colors).
+**Theming:** **matugen** generates runtime colors from the current wallpaper. Templates live in `home/modules/matugen/` with one `.nix` file per target app (including `quickshell.nix` for DMS colors). Fonts are configured in `nixos/modules/fonts.nix` (Stylix was removed — apps consume matugen-rendered colors directly, no base16 layer).
 
 **Workspace overview:** The `quickshell-overview` flake input (Shanu-Kumawat/quickshell-overview, `flake = false`) is symlinked into `~/.config/quickshell/overview` by `home/modules/hyprland.nix`. It runs as its own QS daemon (`qs -c overview`, started via exec-once) and is toggled by Super+Tab → `qs ipc -c overview call overview toggle`. Per-user options (e.g. `showSpecialWorkspaces`, `colorSource: matugen`) live in `~/.config/quickshell/overview/config.json` — that file is **not** version-controlled. Matugen colors are sourced from `home/modules/matugen/quickshell.nix` which renders to `~/.config/quickshell/overview/common/Appearance.colors.qml`. Preferred over DMS's overview (broken on Hyprland — focus-grab race with workspace dispatch, `DMS_HYPRLAND_EXCLUSIVE_FOCUS=1` is a partial workaround) and over hyprtasking (also unreliable). Do not suggest switching back without a strong reason.
 
@@ -77,7 +77,7 @@ gh search code --repo <owner>/<repo> "<query>" --limit 30
 | DankMaterialShell (DMS) — IPC commands, settings, compositor integration, plugins | `AvengeMedia/DankLinux-Docs` | `master` | Most useful page: `docs/dankmaterialshell/keybinds-ipc.mdx`. Also covers dankgreeter, danksearch, dgop. |
 | Hyprland — config syntax (Lua since 0.55), dispatchers, binds, plugins, NixOS/HM integration | `hyprwm/hyprland-wiki` | `main` | Pages under `content/Configuring/`. Old hyprlang docs live at `wiki.hypr.land/0.54.0/`. |
 | Hyprland example config | `hyprwm/Hyprland` | `main` | `example/hyprland.lua` is the canonical reference for current syntax. |
-| Home Manager module options (Hyprland, Stylix, etc.) | `nix-community/home-manager` | `master` | `modules/services/window-managers/hyprland.nix` is authoritative for `wayland.windowManager.hyprland.*` options. |
+| Home Manager module options (Hyprland, etc.) | `nix-community/home-manager` | `master` | `modules/services/window-managers/hyprland.nix` is authoritative for `wayland.windowManager.hyprland.*` options. |
 | Quickshell | `quickshell-mirror/quickshell` | `master` | QML types and IPC. |
 
 Memory may pin a "look here for X" reference (e.g. `dms_docs_reference.md`) — those are starting points, not snapshots. Always re-fetch live before quoting specifics; these projects move fast and cached lists drift.
