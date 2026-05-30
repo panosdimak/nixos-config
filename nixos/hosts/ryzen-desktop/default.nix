@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{...}:
 
 {
   imports = [
@@ -16,13 +16,6 @@
 
   system.stateVersion = "25.05";
   networking.hostName = "ryzen-desktop";
-
-  profiles.displayManager = {
-    dm = "gdm";
-    wayland = true;
-  };
-
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest.yaml";
 
   profiles.audio.lowLatency = true;
 

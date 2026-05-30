@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{...}:
 
 {
   imports = [
@@ -28,14 +28,6 @@
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="8087", ATTR{idProduct}=="0026", TEST=="power/control", ATTR{power/control}="auto"
   '';
 
-  # Choose display manager for this host
-  profiles.displayManager = {
-    dm = "gdm";
-    wayland = true;
-  };
-
   # DMS enables power-profiles-daemon by default, which conflicts with TLP
   services.power-profiles-daemon.enable = false;
-
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
 }

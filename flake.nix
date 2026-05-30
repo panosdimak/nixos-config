@@ -11,12 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Stylix
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Musnix
     musnix = {
       url = "github:musnix/musnix";
@@ -68,7 +62,6 @@
     nixpkgs,
     home-manager,
     musnix,
-    stylix,
     zen-browser,
     apple-fonts,
     ...
@@ -76,7 +69,6 @@
     # Shared modules included in every host configuration
     commonModules = [
       home-manager.nixosModules.home-manager
-      stylix.nixosModules.stylix
       musnix.nixosModules.musnix
     ];
 

@@ -13,7 +13,7 @@
     ../modules/hyprland.nix
     ../modules/user-panos.nix
     ../modules/packages.nix
-    ../modules/stylix.nix
+    ../modules/fonts.nix
     ../modules/display-manager.nix
     ../modules/dms.nix
     ../modules/nix-ld.nix
