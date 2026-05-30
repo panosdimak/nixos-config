@@ -1,48 +1,41 @@
-# NixOS Configuration
+# NixOS Config
 
-<table>
-<tr><td><b>WM</b></td><td>Hyprland</td></tr>
-<tr><td><b>Desktop Shell</b></td><td>DankMaterialShell</td></tr>
-<tr><td><b>DM</b></td><td>GDM</td></tr>
-<tr><td><b>Lock Screen</b></td><td>Hyprlock</td></tr>
-<tr><td><b>Launcher</b></td><td>Vicinae</td></tr>
-<tr><td><b>File Manager</b></td><td>Nautilus</td></tr>
-<tr><td><b>Terminal</b></td><td>Kitty</td></tr>
-<tr><td><b>Shell</b></td><td>Bash + Starship + FZF</td></tr>
-<tr><td><b>Editor</b></td><td>Neovim · Zed</td></tr>
-<tr><td><b>Browser</b></td><td>Zen</td></tr>
-<tr><td><b>Theming</b></td><td>Matugen (wallpaper-based dynamic colors) + Stylix (fonts)</td></tr>
-</table>
+My personal flake. Two hosts sharing a Hyprland + DankMaterialShell desktop.
 
-## Features
+- `ryzen-desktop`: AMD + NVIDIA
+- `inspiron-15`: Intel laptop
 
-- **Two hosts** — `ryzen-desktop` (AMD/NVIDIA) and `inspiron-15` (Intel laptop) with shared modules and per-host overrides
-- **Music production** — low-latency PipeWire via Musnix, REAPER, Yabridge for Windows VSTs
-- **Dynamic theming** — wallpaper-driven color generation across the entire desktop (see below)
-- **Direnv integration**
+## Stack
 
-## Structure
+| | |
+|---|---|
+| Compositor | Hyprland |
+| Shell      | DankMaterialShell |
+| Login      | GDM |
+| Launcher   | Vicinae |
+| Terminal   | Kitty, Bash + Starship + FZF |
+| Editor     | Neovim, Zed |
+| Browser    | Zen |
+| Theming    | Matugen |
+| Audio      | PipeWire + Musnix |
+
+## Layout
 
 ```
-.
-├── flake.nix                       # Entrypoint — inputs, hosts, overlays
-├── nixos/
-│   ├── hosts/
-│   │   ├── ryzen-desktop/          # AMD desktop + NVIDIA + music production
-│   │   └── inspiron-15/            # Intel laptop + power management
-│   ├── modules/                    # System modules (boot, audio, networking, …)
-│   └── profiles/common.nix         # Shared module bundle for all hosts
-├── home/
-│   ├── common.nix                  # Shared HM module imports
-│   ├── default.nix                 # Common packages & session vars
-│   ├── ryzen-desktop.nix           # Desktop-specific HM overrides
-│   ├── inspiron-15.nix             # Laptop-specific HM overrides
-│   └── modules/                    # HM modules (hyprland, neovim, waybar, …)
-│       └── matugen/                # Dynamic color generation from wallpaper
-├── shells/                         # Dev environments (rust, python, opengl)
-└── scripts/                        # Utilities (wallpaper-theme.sh)
+flake.nix              inputs, hosts, overlays
+nixos/
+  hosts/<host>/        hardware + module selection
+  modules/             system modules (boot, audio, nvidia, dms, ...)
+  profiles/common.nix  shared module bundle
+home/
+  modules/             home-manager modules
+  modules/matugen/     color templates, one per app
+  <host>.nix           per-host HM overrides
+shells/                direnv dev environments (rust, python, java, opengl)
 ```
 
-## Theming
+## Worth a look
 
-[Matugen](https://github.com/InioX/matugen) generates Material You colors from the current wallpaper and applies them across the desktop — Hyprland, DankMaterialShell, Fuzzel, Kitty, Neovim, Zed, Vicinae, Vesktop, GTK, and Starship all have matugen templates with fallback colors for first boot. DMS handles wallpaper selection natively. Fonts are managed separately through Stylix.
+- `home/modules/matugen/`: wallpaper to colors pipeline, one template per app, fallback Catppuccin on first boot, live reload via post hooks.
+- `flake.nix` + `nixos/profiles/common.nix`: multi host layout (Home Manager wired in as a NixOS module, shared profile, per host overrides).
+- `nixos/modules/dms.nix` and `home/modules/hyprland.nix`: working DankMaterialShell setup, plus [`quickshell-overview`](https://github.com/Shanu-Kumawat/quickshell-overview) wired in as its own QS daemon to replace DMS's broken Hyprland overview.
