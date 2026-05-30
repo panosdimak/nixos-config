@@ -21,7 +21,6 @@
     hyprsysteminfo
     hyprshot
     brightnessctl
-    sunsetr
     cliphist
     playerctl
     libsecret
