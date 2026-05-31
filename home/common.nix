@@ -14,7 +14,6 @@
     ./modules/gtk.nix
     ./modules/hyprland.nix
     ./modules/hyprlock.nix
-    ./modules/waybar.nix
     ./modules/fuzzel.nix
     ./modules/kitty.nix
     ./modules/development.nix
