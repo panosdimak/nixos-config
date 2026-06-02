@@ -50,11 +50,6 @@
       url = "github:Shanu-Kumawat/quickshell-overview";
       flake = false;
     };
-
-    # hyprtasking = {
-    #   url = "github:raybbian/hyprtasking";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
   };
 
   outputs = {
