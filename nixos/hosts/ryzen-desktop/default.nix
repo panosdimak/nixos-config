@@ -20,4 +20,6 @@
   profiles.audio.lowLatency = true;
 
   programs.steam.enable = true;
+
+  users.users.panos.extraGroups = [ "i2c" ];
 }
