@@ -1,0 +1,55 @@
+[config]
+
+[templates.hyprland]
+input_path = "/home/panos/.config/matugen/templates/hyprland-colors.conf"
+output_path = "/home/panos/.config/hypr/colors.conf"
+
+[templates.waybar]
+input_path = "/home/panos/.config/matugen/templates/waybar-colors.css"
+output_path = "/home/panos/.config/waybar/colors.css"
+
+[templates.fuzzel]
+input_path = "/home/panos/.config/matugen/templates/fuzzel-colors.ini"
+output_path = "/home/panos/.config/fuzzel/colors.ini"
+
+[templates.swaync]
+input_path = "/home/panos/.config/matugen/templates/swaync-colors.css"
+output_path = "/home/panos/.config/swaync/colors.css"
+
+[templates.gtk3]
+input_path = "/home/panos/.config/matugen/templates/gtk.css"
+output_path = "/home/panos/.config/gtk-3.0/colors.css"
+
+[templates.gtk4]
+input_path = "/home/panos/.config/matugen/templates/gtk.css"
+output_path = "/home/panos/.config/gtk-4.0/colors.css"
+
+[templates.vesktop]
+input_path = "/home/panos/.config/matugen/templates/vesktop.css"
+output_path = "/home/panos/.config/vesktop/themes/midnight-discord.css"
+
+[templates.kitty]
+input_path = "/home/panos/.config/matugen/templates/kitty-colors.conf"
+output_path = "/home/panos/.config/kitty/colors.conf"
+post_hook = "for s in /tmp/kitty-*; do [ -S \"$s\" ] && kitty @ --to unix:\"$s\" set-colors --all /home/panos/.config/kitty/colors.conf 2>/dev/null; done; true"
+
+[templates.starship]
+input_path = "/home/panos/.config/matugen/templates/starship.toml"
+output_path = "/home/panos/.config/starship.toml"
+
+[templates.vicinae]
+input_path = "/home/panos/.config/matugen/templates/vicinae.toml"
+output_path = "/home/panos/.local/share/vicinae/themes/matugen.toml"
+post_hook = "vicinae theme set matugen || true"
+
+[templates.neovim]
+input_path = "/home/panos/.config/matugen/templates/nvim-colors.lua"
+output_path = "/home/panos/.config/nvim/matugen-colors.lua"
+
+[templates.zed]
+input_path = "/home/panos/.config/matugen/templates/zed-colors.json"
+output_path = "/home/panos/.config/zed/themes/matugen.json"
+
+[templates.quickshell]
+input_path = "/home/panos/.config/matugen/templates/quickshell-colors.qml"
+output_path = "/home/panos/.config/quickshell/overview/common/Appearance.colors.qml"
