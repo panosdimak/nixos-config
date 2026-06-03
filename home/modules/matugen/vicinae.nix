@@ -1,5 +1,10 @@
-{ colors, createIfMissing, configHome, config, ... }:
 {
+  colors,
+  createIfMissing,
+  configHome,
+  config,
+  ...
+}: {
   configFile = {
     "matugen/templates/vicinae.toml".text = ''
       # Vicinae Matugen Theme Template
@@ -12,7 +17,9 @@
       [colors.core]
       accent = "{{colors.primary.default.hex}}"
       accent_foreground = "{{colors.on_primary.default.hex}}"
-      background = "{{colors.surface.default.hex}}"
+      # Same body tone as kitty/gtk/vesktop. Translucency is owned by vicinae's own
+      # launcher_window.opacity (0.7) — keep this color opaque so the two don't multiply.
+      background = "{{colors.surface_container_high.default.hex}}"
       foreground = "{{colors.on_surface.default.hex}}"
       secondary_background = "{{colors.surface_container.default.hex}}"
       border = "{{colors.outline_variant.default.hex}}"
@@ -92,25 +99,25 @@
   };
 
   fallback = createIfMissing "${config.home.homeDirectory}/.local/share/vicinae/themes/matugen.toml" ''
-[meta]
-name = "Matugen"
-description = "Material You theme"
-variant = "dark"
+    [meta]
+    name = "Matugen"
+    description = "Material You theme"
+    variant = "dark"
 
-[colors.core]
-accent = "#${colors.primary}"
-accent_foreground = "#${colors.on_primary}"
-background = "#${colors.surface}"
-foreground = "#${colors.on_surface}"
-secondary_background = "#${colors.surface_container}"
-border = "#${colors.outline}"
+    [colors.core]
+    accent = "#${colors.primary}"
+    accent_foreground = "#${colors.on_primary}"
+    background = "#${colors.surface_container_high}"
+    foreground = "#${colors.on_surface}"
+    secondary_background = "#${colors.surface_container}"
+    border = "#${colors.outline}"
 
-[colors.accents]
-blue = "#${colors.primary}"
-green = "#${colors.secondary}"
-red = "#${colors.error}"
+    [colors.accents]
+    blue = "#${colors.primary}"
+    green = "#${colors.secondary}"
+    red = "#${colors.error}"
 
-[colors.list.item.selection]
-background = "#${colors.surface_container}"
-foreground = "#${colors.on_surface}"'';
+    [colors.list.item.selection]
+    background = "#${colors.surface_container}"
+    foreground = "#${colors.on_surface}"'';
 }
