@@ -99,11 +99,6 @@
     lolcat
   ];
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
-
   programs.vesktop.enable = true;
 
   services.syncthing.enable = true;
