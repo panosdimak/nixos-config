@@ -23,6 +23,14 @@
 
       allow_remote_control = true;
       listen_on = "unix:/tmp/kitty-$PPID";
+
+      # Disable the config hot-reload watcher (negative value = off). Under Home
+      # Manager ~/.config/kitty is a symlink into /nix/store, and kitty 0.47.1
+      # resolves it and recursively inotify-watches the whole store, exhausting
+      # fs.inotify.max_user_watches and starving other apps (Obsidian, editors).
+      # See kitty#10066/#10104. Fixed upstream after 0.47.1, so this can return to
+      # the 0.1 default once kitty updates. Reload manually with ctrl+shift+f5.
+      auto_reload_config = -1;
     };
 
     keybindings = {
