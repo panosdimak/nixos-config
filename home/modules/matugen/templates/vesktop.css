@@ -13,6 +13,14 @@
 /* import theme modules */
 @import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
 
+/* My tweaks on top of midnight (colours filled in by matugen from the wallpaper).
+   The window body is see-through so Hyprland's blur shows the wallpaper behind it, but
+   popups stay solid so they're readable. Catch: Discord paints the chat/sidebars and the
+   popups from the same --bg-4, so I can't just make it transparent. Instead .bg__960e4 is
+   the translucent pane, the panels are cleared via --background-base-* to reveal it, and
+   --bg-4 stays opaque. A couple of popouts share a token with the panels, so they get
+   painted back solid further down. */
+
 body {
     /* font, set to empty string for default discord font */
     --font: '';
@@ -55,8 +63,13 @@ body {
     --background-image: off;
     --background-image-url: url('');
 
-    /* transparency/blur options */
-    --transparency-tweaks: off;
+    /* transparency/blur options.
+       Only the MAIN WINDOW is made translucent so Hyprland blurs the wallpaper through
+       it (the frosted body). transparency-tweaks makes midnight strip the opaque base
+       layers; --bg-4 transparent (below) reveals the .bg__960e4 pane across the whole
+       chat, not just the bottom strip. Popups are left at midnight defaults — not
+       touched. --bg-floating stays opaque (var(--bg-2)) so floating menus stay readable. */
+    --transparency-tweaks: on;
     --remove-bg-layer: off;
     --panel-blur: off;
     --blur-amount: 12px;
@@ -87,7 +100,7 @@ body {
     --bg-1: {{colors.surface_variant.default.hex}};
     --bg-2: {{colors.surface_container_highest.default.hex}};
     --bg-3: {{colors.surface_container_high.default.hex}};
-    --bg-4: {{colors.surface_container.default.hex}};
+    --bg-4: {{colors.surface_container.default.hex}}; /* opaque: shared by popups/modals, must NOT be transparent */
     --hover: hsla(0, 0%, 100%, 0.08);
     --active: hsla(0, 0%, 100%, 0.12);
     --active-2: hsla(0, 0%, 100%, 0.16);
@@ -148,4 +161,62 @@ body {
     --purple-3: {{colors.primary_fixed_dim.default.hex}};
     --purple-4: {{colors.primary.default.hex}};
     --purple-5: {{colors.on_primary_fixed.default.hex}};
+}
+
+/* The single frosted pane for the main window. midnight makes #app-mount/body
+   transparent, so .bg__960e4 is the only full-window background — a 0.7-alpha
+   (b3) fill of the GTK body tone gives Hyprland a translucent layer to blur the
+   wallpaper through. Alpha matches kitty's background_opacity and the GTK body
+   so all the translucent apps frost to the same level. (Class hash rotates;
+   re-grep midnight.css for the main bg element if the frost disappears.) */
+.bg__960e4 {
+    background: #{{colors.surface_container_high.default.hex_stripped}}b3 !important;
+}
+
+/* Reveal the frosted .bg__960e4 pane through ONLY the main-window base layers, so the frost
+   shows on the chat + sidebars. We deliberately do NOT make --bg-4 transparent (Discord
+   reuses it for popups/modals — that's what turned every popup see-through). Instead we
+   transparent just the base-layer tokens the main content sits on. --bg-4 stays opaque, so
+   everything derived from it (--background-base-lower popout modals, --modal-background,
+   --home-background, the quickswitcher, invite, etc.) stays solid automatically.
+   If a main-window region is still opaque, it uses a different base token — add it here.
+   If a popup goes see-through, that token is shared with the main window — remove it. */
+body,
+.theme-dark,
+.theme-light {
+    /* Reveal the frosted .bg__960e4 pane through the WHOLE main window:
+       -lowest / -low = the base behind & between the panels (the gaps);
+       -lower         = the panels themselves — chat (.chatContent), channel list
+                        (.sidebarList), server list (.guilds), member list, user panel all
+                        paint from --background-base-lower (midnight.css ~line 30-62).
+       All transparent -> the entire main window shows the blurred wallpaper uniformly.
+       --bg-4 stays opaque, so every OTHER modal/popup stays solid. The one exception is the
+       small floating popout container (.container__8a031), which also uses --background-base-lower
+       -> re-opaqued just below. (Per-panel tint: give a token a translucent matugen colour like
+       #<hex>8c instead of `transparent` — e.g. distinct chat vs sidebar shades.) */
+    --background-base-lowest: transparent !important;
+    --background-base-low: transparent !important;
+    --background-base-lower: transparent !important;
+}
+
+/* These floating modals share --background-base-lower with the main-window panels above;
+   paint them back solid so they stay readable over the frost.
+   .container__8a031 = small popout modals; .root__49fc1 = keyboard-shortcuts modal (ctrl+/). */
+.container__8a031,
+.root__49fc1 {
+    background-color: var(--bg-floating) !important;
+}
+
+/* Settings content region is `background: none` in midnight (shows through to the frost),
+   so give it a solid bg for readability. Substring match survives Discord hash rotation. */
+[class*="standardSidebarView"] {
+    background: var(--bg-floating) !important;
+}
+
+/* Image lightbox (click a picture): the viewer's carousel modal also carries the .root__49fc1
+   class, so the re-opaque rule above painted it solid — an opaque tint boxing in the image.
+   Clear it so Discord's own 0.9-black lightbox scrim shows through and just dims, like web.
+   (.root__49fc1 alone stays opaque, so the ctrl+/ modal is unaffected.) */
+[class*="carouselModal"] {
+    background-color: transparent !important;
 }

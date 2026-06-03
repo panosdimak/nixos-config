@@ -6,7 +6,7 @@
     shellIntegration.mode = null;
 
     settings = {
-      background_opacity = "0.8";
+      background_opacity = "0.7";
       dynamic_background_opacity = true;
       hide_window_decorations = true;
       confirm_os_window_close = 0;
