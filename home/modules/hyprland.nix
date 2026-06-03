@@ -203,8 +203,9 @@ in {
       master = {new_status = "master";};
 
       misc = {
-        force_default_wallpaper = -1;
+        force_default_wallpaper = 0; # plain background, no anime
         disable_hyprland_logo = true;
+        disable_splash_rendering = true; # no version/quote splash text during the gap before DMS draws
         middle_click_paste = false;
         focus_on_activate = true;
         vrr = 1; # enable variable refresh rate (FreeSync/G-Sync) on supported monitors

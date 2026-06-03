@@ -11,7 +11,7 @@ My personal flake. Two hosts sharing a Hyprland + DankMaterialShell desktop.
 |---|---|
 | Compositor | Hyprland |
 | Shell      | DankMaterialShell |
-| Login      | GDM |
+| Login      | DankGreeter (greetd) |
 | Launcher   | Vicinae |
 | Terminal   | Kitty, Bash + Starship + FZF |
 | Editor     | Neovim, Zed |
