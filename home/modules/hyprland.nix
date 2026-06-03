@@ -154,8 +154,11 @@ in {
           contrast = 2;
           vibrancy = 0.5;
           brightness = 0.8;
+          # Blur right-click menus/popups against the app beneath them.
+          # ignorealpha skips the menu's transparent drop-shadow margin so the
+          # blur doesn't bleed into a halo border (popover bg alpha is 0.85).
           popups = true;
-          popups_ignorealpha = 0;
+          popups_ignorealpha = 0.6;
         };
       };
 
@@ -445,6 +448,14 @@ in {
       general:col.active_border = $active_border
       general:col.inactive_border = $inactive_border
       plugin:hyprtasking:bg_color = $hyprtaskingBg
+
+      # Vesktop (Electron/Wayland) declares its surface opaque once focused/fully
+      # rendered, so Hyprland honours that and stops blurring behind it (blur only
+      # shows while unfocused or mid-load). Forcing opacity just below 1 makes
+      # Hyprland blend the window and re-apply blur regardless of the opaque-region
+      # hint; override on both active/inactive keeps it stable across focus.
+      # blur:ignore_opacity (default on) keeps the blur at full strength.
+      windowrule = opacity 0.99 override 0.99 override, match:class vesktop
 
       # Layer rules / blur for waybar
       layerrule = blur on, match:class waybar
