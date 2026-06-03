@@ -38,15 +38,13 @@ This is a NixOS flake managing two hosts with shared modules and per-host overri
 - `modules/` — individual HM modules (hyprland, waybar, neovim, etc.)
 - `modules/matugen/` — dynamic wallpaper-to-color theming with templates for each app and post-hooks for live reload
 
-**Theming:** **matugen** generates runtime colors from the current wallpaper. Templates live in `home/modules/matugen/` with one `.nix` file per target app (including `quickshell.nix` for DMS colors). Fonts are configured in `nixos/modules/fonts.nix` (Stylix was removed — apps consume matugen-rendered colors directly, no base16 layer).
+**Theming:** **matugen** generates runtime colors from the current wallpaper. `home/modules/matugen/default.nix` symlinks a static `files/config.toml` and `files/templates/` (one plain template per target app, including `quickshell-colors.qml` for DMS colors) into `~/.config/matugen/`; DMS runs matugen on wallpaper change. Fonts are configured in `nixos/modules/fonts.nix` (Stylix was removed — apps consume matugen-rendered colors directly, no base16 layer).
 
-**Workspace overview:** The `quickshell-overview` flake input (Shanu-Kumawat/quickshell-overview, `flake = false`) is symlinked into `~/.config/quickshell/overview` by `home/modules/hyprland.nix`. It runs as its own QS daemon (`qs -c overview`, started via exec-once) and is toggled by Super+Tab → `qs ipc -c overview call overview toggle`. Per-user options (e.g. `showSpecialWorkspaces`, `colorSource: matugen`) live in `~/.config/quickshell/overview/config.json` — that file is **not** version-controlled. Matugen colors are sourced from `home/modules/matugen/quickshell.nix` which renders to `~/.config/quickshell/overview/common/Appearance.colors.qml`. Preferred over DMS's overview (broken on Hyprland — focus-grab race with workspace dispatch, `DMS_HYPRLAND_EXCLUSIVE_FOCUS=1` is a partial workaround) and over hyprtasking (also unreliable). Do not suggest switching back without a strong reason.
+**Workspace overview:** The `quickshell-overview` flake input (Shanu-Kumawat/quickshell-overview, `flake = false`) is symlinked into `~/.config/quickshell/overview` by `home/modules/hyprland.nix`. It runs as its own QS daemon (`qs -c overview`, started via exec-once) and is toggled by Super+Tab → `qs ipc -c overview call overview toggle`. Per-user options (e.g. `showSpecialWorkspaces`, `colorSource: matugen`) live in `~/.config/quickshell/overview/config.json` — that file is **not** version-controlled. Matugen colors are sourced from `home/modules/matugen/files/templates/quickshell-colors.qml` which renders to `~/.config/quickshell/overview/common/Appearance.colors.qml`. Preferred over DMS's overview (broken on Hyprland — focus-grab race with workspace dispatch, `DMS_HYPRLAND_EXCLUSIVE_FOCUS=1` is a partial workaround) and over hyprtasking (also unreliable). Do not suggest switching back without a strong reason.
 
 **Zen browser icon:** `home/default.nix` symlinks `zen-browser.svg` from `fluent-icon-theme` into hicolor because the `zen-twilight.desktop` entry declares `Icon=zen-browser` and quickshell-overview resolves icons strictly by that name (no class fallback like DMS).
 
 **Dev shells** (`shells/`): Standalone flakes for rust, python, java, opengl — used via direnv.
-
-**Scripts** (`scripts/`): Utility scripts (wallpaper-theme.sh is legacy; DMS now handles wallpaper selection and triggers matugen natively).
 
 ## Conventions
 
