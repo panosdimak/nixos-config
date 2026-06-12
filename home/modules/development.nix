@@ -20,13 +20,12 @@
     ripgrep
     fzf
     bat
-    vscode
+    vscodium
     zed-editor
     lazygit
     gh
 
     claude-code
-    claude-monitor
 
     nixd
     alejandra
