@@ -1,8 +1,29 @@
 {
   pkgs,
   inputs,
+  osConfig,
   ...
-}: {
+}: let
+  # OnlyOffice bundles its own Qt5 with only the xcb platform plugin (no
+  # Wayland), so it always runs under XWayland. Paired with Hyprland's
+  # xwayland.force_zero_scaling (see hyprland.nix), the compositor no longer
+  # magnifies its buffer — so we hand Qt the monitor scale directly for a crisp
+  # render. Per-app (not a session var) so native-Wayland Qt apps like DMS don't
+  # double-scale. Laptop eDP-1 is 1.2; desktop is 1 (a no-op).
+  onlyofficeQtScale =
+    if osConfig.networking.hostName == "inspiron-15"
+    then "1.2"
+    else "1";
+  onlyoffice = pkgs.symlinkJoin {
+    name = "onlyoffice-desktopeditors-scaled";
+    paths = [pkgs.onlyoffice-desktopeditors];
+    nativeBuildInputs = [pkgs.makeWrapper];
+    postBuild = ''
+      wrapProgram $out/bin/onlyoffice-desktopeditors \
+        --set QT_SCALE_FACTOR ${onlyofficeQtScale}
+    '';
+  };
+in {
   home.username = "panos";
   home.homeDirectory = "/home/panos";
   home.stateVersion = "25.05";
@@ -24,7 +45,7 @@
 
     # Editors / Writing
     obsidian
-    onlyoffice-desktopeditors
+    onlyoffice # wrapper above: XWayland + QT_SCALE_FACTOR for crisp scaling
     evince
     featherpad
     kdePackages.ghostwriter

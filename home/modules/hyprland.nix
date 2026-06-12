@@ -214,6 +214,15 @@ in {
         vrr = 1; # enable variable refresh rate (FreeSync/G-Sync) on supported monitors
       };
 
+      # Don't bitmap-magnify XWayland surfaces on fractionally-scaled monitors
+      # (the laptop's eDP-1 is 1.2). Magnifying a native-resolution X11 buffer
+      # is what makes apps like OnlyOffice render soft/pixelated. With this off,
+      # XWayland clients draw 1:1 (sharp) and must self-scale via QT_SCALE_FACTOR
+      # / GDK_SCALE instead. No-op on the desktop (HDMI-A-1 is scale 1).
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
       # Bind behavior tweaks
       binds = {
         workspace_center_on = 1; # center cursor on focused window (not workspace center) on switch
