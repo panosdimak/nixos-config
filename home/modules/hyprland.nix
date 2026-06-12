@@ -99,7 +99,7 @@ in {
         "hyprctl setcursor Bibata-Modern-Classic 24"
         "vesktop --start-minimized"
         "qs -c overview"
-        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+        # "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
       ];
 
       # Environment
