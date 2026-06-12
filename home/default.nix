@@ -27,6 +27,7 @@
     onlyoffice-desktopeditors
     evince
     featherpad
+    kdePackages.ghostwriter
 
     # Terminal / Shell
     ghostty
