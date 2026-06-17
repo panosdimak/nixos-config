@@ -74,7 +74,7 @@
       Login = {
         HandleLidSwitchDocked = "ignore";
         # HandleLidSwitch = "suspend";  # Suspend when lid closes
-        HandleLidSwitchExternalPower = "ignore";
+        HandleLidSwitchExternalPower = "suspend";
         LidSwitchIgnoreInhibited = "no";
         HandlePowerKey = "suspend";
         InhibitDelayMaxSec = 10;
