@@ -272,7 +272,7 @@ in {
         "$mainMod, P, pseudo,"
         "$mainMod, D, layoutmsg, togglesplit"
         "$mainMod, S, exec, hyprshot -m window --clipboard-only"
-        "$mainMod, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
+        "$mainMod, V, exec, vicinae vicinae://launch/clipboard/history"
         "$mainMod, L, exec, dms ipc lock lock"
         "$mainMod, G, exec, hyprpicker -a"
 
