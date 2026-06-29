@@ -1,17 +1,16 @@
-{...}:
-
-{
+{...}: {
   imports = [
     ./hardware.nix
 
-  # Common system profile used by all hosts
-  ../../profiles/common.nix
+    # Common system profile used by all hosts
+    ../../profiles/common.nix
 
-  # Host-specific hardware/stack choices
-  ../../modules/amd.nix
-  ../../modules/nvidia.nix
-  ../../modules/graphics-32bit.nix
-  ../../modules/audio.nix
+    # Host-specific hardware/stack choices
+    ../../modules/amd.nix
+    ../../modules/nvidia.nix
+    ../../modules/graphics-32bit.nix
+    ../../modules/audio.nix
+    ../../modules/distrobox.nix
   ];
 
   system.stateVersion = "25.05";
@@ -21,5 +20,11 @@
 
   programs.steam.enable = true;
 
-  users.users.panos.extraGroups = [ "i2c" ];
+  # Monthly bit-rot scrub of the btrfs data disk
+  services.btrfs.autoScrub = {
+    enable = true;
+    fileSystems = ["/data"];
+  };
+
+  users.users.panos.extraGroups = ["i2c"];
 }
