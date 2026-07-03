@@ -75,6 +75,7 @@ in {
     gapless
     nomacs
     qimgv
+    kdePackages.gwenview
     tidal-hifi
 
     # Internet
