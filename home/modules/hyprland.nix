@@ -121,8 +121,8 @@ in {
 
       # Look and Feel
       general = {
-        gaps_in = 10;
-        gaps_out = 20;
+        gaps_in = 6;
+        gaps_out = 6;
         border_size = 0;
         float_gaps = -1; # use same gaps for floating windows as tiled (-1 = inherit)
         resize_on_border = false;
