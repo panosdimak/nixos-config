@@ -23,10 +23,10 @@
     };
 
     # San Francisco Fonts | Apple Fonts
-    apple-fonts = {
-      url = "github:Lyndeno/apple-fonts.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # apple-fonts = {
+    #   url = "github:Lyndeno/apple-fonts.nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # Spicetify-Nix
     spicetify-nix = {
@@ -58,7 +58,6 @@
     home-manager,
     musnix,
     zen-browser,
-    apple-fonts,
     ...
   } @ inputs: let
     # Shared modules included in every host configuration

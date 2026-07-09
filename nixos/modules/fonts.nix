@@ -4,7 +4,6 @@
   ...
 }: {
   fonts.packages = [
-    inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-mono-nerd
     pkgs.geist-font
     pkgs.noto-fonts
     pkgs.noto-fonts-cjk-sans
