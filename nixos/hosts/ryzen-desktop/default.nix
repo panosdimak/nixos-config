@@ -10,7 +10,7 @@
     ../../modules/nvidia.nix
     ../../modules/graphics-32bit.nix
     ../../modules/audio.nix
-    ../../modules/distrobox.nix
+    ../../modules/radicale.nix
   ];
 
   system.stateVersion = "25.05";
