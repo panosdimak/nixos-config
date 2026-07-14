@@ -11,6 +11,7 @@
     ../../modules/graphics-32bit.nix
     ../../modules/audio.nix
     ../../modules/radicale.nix
+    ../../modules/home-assistant.nix
   ];
 
   system.stateVersion = "25.05";
