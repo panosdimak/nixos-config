@@ -20,7 +20,7 @@
     ripgrep
     fzf
     bat
-    vscodium
+    vscode
     zed-editor
     lazygit
     gh
