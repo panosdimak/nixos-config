@@ -21,6 +21,8 @@
 
   programs.steam.enable = true;
 
+  programs.coolercontrol.enable = true;
+
   # Monthly bit-rot scrub of the btrfs data disk
   services.btrfs.autoScrub = {
     enable = true;
