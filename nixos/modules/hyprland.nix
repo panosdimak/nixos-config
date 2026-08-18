@@ -1,10 +1,10 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  };
+  # Hyprland comes from nixpkgs rather than upstream's flake: the flake's own
+  # release builds aren't reliably on hyprland.cachix.org (v0.56.2 wasn't), and
+  # compiling the compositor from source is painful on the laptop.
+  programs.hyprland.enable = true;
 
   environment.systemPackages = with pkgs; [
     fuzzel

@@ -40,11 +40,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Hyprland
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-    };
-
     # Standalone Quickshell workspace overview (DMS's is broken on Hyprland)
     quickshell-overview = {
       url = "github:Shanu-Kumawat/quickshell-overview";
