@@ -86,6 +86,8 @@ in {
     signal-desktop
     qbittorrent
     proton-vpn
+    slack
+    thunderbird
 
     # Theming
     matugen
