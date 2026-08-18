@@ -1,6 +1,9 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.profiles.gtk;
 in {
   options.profiles.gtk = {
@@ -27,6 +30,15 @@ in {
     gtk = {
       enable = true;
       iconTheme.name = cfg.iconThemeName;
+
+      # Set the UI font explicitly. Without this, GTK4 apps pick up the
+      # gsettings default (Adwaita Sans since GNOME 49), which isn't installed
+      # and falls back to an arbitrary Noto face.
+      font = {
+        name = "Geist";
+        package = pkgs.geist-font;
+        size = 11;
+      };
       cursorTheme = {
         name = cfg.cursor.name;
         size = cfg.cursor.size;
