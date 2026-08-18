@@ -126,6 +126,10 @@ in {
   ];
 
   programs.vesktop.enable = true;
+  # Vesktop's built-in arRPC doesn't detect running games here, so run a
+  # standalone arRPC as the game/activity source. Pair it with Vencord's
+  # "WebRichPresence (arRPC)" plugin, which connects to it on port 1337.
+  services.arrpc.enable = true;
 
   services.syncthing.enable = true;
 
