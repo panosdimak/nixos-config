@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ config, pkgs, ...}:
 
 let
   # REAPER's SWELL has a race in X11 selection handling under XWayland:
@@ -33,14 +33,13 @@ in
   # plugins (Plini, Granophyre, Fortin). System Wine 11.x handles them fine.
   home.sessionVariables.WINELOADER = "${pkgs.wineWow64Packages.staging}/bin/wine";
 
-  # The chainloader stubs that yabridgectl drops into each .vst3 bundle look
-  # up the real libyabridge-*.so by walking $NIX_PROFILES. systemd-app scopes
-  # don't carry NIX_PROFILES, so Bitwig's sandboxed plugin hosts fail the
-  # lookup. ~/.local/share/yabridge is also searched by default and doesn't
-  # depend on env, so anchor the libs there.
-  home.file = {
-    ".local/share/yabridge/libyabridge-vst2.so".source = "${pkgs.yabridge}/lib/libyabridge-vst2.so";
-    ".local/share/yabridge/libyabridge-vst3.so".source = "${pkgs.yabridge}/lib/libyabridge-vst3.so";
-    ".local/share/yabridge/libyabridge-clap.so".source = "${pkgs.yabridge}/lib/libyabridge-clap.so";
-  };
+  # nixpkgs patches yabridge's chainloader to locate libyabridge-*.so solely
+  # by walking $NIX_PROFILES/*/lib (it drops the generic dlopen/ldconfig
+  # fallbacks). When that variable is empty the stub aborts with "Could not
+  # find libyabridge", failing every plugin. Apps launched into a systemd
+  # user scope don't inherit it, so Bitwig's plugin hosts come up blank.
+  # Seed it into the systemd --user environment so every scope carries it.
+  xdg.configFile."environment.d/10-nix-profiles.conf".text = ''
+    NIX_PROFILES=/etc/profiles/per-user/${config.home.username} /run/current-system/sw /nix/var/nix/profiles/default ${config.home.homeDirectory}/.local/state/nix/profile /nix/profile ${config.home.homeDirectory}/.nix-profile
+  '';
 }
