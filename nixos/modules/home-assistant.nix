@@ -17,9 +17,11 @@
         time_zone = "Europe/Athens";
       };
     };
-
-    openFirewall = true; # opens TCP 8123 for the web UI / phone app
   };
+
+  # The web UI / phone app. The module dropped its own `openFirewall` because
+  # the frontend port isn't known at eval time any more, so open 8123 by hand.
+  networking.firewall.allowedTCPPorts = [8123];
 
   # Gree auto-discovery: greeclimate broadcasts a scan to :7000 from an
   # ephemeral local port, and the AC answers by unicast *from* :7000 back to
