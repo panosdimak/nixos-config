@@ -1,8 +1,11 @@
 [config]
 
+# Hyprland reads these from hyprland.lua via dofile, and does not watch
+# dofile()'d files the way it watched the old sourced .conf, so reload here.
 [templates.hyprland]
-input_path = "/home/panos/.config/matugen/templates/hyprland-colors.conf"
-output_path = "/home/panos/.config/hypr/colors.conf"
+input_path = "/home/panos/.config/matugen/templates/hyprland-colors.lua"
+output_path = "/home/panos/.config/hypr/colors.lua"
+post_hook = "hyprctl reload || true"
 
 [templates.waybar]
 input_path = "/home/panos/.config/matugen/templates/waybar-colors.css"

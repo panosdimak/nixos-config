@@ -12,7 +12,7 @@
     ./modules/ssh.nix
     ./modules/starship.nix
     ./modules/gtk.nix
-    ./modules/hyprland.nix
+    ./modules/hyprland
     ./modules/hyprlock.nix
     ./modules/fuzzel.nix
     ./modules/kitty.nix

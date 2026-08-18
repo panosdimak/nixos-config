@@ -38,4 +38,4 @@ shells/                direnv dev environments (rust, python, java, opengl)
 
 - `home/modules/matugen/`: wallpaper to colors pipeline, one template per app, live reload via post hooks.
 - `flake.nix` + `nixos/profiles/common.nix`: multi host layout (Home Manager wired in as a NixOS module, shared profile, per host overrides).
-- `nixos/modules/dms.nix` and `home/modules/hyprland.nix`: working DankMaterialShell setup, plus [`quickshell-overview`](https://github.com/Shanu-Kumawat/quickshell-overview) wired in as its own QS daemon to replace DMS's broken Hyprland overview.
+- `nixos/modules/dms.nix` and `home/modules/hyprland/`: working DankMaterialShell setup, plus [`quickshell-overview`](https://github.com/Shanu-Kumawat/quickshell-overview) wired in as its own QS daemon to replace DMS's broken Hyprland overview.
