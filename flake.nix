@@ -34,9 +34,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Quickshell (built from source for full DankMaterialShell features)
+    # Quickshell (built from source for full DankMaterialShell features).
+    # Pulled from the GitHub mirror rather than upstream git.outfoxxed.me, which
+    # goes unreachable often enough to wedge an eval on any machine that has not
+    # already cached the source. Same commits, so the lock hash is unaffected.
     quickshell = {
-      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      url = "git+https://github.com/quickshell-mirror/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

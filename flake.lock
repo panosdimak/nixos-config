@@ -106,11 +106,11 @@
         "rev": "28771c7c74b42e20afca0b1b63980cb46515537c",
         "revCount": 835,
         "type": "git",
-        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+        "url": "https://github.com/quickshell-mirror/quickshell"
       },
       "original": {
         "type": "git",
-        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+        "url": "https://github.com/quickshell-mirror/quickshell"
       }
     },
     "quickshell-overview": {
