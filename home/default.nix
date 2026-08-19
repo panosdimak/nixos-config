@@ -76,7 +76,6 @@ in {
     nomacs
     qimgv
     kdePackages.gwenview
-    tidal-hifi
 
     # Internet
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
