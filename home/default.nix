@@ -88,6 +88,9 @@ in {
     slack
     thunderbird
 
+    # AI
+    inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
+
     # Theming
     matugen
 

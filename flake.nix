@@ -43,6 +43,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    claude-desktop = {
+      url = "github:patrickjaja/claude-desktop-extra";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Standalone Quickshell workspace overview (DMS's is broken on Hyprland)
     quickshell-overview = {
       url = "github:Shanu-Kumawat/quickshell-overview";
