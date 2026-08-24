@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   inputs,
   ...
 }: {
@@ -22,9 +21,7 @@
 
     configType = "lua";
 
-    plugins = [
-      # inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking
-    ];
+    plugins = [];
 
     settings = {
       # Autostart, rendered as a Lua local that hyprland.lua loops over in its
