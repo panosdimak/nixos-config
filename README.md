@@ -5,6 +5,8 @@ My personal flake. Two hosts sharing a Hyprland + DankMaterialShell desktop.
 - `ryzen-desktop`: AMD + NVIDIA
 - `inspiron-15`: Intel laptop
 
+![Hyprland desktop with DankMaterialShell, Nautilus, kitty and Neovim](assets/screenshot.png)
+
 ## Stack
 
 | | |
