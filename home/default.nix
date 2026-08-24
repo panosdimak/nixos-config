@@ -65,7 +65,6 @@ in {
     wl-clipboard
     grim
     slurp
-    grimblast
     charm-freeze
     tesseract
 
@@ -109,7 +108,6 @@ in {
     gnome-calculator
     warp
     hyperfine
-    waypaper
     wdisplays
 
     # Archive utils

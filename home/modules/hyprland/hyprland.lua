@@ -301,7 +301,6 @@ hl.window_rule({ match = { class = "steam_app_.*" }, immediate = true })
 hl.window_rule({ match = { class = "vesktop" }, opacity = "0.99 override 0.99 override" })
 
 --------------------------------------------------------------------- layer rules
-hl.layer_rule({ match = { namespace = "launcher" }, blur = true, ignore_alpha = 0.5 })
 hl.layer_rule({ name = "vicinae-blur", match = { namespace = "vicinae" }, blur = true, ignore_alpha = 0 })
 
 --------------------------------------------------------------------- gestures

@@ -31,12 +31,10 @@
       # hyprland.start hook — Hyprland's Lua API has no exec-once. Hosts append
       # to this list the way they used to append to exec-once.
       autostart._var = [
-        "waypaper --restore"
         "nm-applet"
         "blueman-applet"
         "hypridle"
         "vicinae server"
-        "wl-paste --watch cliphist store"
         "hyprctl setcursor Bibata-Modern-Classic 24"
         "vesktop --start-minimized"
         "qs -c overview"

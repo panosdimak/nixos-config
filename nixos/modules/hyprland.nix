@@ -7,21 +7,15 @@
   programs.hyprland.enable = true;
 
   environment.systemPackages = with pkgs; [
-    fuzzel
     vicinae
-    swaynotificationcenter
     libnotify
     swappy
     networkmanagerapplet
     blueman
-    waybar
     hypridle
-    hyprlock
     hyprpicker
-    hyprsysteminfo
     hyprshot
     brightnessctl
-    cliphist
     playerctl
     libsecret
     bibata-cursors

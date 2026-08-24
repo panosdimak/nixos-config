@@ -35,7 +35,7 @@ This is a NixOS flake managing two hosts with shared modules and per-host overri
 - `common.nix` — imports all shared HM modules from `modules/`
 - `default.nix` — shared packages and session variables
 - `<host>.nix` — per-host HM overrides
-- `modules/` — individual HM modules (hyprland, waybar, neovim, etc.)
+- `modules/` — individual HM modules (hyprland, kitty, neovim, etc.)
 - `modules/matugen/` — dynamic wallpaper-to-color theming with templates for each app and post-hooks for live reload
 - `modules/hyprland/` — Hyprland config in **Lua** (`configType = "lua"`, Home Manager ≥ 26.05 option). Home Manager renders `settings` into `hl.*` calls and appends `hyprland.lua` verbatim via `extraConfig`, writing both halves to `~/.config/hypr/hyprland.lua`. Monitors, `env`, devices and the `autostart` list stay in `settings` so `home/<host>.nix` can extend them (list values merge across modules); `autostart` uses the `_var` form, which renders a Lua local that `hyprland.lua` loops over in its `hyprland.start` hook — the Lua API has no `exec-once`. Binds, window/layer rules, animations and gestures live in the `.lua` file. `package = null`, so Home Manager does **not** auto-reload on switch — run `hyprctl reload` after a rebuild
 

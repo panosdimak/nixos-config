@@ -13,8 +13,7 @@
     ./modules/starship.nix
     ./modules/gtk.nix
     ./modules/hyprland
-    ./modules/hyprlock.nix
-    ./modules/fuzzel.nix
+    ./modules/hypridle.nix
     ./modules/kitty.nix
     ./modules/development.nix
     ./modules/spicetify.nix
