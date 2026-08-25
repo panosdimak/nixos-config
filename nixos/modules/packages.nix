@@ -15,6 +15,7 @@
     nerd-fonts.victor-mono
     nerd-fonts.geist-mono
     nerd-fonts.commit-mono
+    nerd-fonts._0xproto
 
     # UI / fallback fonts
     inter
