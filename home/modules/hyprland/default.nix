@@ -33,7 +33,6 @@
         "hypridle"
         "vicinae server"
         "hyprctl setcursor Bibata-Modern-Classic 24"
-        "vesktop --start-minimized"
         "qs -c overview"
       ];
 
