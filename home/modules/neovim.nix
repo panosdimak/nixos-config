@@ -124,7 +124,25 @@ in {
       -- Plugins
       require("markview").setup()
       vim.keymap.set('n', '<leader>mt', '<cmd>Markview Toggle<cr>', { desc = 'Markview toggle' })
-      require("gitsigns").setup()
+      require("gitsigns").setup({
+        on_attach = function(bufnr)
+          local gs = require("gitsigns")
+          local function map(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+          end
+
+          map('n', ']h', function() gs.nav_hunk('next') end, 'Next hunk')
+          map('n', '[h', function() gs.nav_hunk('prev') end, 'Previous hunk')
+
+          map('n', '<leader>hi', gs.preview_hunk_inline, 'Preview hunk inline')
+          map('n', '<leader>hd', gs.toggle_deleted, 'Toggle deleted lines')
+          map('n', '<leader>hw', gs.toggle_word_diff, 'Toggle word diff')
+
+          map('n', '<leader>hs', gs.stage_hunk, 'Stage hunk')
+          map('n', '<leader>hr', gs.reset_hunk, 'Reset hunk')
+          map('n', '<leader>hu', gs.undo_stage_hunk, 'Undo stage hunk')
+        end,
+      })
       require("lualine").setup({
         options = {
           theme = "auto",
