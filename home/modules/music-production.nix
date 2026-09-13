@@ -22,7 +22,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    wineWow64Packages.staging winetricks mangohud protontricks
+    wineWow64Packages.staging winetricks protontricks
     yabridge
     yabridgectl
     reaper-x11
