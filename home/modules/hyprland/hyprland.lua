@@ -303,6 +303,10 @@ hl.window_rule({ match = { class = "vesktop" }, opacity = "0.99 override 0.99 ov
 --------------------------------------------------------------------- layer rules
 hl.layer_rule({ name = "vicinae-blur", match = { namespace = "vicinae" }, blur = true, ignore_alpha = 0 })
 
+-- DMS's bar blur samples the window under it (the kernel is wider than the 38px
+-- bar), so a Zen tab switch repaints into the backdrop. xray pins it to the wallpaper.
+hl.layer_rule({ name = "dms-bar-xray", match = { namespace = "^dms:bar$" }, xray = true })
+
 --------------------------------------------------------------------- gestures
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 hl.gesture({ fingers = 4, direction = "down", action = "close" })
