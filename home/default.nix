@@ -77,7 +77,7 @@ in {
     kdePackages.gwenview
 
     # Internet
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta
     mullvad-browser
     brave
     telegram-desktop
@@ -140,9 +140,9 @@ in {
 
   programs.home-manager.enable = true;
 
-  xdg.desktopEntries."zen-twilight" = {
-    name = "Zen Browser Twilight";
-    exec = "zen-twilight %U";
+  xdg.desktopEntries."zen-beta" = {
+    name = "Zen Browser Beta";
+    exec = "zen-beta %U";
     icon = "zen-browser";
     categories = ["Network" "WebBrowser"];
     mimeType = [
@@ -155,7 +155,7 @@ in {
     terminal = false;
   };
 
-  # The zen-twilight.desktop file declares Icon=zen-browser, but no such file
+  # The zen-beta.desktop file declares Icon=zen-browser, but no such file
   # exists in the active icon themes. Quickshell-overview's icon lookup goes
   # strictly by that name (no class-name fallback like DMS), so it renders the
   # missing-icon rectangle. Symlink Fluent's zen-browser.svg into hicolor so

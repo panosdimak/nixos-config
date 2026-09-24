@@ -8,7 +8,7 @@
 --------------------------------------------------------------------- programs
 local terminal = "kitty"
 local fileManager = "nautilus"
-local browser = "zen-twilight"
+local browser = "zen-beta"
 
 --------------------------------------------------------------------- colors
 -- Rendered by matugen to ~/.config/hypr/colors.lua on wallpaper change.
@@ -277,7 +277,7 @@ hl.window_rule({
 -- Prevent idle/lock while watching media (always for mpv, fullscreen-only for browsers)
 hl.window_rule({ match = { class = "mpv" }, idle_inhibit = "always" })
 hl.window_rule({ match = { class = "firefox" }, idle_inhibit = "fullscreen" })
-hl.window_rule({ match = { class = "zen" }, idle_inhibit = "fullscreen" })
+hl.window_rule({ match = { class = "zen-beta" }, idle_inhibit = "fullscreen" })
 
 -- Float, pin, and park picture-in-picture windows bottom-right
 hl.window_rule({

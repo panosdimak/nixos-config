@@ -43,7 +43,7 @@ This is a NixOS flake managing two hosts with shared modules and per-host overri
 
 **Workspace overview:** The `quickshell-overview` flake input (Shanu-Kumawat/quickshell-overview, `flake = false`) is symlinked into `~/.config/quickshell/overview` by `home/modules/hyprland/default.nix`. It runs as its own QS daemon (`qs -c overview`, started from the autostart list) and is toggled by Super+Tab → `qs ipc -c overview call overview toggle`. Per-user options (e.g. `showSpecialWorkspaces`, `colorSource: matugen`) live in `~/.config/quickshell/overview/config.json` — that file is **not** version-controlled. Matugen colors are sourced from `home/modules/matugen/files/templates/quickshell-colors.qml` which renders to `~/.config/quickshell/overview/common/Appearance.colors.qml`. Preferred over DMS's overview (broken on Hyprland — focus-grab race with workspace dispatch, `DMS_HYPRLAND_EXCLUSIVE_FOCUS=1` is a partial workaround) and over hyprtasking (also unreliable). Do not suggest switching back without a strong reason.
 
-**Zen browser icon:** `home/default.nix` symlinks `zen-browser.svg` from `fluent-icon-theme` into hicolor because the `zen-twilight.desktop` entry declares `Icon=zen-browser` and quickshell-overview resolves icons strictly by that name (no class fallback like DMS).
+**Zen browser icon:** `home/default.nix` symlinks `zen-browser.svg` from `fluent-icon-theme` into hicolor because the `zen-beta.desktop` entry declares `Icon=zen-browser` and quickshell-overview resolves icons strictly by that name (no class fallback like DMS).
 
 **Dev shells** (`shells/`): Standalone flakes for rust, python, java, opengl — used via direnv.
 
