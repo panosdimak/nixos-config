@@ -10,26 +10,39 @@
       "analytics"
     ];
 
+    # configuration.yaml is a read-only store symlink; without these includes
+    # the UI editors have nowhere writable to save and just hang.
     config = {
       default_config = {};
       homeassistant = {
         unit_system = "metric";
         time_zone = "Europe/Athens";
       };
+      "automation ui" = "!include automations.yaml";
+      "script ui" = "!include scripts.yaml";
+      "scene ui" = "!include scenes.yaml";
     };
   };
 
-  # The web UI / phone app. The module dropped its own `openFirewall` because
-  # the frontend port isn't known at eval time any more, so open 8123 by hand.
+  # !include fails hard on a missing file. Seeds once; tmpfiles won't rewrite.
+  systemd.tmpfiles.settings."10-home-assistant" = let
+    seed.f = {
+      user = "hass";
+      group = "hass";
+      mode = "0644";
+      argument = "[]";
+    };
+  in {
+    "/var/lib/hass/automations.yaml" = seed;
+    "/var/lib/hass/scripts.yaml" = seed;
+    "/var/lib/hass/scenes.yaml" = seed;
+  };
+
+  # The module dropped its own openFirewall — the port isn't known at eval time.
   networking.firewall.allowedTCPPorts = [8123];
 
-  # Gree auto-discovery: greeclimate broadcasts a scan to :7000 from an
-  # ephemeral local port, and the AC answers by unicast *from* :7000 back to
-  # that ephemeral port. The stateful firewall can't tie that reply to the
-  # broadcast we sent, so it arrives as unsolicited traffic on an unopened port
-  # and gets dropped — which is why simply opening inbound 7000 does nothing.
-  # Accept UDP replies whose source port is 7000 (only the AC uses it here).
-  # Ongoing control traffic is plain unicast and already allowed by conntrack.
+  # greeclimate scans :7000 from an ephemeral port and the AC replies *from*
+  # :7000, which conntrack can't match — opening inbound 7000 does nothing.
   networking.firewall.extraCommands = ''
     iptables -I nixos-fw -p udp --sport 7000 -j nixos-fw-accept
   '';
