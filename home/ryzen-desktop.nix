@@ -23,7 +23,8 @@
     env = [
       {_args = ["LIBVA_DRIVER_NAME" "nvidia"];}
       {_args = ["__GLX_VENDOR_LIBRARY_NAME" "nvidia"];}
-      {_args = ["VK_DRIVER_FILES" "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json"];}
+      # Both ICDs: the 32-bit one keeps DXVK working for 32-bit games under Proton.
+      {_args = ["VK_DRIVER_FILES" "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json:/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.json"];}
     ];
 
     device = [
