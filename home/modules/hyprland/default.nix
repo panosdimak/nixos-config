@@ -30,6 +30,8 @@
       autostart._var = [
         "nm-applet"
         "blueman-applet"
+        # tray icon. launch under xwayland (mullvad-vpn-app issue 8610)
+        "mullvad-vpn --ozone-platform=x11"
         "hypridle"
         "vicinae server"
         "hyprctl setcursor Bibata-Modern-Classic 24"
