@@ -9,8 +9,6 @@
   home.packages = with pkgs; [qpwgraph];
 
   wayland.windowManager.hyprland.settings = {
-    autostart._var = ["qpwgraph"];
-
     monitor = [
       {
         output = "HDMI-A-1";
