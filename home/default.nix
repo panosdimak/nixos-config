@@ -117,6 +117,7 @@ in {
 
     # Tools
     localsend
+    monero-gui
 
     # Misc
     sl
