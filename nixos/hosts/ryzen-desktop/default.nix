@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware.nix
 
@@ -19,7 +23,15 @@
 
   profiles.audio.lowLatency = true;
 
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+
+    # Inherited by every game, so MangoHud's Vulkan layer activates without
+    # per-game launch options. Opt out with DISABLE_MANGOHUD=1 %command%.
+    package = pkgs.steam.override {
+      extraEnv.MANGOHUD = "1";
+    };
+  };
 
   programs.coolercontrol.enable = true;
 

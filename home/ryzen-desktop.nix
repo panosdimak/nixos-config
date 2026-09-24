@@ -2,6 +2,7 @@
   imports = [
     ./common.nix
     ./default.nix
+    ./modules/mangohud.nix
     ./modules/music-production.nix
   ];
 
