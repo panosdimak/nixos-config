@@ -28,12 +28,6 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    # Spicetify-Nix
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Quickshell (built from source for full DankMaterialShell features).
     # Pulled from the GitHub mirror rather than upstream git.outfoxxed.me, which
     # goes unreachable often enough to wedge an eval on any machine that has not

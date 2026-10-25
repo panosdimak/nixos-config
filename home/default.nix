@@ -75,6 +75,8 @@ in {
     nomacs
     qimgv
     kdePackages.gwenview
+    spotifast
+    spotify
 
     # Internet
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta

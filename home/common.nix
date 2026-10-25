@@ -16,6 +16,5 @@
     ./modules/hypridle.nix
     ./modules/kitty.nix
     ./modules/development.nix
-    ./modules/spicetify.nix
   ];
 }
