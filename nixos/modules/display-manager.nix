@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   services.displayManager.dms-greeter = {
     enable = true;
     compositor.name = "hyprland";
@@ -17,4 +17,9 @@
   };
 
   services.displayManager.defaultSession = "hyprland";
+
+  # Upstream uses Type=idle, which holds the greeter back until every boot job
+  # settles (wait-online, coolercontrold). Nothing writes to the tty here, so
+  # there is no console output to protect.
+  systemd.services.greetd.serviceConfig.Type = lib.mkForce "simple";
 }
