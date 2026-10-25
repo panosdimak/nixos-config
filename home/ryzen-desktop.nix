@@ -11,9 +11,9 @@
   wayland.windowManager.hyprland.settings = {
     monitor = [
       {
-        output = "HDMI-A-1";
-        mode = "1920x1080@72";
-        position = "0x0";
+        output = "";
+        mode = "preferred";
+        position = "auto";
         scale = 1;
       }
     ];
