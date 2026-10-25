@@ -35,11 +35,13 @@
 
   programs.coolercontrol.enable = true;
 
-  # Stock 200 W buys ~3.5% more clock for 8.5 °C and 31 W. Ordered after the
-  # display manager so a client holds the GPU open, or the driver drops it.
+  # Stock 200 W buys ~3.5% more clock for 8.5 °C and 31 W. nvidia-persistenced
+  # keeps the driver initialized, otherwise the limit resets once no client
+  # holds the GPU open.
   systemd.services.nvidia-power-limit = {
     description = "GPU power limit";
-    after = ["display-manager.service"];
+    after = ["nvidia-persistenced.service"];
+    wants = ["nvidia-persistenced.service"];
     wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "oneshot";
