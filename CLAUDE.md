@@ -20,15 +20,15 @@ alejandra .
 
 ## Architecture
 
-This is a NixOS flake managing two hosts with shared modules and per-host overrides. **Hyprland** is the Wayland compositor; **DankMaterialShell (DMS)** — a Quickshell QML frontend with a Go backend (`dgop` for telemetry, `dms` CLI tools) — is the desktop shell layered on top.
+This is a NixOS flake managing two hosts with shared modules and per-host overrides. **Hyprland** is the Wayland compositor; **Dux Shell (DMS, formerly DankMaterialShell)** — a Quickshell QML frontend with a Go backend (`dgop` for telemetry, `dms` CLI tools) — is the desktop shell layered on top.
 
 **Flake structure:** `flake.nix` defines two `nixosConfigurations` (`ryzen-desktop`, `inspiron-15`). Both share `commonModules` (home-manager, musnix) and use `mkHome` to wire Home Manager as a NixOS module (not standalone). The `inputs` follow nixpkgs-unstable; Hyprland and Quickshell use their own nixpkgs.
 
 **System layer** (`nixos/`):
 - `profiles/common.nix` — imports all shared system modules
 - `modules/` — individual concerns (boot, audio, networking, nvidia, etc.)
-- `modules/dms.nix` — DankMaterialShell (DMS) via Quickshell, providing the status bar and notification center for all hosts. The workspace overview is **not** DMS's — it's the standalone `quickshell-overview` (see Home layer)
-- `modules/display-manager.nix` — login screen. **DankGreeter** via the native `services.displayManager.dms-greeter` module (greetd-based), replacing GDM. The greeter is a Quickshell client, so it runs inside its own throwaway Hyprland instance; `compositor.customConfig` silences that Hyprland's splash. `configHome = "/home/panos"` makes greetd's preStart copy the user's live DMS settings/session/colors into `/var/lib/dms-greeter` so the login screen matches the desktop theme. gnome-keyring unlock comes free via the greetd PAM service (gnome-keyring is enabled). Single account → no user picker; "remember last user" (default) pre-fills the username after the first login
+- `modules/dms.nix` — Dux Shell (DMS) via the native `programs.dux-shell` module and Quickshell, providing the status bar and notification center for all hosts. The workspace overview is **not** DMS's — it's the standalone `quickshell-overview` (see Home layer)
+- `modules/display-manager.nix` — login screen. **Dux Greeter** via the native `services.displayManager.dux-greeter` module (greetd-based), replacing GDM. The greeter is a Quickshell client, so it runs inside its own throwaway Hyprland instance; `compositor.customConfig` silences that Hyprland's splash. `configHome = "/home/panos"` makes greetd's preStart copy the user's live DMS settings/session/colors into `/var/lib/dms-greeter` so the login screen matches the desktop theme. gnome-keyring unlock comes free via the greetd PAM service (gnome-keyring is enabled). Single account → no user picker; "remember last user" (default) pre-fills the username after the first login
 - `hosts/<name>/` — host-specific hardware config and module selection (e.g. ryzen-desktop enables nvidia + musnix, inspiron-15 enables power-management)
 
 **Home layer** (`home/`):
@@ -74,7 +74,7 @@ gh search code --repo <owner>/<repo> "<query>" --limit 30
 
 | Topic | Repo | Branch | Notes |
 |---|---|---|---|
-| DankMaterialShell (DMS) — IPC commands, settings, compositor integration, plugins | `AvengeMedia/DankLinux-Docs` | `master` | Most useful page: `docs/dankmaterialshell/keybinds-ipc.mdx`. Also covers dankgreeter, danksearch, dgop. |
+| Dux Shell (DMS) — IPC commands, settings, compositor integration, plugins | `duxlabs-dev/dux-docs` | `master` | Formerly `AvengeMedia/DankLinux-Docs`. Most useful page: `docs/dms/keybinds-ipc.mdx`. Also covers the greeter (`docs/dms-greeter/`) and dgop. |
 | Hyprland — config syntax (Lua since 0.55), dispatchers, binds, plugins, NixOS/HM integration | `hyprwm/hyprland-wiki` | `main` | Pages under `content/Configuring/`. Old hyprlang docs live at `wiki.hypr.land/0.54.0/`. |
 | Hyprland example config | `hyprwm/Hyprland` | `main` | `example/hyprland.lua` is the canonical reference for current syntax. |
 | Home Manager module options (Hyprland, etc.) | `nix-community/home-manager` | `master` | `modules/services/window-managers/hyprland/` (`default.nix` for options, `lib.nix` for the Lua/hyprlang renderers) is authoritative for `wayland.windowManager.hyprland.*` options. |
