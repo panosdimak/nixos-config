@@ -20,5 +20,6 @@ require('mini.base16').setup({
 })
 vim.api.nvim_set_hl(0, 'Visual', { bg = '{{colors.primary.default.hex}}', fg = '{{colors.on_primary.default.hex}}' })
 vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" })
+vim.cmd.highlight({ "NormalNC", "guibg=NONE", "ctermbg=NONE" })
 vim.cmd.highlight({ "NonText", "guibg=NONE", "ctermbg=NONE" })
 vim.cmd.highlight({ "SignColumn", "guibg=NONE", "ctermbg=NONE" })
