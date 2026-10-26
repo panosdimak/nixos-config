@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -16,6 +17,8 @@
     ../../modules/audio.nix
     ../../modules/radicale.nix
     ../../modules/home-assistant.nix
+
+    inputs.openlogi.nixosModules.default
   ];
 
   system.stateVersion = "25.05";
@@ -34,6 +37,11 @@
   };
 
   programs.coolercontrol.enable = true;
+
+  programs.openlogi = {
+    enable = true;
+    launchAtLogin = true;
+  };
 
   # Stock 200 W buys ~3.5% more clock for 8.5 °C and 31 W. nvidia-persistenced
   # keeps the driver initialized, otherwise the limit resets once no client

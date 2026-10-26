@@ -42,6 +42,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    openlogi = {
+      url = "github:AprilNEA/OpenLogi";
+    };
+
     # Standalone Quickshell workspace overview (DMS's is broken on Hyprland)
     quickshell-overview = {
       url = "github:Shanu-Kumawat/quickshell-overview";
