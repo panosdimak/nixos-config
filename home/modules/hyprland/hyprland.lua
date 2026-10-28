@@ -7,7 +7,7 @@
 
 --------------------------------------------------------------------- programs
 local terminal = "kitty"
-local fileManager = "nautilus"
+local fileManager = "dfiles"
 local browser = "zen-beta"
 
 --------------------------------------------------------------------- colors
@@ -271,6 +271,13 @@ hl.window_rule({
 -- otherwise spawn top-left). modal excludes dropdown/popup menus.
 hl.window_rule({
   match = { class = ".*", xwayland = true, float = true, modal = true },
+  center = true,
+})
+
+-- Float and center Dux Files open/save dialogs (portal file chooser)
+hl.window_rule({
+  match = { class = "^dev\\.duxlabs\\.files$", title = "(Open|Save|Select|Upload|Export|Import|Choose|File Upload|Enter name of file).*" },
+  float = true,
   center = true,
 })
 
