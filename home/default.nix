@@ -98,9 +98,6 @@ in {
     # System utilities
     nautilus
     ffmpegthumbnailer # video thumbnails in nautilus
-    (thunar.override {
-      thunarPlugins = [thunar-archive-plugin thunar-volman];
-    })
     btop
     cpuid
     cpu-x
