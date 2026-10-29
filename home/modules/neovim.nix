@@ -113,14 +113,6 @@ in {
       local matugen_colors = vim.fn.stdpath("config") .. "/matugen-colors.lua"
       pcall(dofile, matugen_colors)
 
-      -- Reload colors on SIGUSR1 (triggered by wallpaper-theme.sh)
-      vim.api.nvim_create_autocmd("Signal", {
-        pattern = "SIGUSR1",
-        callback = function()
-          pcall(dofile, matugen_colors)
-        end,
-      })
-
       -- Plugins
       require("markview").setup()
       vim.keymap.set('n', '<leader>mt', '<cmd>Markview Toggle<cr>', { desc = 'Markview toggle' })
@@ -143,12 +135,27 @@ in {
           map('n', '<leader>hu', gs.undo_stage_hunk, 'Undo stage hunk')
         end,
       })
-      require("lualine").setup({
-        options = {
-          theme = "auto",
-          section_separators = "",
-          component_separators = "",
-        }
+      -- lualine's "auto" theme snapshots the highlight groups at setup time,
+      -- so it has to be set up again whenever the colors change
+      local function setup_lualine()
+        require("lualine").setup({
+          options = {
+            theme = "auto",
+            section_separators = "",
+            component_separators = "",
+          }
+        })
+      end
+      setup_lualine()
+
+      -- matugen sends SIGUSR1 after rendering new colors on wallpaper change
+      vim.api.nvim_create_autocmd("Signal", {
+        pattern = "SIGUSR1",
+        callback = function()
+          pcall(dofile, matugen_colors)
+          setup_lualine()
+          vim.cmd.redraw({ bang = true })
+        end,
       })
       vim.api.nvim_create_autocmd("FileType", {
         callback = function()

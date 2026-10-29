@@ -36,6 +36,7 @@ post_hook = "vicinae theme set matugen || true"
 [templates.neovim]
 input_path = "/home/panos/.config/matugen/templates/nvim-colors.lua"
 output_path = "/home/panos/.config/nvim/matugen-colors.lua"
+post_hook = "pkill -USR1 -x nvim || true"
 
 [templates.zed]
 input_path = "/home/panos/.config/matugen/templates/zed-colors.json"
