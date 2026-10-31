@@ -29,10 +29,6 @@ in
     bitwig-studio
   ];
 
-  # yabridge bundles Wine 9.21 which stack-overflows on some Neural DSP
-  # plugins (Plini, Granophyre, Fortin). System Wine 11.x handles them fine.
-  home.sessionVariables.WINELOADER = "${pkgs.wineWow64Packages.staging}/bin/wine";
-
   # nixpkgs patches yabridge's chainloader to locate libyabridge-*.so solely
   # by walking $NIX_PROFILES/*/lib (it drops the generic dlopen/ldconfig
   # fallbacks). When that variable is empty the stub aborts with "Could not
