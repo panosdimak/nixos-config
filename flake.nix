@@ -43,7 +43,7 @@
     };
 
     openlogi = {
-      url = "github:AprilNEA/OpenLogi";
+      url = "github:AprilNEA/OpenLogi?dir=packaging";
     };
 
     # Standalone Quickshell workspace overview (DMS's is broken on Hyprland)

@@ -154,14 +154,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1790859455,
-        "narHash": "sha256-zAutHcLw2aEKO5vIRdsYVqtUAQLj/7xtodFpEyTE1A8=",
+        "dir": "packaging",
+        "lastModified": 1793635053,
+        "narHash": "sha256-ZHeOUBzmGXORzS6OQbLUb+Qm5oOhK2EXQ46S5aCMEN0=",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
-        "rev": "bd5c1e7641987a22d7a3c855469c04b89f627344",
+        "rev": "6d01ac3ab110869d10140e6188541eb567378932",
         "type": "github"
       },
       "original": {
+        "dir": "packaging",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
         "type": "github"
@@ -223,11 +225,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790756160,
-        "narHash": "sha256-NPs4nNLxCpho3Ctj8O7t/bzmX0zR8r0zndKghAFEz5U=",
+        "lastModified": 1792219666,
+        "narHash": "sha256-RMO08tKD+hFIL5ryWi85VY4aHE5oIpdV1h4kVFctOkw=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "ed3a19fd0439ed618ec5fe1e12f0ba69a8be38b5",
+        "rev": "a110337465cfb76e3806b81b9db3094c3e6e770a",
         "type": "github"
       },
       "original": {
