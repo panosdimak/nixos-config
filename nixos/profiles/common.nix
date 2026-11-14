@@ -17,5 +17,6 @@
     ../modules/display-manager.nix
     ../modules/dms.nix
     ../modules/nix-ld.nix
+    ../modules/tailscale.nix
   ];
 }

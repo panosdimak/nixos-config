@@ -17,6 +17,7 @@
     ../../modules/audio.nix
     ../../modules/radicale.nix
     ../../modules/home-assistant.nix
+    ../../modules/openssh.nix
 
     inputs.openlogi.nixosModules.default
   ];
