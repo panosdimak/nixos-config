@@ -22,5 +22,11 @@
       User = "git";
       IdentityFile = "~/.ssh/id_ed25519";
     };
+    
+    settings."desktop" = {
+      HostName = "100.122.188.4";
+      User = "panos";
+      IdentityFile = "~/.ssh/id_ed25519";
+    };
   };
 }
