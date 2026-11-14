@@ -70,7 +70,6 @@ in {
 
     # Media
     celluloid
-    obs-studio
     gapless
     nomacs
     qimgv
@@ -124,6 +123,11 @@ in {
     fortune
     lolcat
   ];
+
+  programs.obs-studio = {
+    enable = true;
+    plugins = [pkgs.obs-studio-plugins.obs-pipewire-audio-capture];
+  };
 
   programs.vesktop.enable = true;
   # Vesktop's built-in arRPC doesn't detect running games here, so run a
