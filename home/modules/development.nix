@@ -12,6 +12,7 @@
   # Development-centric packages
   home.packages = with pkgs; [
     gcc
+    jdk
     gnumake
     valgrind
     binutils
