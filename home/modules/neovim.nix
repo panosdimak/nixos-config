@@ -290,6 +290,8 @@ in {
         }),
       })
 
+      vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'LSP format buffer' })
+
       -- Telescope
       require("telescope").setup({})
       require('telescope').load_extension('fzf')
