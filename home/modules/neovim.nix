@@ -216,9 +216,6 @@ in {
               },
               formatting = {
                 command = { "alejandra" }
-              },
-              options = {
-                enable = true
               }
             }
           }
