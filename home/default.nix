@@ -115,6 +115,7 @@ in {
 
     # Tools
     localsend
+    waypipe # run single GUI apps over SSH: waypipe ssh desktop <app>
     monero-gui
 
     # Misc

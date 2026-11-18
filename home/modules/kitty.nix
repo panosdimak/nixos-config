@@ -33,6 +33,10 @@
       "ctrl+equal" = "change_font_size all +1.0";
       "ctrl+minus" = "change_font_size all -1.0";
       "ctrl+shift+p" = "kitten hints";
+      # Open in the current window's directory. Inside `kitten ssh` this also
+      # opens on the same remote host.
+      "ctrl+shift+enter" = "launch --cwd=current";
+      "ctrl+shift+t" = "launch --type=tab --cwd=current";
       "page_up" = "scroll_page_up";
       "page_down" = "scroll_page_down";
     };

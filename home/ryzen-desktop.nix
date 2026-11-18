@@ -8,6 +8,18 @@
 
   home.packages = with pkgs; [qpwgraph];
 
+  # Persistent shells for SSH sessions from the laptop: `shpool attach <name>`.
+  services.shpool = {
+    enable = true;
+    settings = {
+      # starship shows the session name instead (env_var module)
+      prompt_prefix = "";
+      # Default is TERM/DISPLAY/LANG/SSH_AUTH_SOCK. The SSH_* vars let
+      # starship's ssh_only hostname segment still show inside a session.
+      forward_env = ["SSH_CONNECTION" "SSH_CLIENT" "SSH_TTY"];
+    };
+  };
+
   wayland.windowManager.hyprland.settings = {
     monitor = [
       {

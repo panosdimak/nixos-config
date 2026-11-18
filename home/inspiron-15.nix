@@ -1,8 +1,60 @@
-{...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  # Terminal paste can't carry images, so a Claude Code session on the desktop
+  # never sees a screenshot taken here. Upload the clipboard image to the
+  # desktop and swap the clipboard for its path, which pastes as text.
+  clipToDesktop = pkgs.writeShellApplication {
+    name = "clip-to-desktop";
+    runtimeInputs = with pkgs; [coreutils gnugrep libnotify openssh wl-clipboard];
+    text = ''
+      export SSH_AUTH_SOCK="''${SSH_AUTH_SOCK:-$XDG_RUNTIME_DIR/gcr/ssh}"
+
+      if ! wl-paste --list-types | grep -qx image/png; then
+        notify-send -a "Clip to desktop" "No image on the clipboard"
+        exit 1
+      fi
+
+      f="/tmp/clip-$(date +%Y%m%d-%H%M%S).png"
+      if wl-paste -t image/png | ssh -o BatchMode=yes -o ConnectTimeout=5 desktop "cat > $f"; then
+        printf '%s' "$f" | wl-copy
+        notify-send -a "Clip to desktop" "Uploaded, path copied" "$f"
+      else
+        notify-send -a "Clip to desktop" -u critical "Upload failed"
+        exit 1
+      fi
+    '';
+  };
+in {
   imports = [
     ./common.nix
     ./default.nix
   ];
+
+  home.packages = [clipToDesktop];
+
+  wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
+    hl.bind("SUPER + SHIFT + U", hl.dsp.exec_cmd("clip-to-desktop"))
+  '';
+
+  # Browse the desktop from the laptop's yazi: `yazi sftp://desktop`, or `g s`.
+  # Opening a file downloads it and uses the local opener. yazi doesn't read
+  # ~/.ssh/config, so the key is given explicitly.
+  xdg.configFile."yazi/vfs.toml".text = ''
+    [sftp.desktop]
+    host = "100.122.188.4"
+    user = "panos"
+    port = 22
+    key_file = "~/.ssh/id_ed25519"
+  '';
+  xdg.configFile."yazi/keymap.toml".text = ''
+    [[mgr.prepend_keymap]]
+    on   = [ "g", "s" ]
+    run  = "cd sftp://desktop//home/panos"
+    desc = "Go to desktop over SFTP"
+  '';
 
   wayland.windowManager.hyprland.settings = {
     monitor = [

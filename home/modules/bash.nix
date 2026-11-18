@@ -1,14 +1,20 @@
-{ ... }:
-
-{
-    programs.bash = {
+{pkgs, ...}: {
+  programs.bash = {
     enable = true;
 
-    historyControl = [ "ignoredups" "ignorespace" ];
+    historyControl = ["ignoredups" "ignorespace"];
     historySize = 10000;
     historyFileSize = 20000;
 
     initExtra = ''
+      # shpool starts shells from its daemon, so kitty never gets to inject its
+      # shell integration there. Load it by hand so cwd tracking and remote
+      # file links keep working inside shpool sessions.
+      if [[ -n $SHPOOL_SESSION_NAME && -z $KITTY_SHELL_INTEGRATION ]]; then
+        KITTY_SHELL_INTEGRATION=enabled
+        source ${pkgs.kitty}/lib/kitty/shell-integration/bash/kitty.bash
+      fi
+
       eval "$(starship init bash)"
       eval "$(fzf --bash)"
 
@@ -26,7 +32,7 @@
       nixoptimize = "nix-store --optimise";
 
       vim = "nvim";
-      
+
       # ls aliases
       ls = "lsd";
       ll = "lsd -l";
@@ -37,6 +43,9 @@
       # Quick navigation
       home = "cd ~";
       config = "cd ~/nixos-config";
+
+      # Remote work on the desktop
+      desk = "kitten ssh desktop";
     };
   };
 

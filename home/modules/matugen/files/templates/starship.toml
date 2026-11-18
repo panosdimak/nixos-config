@@ -1,4 +1,4 @@
-format = "$hostname$directory$git_branch$git_status$cmd_duration$cmake$cpp$nix_shell$jobs$line_break$character"
+format = "$hostname${env_var.SHPOOL_SESSION_NAME}$directory$git_branch$git_status$cmd_duration$cmake$cpp$nix_shell$jobs$line_break$character"
 
 palette = "matugen"
 
@@ -20,6 +20,10 @@ ssh_only = true
 ssh_symbol = "󰒋 "
 format = "[$ssh_symbol$hostname]($style) [│](on_surface) "
 style = "bold primary"
+
+[env_var.SHPOOL_SESSION_NAME]
+format = "[󰆍 $env_value]($style) [│](on_surface) "
+style = "bold secondary"
 
 [directory]
 truncation_length = 3
