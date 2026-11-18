@@ -16,6 +16,7 @@
     nerd-fonts.geist-mono
     nerd-fonts.commit-mono
     nerd-fonts._0xproto
+    nerd-fonts.adwaita-mono
 
     # UI / fallback fonts
     inter
