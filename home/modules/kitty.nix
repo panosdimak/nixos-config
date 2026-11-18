@@ -46,4 +46,11 @@
       include colors.conf
     '';
   };
+
+  # kitten ssh is supposed to inherit shell_integration from kitty.conf, but
+  # here it sends nothing, so remote shells start without integration and
+  # can't report their cwd (needed for launch --cwd=current over SSH).
+  xdg.configFile."kitty/ssh.conf".text = ''
+    shell_integration enabled
+  '';
 }

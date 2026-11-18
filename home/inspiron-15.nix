@@ -39,23 +39,6 @@ in {
     hl.bind("SUPER + SHIFT + U", hl.dsp.exec_cmd("clip-to-desktop"))
   '';
 
-  # Browse the desktop from the laptop's yazi: `yazi sftp://desktop`, or `g s`.
-  # Opening a file downloads it and uses the local opener. yazi doesn't read
-  # ~/.ssh/config, so the key is given explicitly.
-  xdg.configFile."yazi/vfs.toml".text = ''
-    [sftp.desktop]
-    host = "100.122.188.4"
-    user = "panos"
-    port = 22
-    key_file = "~/.ssh/id_ed25519"
-  '';
-  xdg.configFile."yazi/keymap.toml".text = ''
-    [[mgr.prepend_keymap]]
-    on   = [ "g", "s" ]
-    run  = "cd sftp://desktop//home/panos"
-    desc = "Go to desktop over SFTP"
-  '';
-
   wayland.windowManager.hyprland.settings = {
     monitor = [
       {

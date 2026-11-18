@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs.bash = {
     enable = true;
 
@@ -6,24 +10,29 @@
     historySize = 10000;
     historyFileSize = 20000;
 
-    initExtra = ''
+    initExtra = lib.mkMerge [
+      ''
+        eval "$(starship init bash)"
+        eval "$(fzf --bash)"
+
+        devshell() {
+          cp "$HOME/nixos-config/shells/$1/flake.nix" .
+          echo "use flake" > .envrc
+          direnv allow
+        }
+      ''
       # shpool starts shells from its daemon, so kitty never gets to inject its
       # shell integration there. Load it by hand so cwd tracking and remote
-      # file links keep working inside shpool sessions.
-      if [[ -n $SHPOOL_SESSION_NAME && -z $KITTY_SHELL_INTEGRATION ]]; then
-        KITTY_SHELL_INTEGRATION=enabled
-        source ${pkgs.kitty}/lib/kitty/shell-integration/bash/kitty.bash
-      fi
-
-      eval "$(starship init bash)"
-      eval "$(fzf --bash)"
-
-      devshell() {
-        cp "$HOME/nixos-config/shells/$1/flake.nix" .
-        echo "use flake" > .envrc
-        direnv allow
-      }
-    '';
+      # file links keep working inside shpool sessions. It has to come last,
+      # like kitty's own injection: starship and direnv rewrite PROMPT_COMMAND
+      # and would drop kitty's hook otherwise.
+      (lib.mkOrder 2000 ''
+        if [[ -n $SHPOOL_SESSION_NAME && -z $KITTY_SHELL_INTEGRATION ]]; then
+          KITTY_SHELL_INTEGRATION=enabled
+          source ${pkgs.kitty}/lib/kitty/shell-integration/bash/kitty.bash
+        fi
+      '')
+    ];
 
     shellAliases = {
       # NixOS
